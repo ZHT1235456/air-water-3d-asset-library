@@ -1,0 +1,60 @@
+{
+  "scene": "香港果洲群岛 · 23 个已标绘岛屿与岩礁",
+  "variant": "ninepin",
+  "reviewed": "2026-10-21",
+  "scope": "实景地形校核版；公开岸线与历史航测地形组合，不是实时测绘、精确洞穴模型或海图。",
+  "coordinateSystem": "WGS84 岸线经 EPSG:2326 转换至香港 1980 方格；原点 22.2635 N, 114.3565 E；+X 网格东、-Z 网格北、Y 向上。",
+  "verticalDatum": "源高程为香港主水平基准；展示海面固定 Y=0，不代表拍摄时刻的实际潮位。",
+  "verified": ["23 条闭合 OSM 岛屿岸线、稳定 way ID、实际相对位置", "地政总署 5 m 网格高程；局部重采样为 10 m 渲染网格，保留岸线折点", "岛屿全部从水域多边形中扣除，地形与空间定义同源"],
+  "limitations": ["源数据标称精度为 ±5 m（90% 置信水平），源航片为 2014–2015 年；植被及部分非地面设施可能计入高程", "岸线外扩泡沫、岩纹及灌丛为程序化视觉装饰，不是现场植被分布或精确岩柱", "受岸线与高程采集年代/水位差异影响，低于 0.6 m 的陆地采样点抬至 0.6 m，底部封至 -8 m；不代表真实海床", "没有用粗网格伪造海蚀洞和岩拱通道；高度场无法准确还原悬挑洞穴", "未加入无依据的码头、桥梁、建筑或船舶", "岛屿障碍按完整平面轮廓与该岛最高点形成保守柱体，低空贴坡飞行可能提示保守重叠"],
+  "sources": [
+    {
+      "title": "果洲群岛岸线 OpenStreetMap",
+      "url": "https://www.openstreetmap.org/#map=15/22.2635/114.3565",
+      "download": "https://www.openstreetmap.org/api/0.6/map?bbox=114.34,22.23,114.39,22.29",
+      "author": "OpenStreetMap contributors",
+      "license": "ODbL 1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "authorization": "Open-data license, attribution and applicable share-alike terms retained",
+      "rawSnapshot": "/assets/ninepin/site.osm",
+      "derivedDatabase": "/assets/ninepin/terrain.json",
+      "derivedDatabaseLicense": "ODbL 1.0 for coastline-derived database; elevation source rights also retained below"
+    },
+    {
+      "title": "Digital Terrain Model, Whole_HK_DTM_5m.asc",
+      "url": "https://data.gov.hk/en-data/dataset/hk-landsd-openmap-5m-grid-dtm",
+      "specification": "https://www.landsd.gov.hk/en/spatial-data/open-data/kf_dtm.html",
+      "download": "https://www.landsd.gov.hk/landsd_psi_data/SMO/data/Whole_HK_DTM_5m.zip",
+      "author": "Government of the Hong Kong Special Administrative Region, Lands Department; DATA.GOV.HK",
+      "license": "DATA.GOV.HK Terms and Conditions v1.2; source intellectual property rights retained",
+      "licenseUrl": "https://data.gov.hk/en/terms-and-conditions",
+      "authorization": "Terms permit free commercial/non-commercial use and redistribution subject to attribution and stated conditions; this is not a CC0 asset",
+      "attribution": "地形数据 © 香港特别行政区政府 地政总署，经 DATA.GOV.HK 提供。本模型已裁剪、重采样并作岸线接缝处理，未经政府认可或背书。",
+      "crop": "/assets/ninepin/dtm-crop.npz",
+      "sourceGridMetres": 5,
+      "renderGridMetres": 10,
+      "accuracy": "±5 m at 90% confidence, per LandsD specification"
+    },
+    {
+      "title": "Ninepin Group — Hong Kong Tourism Board photographic references",
+      "url": "https://www.discoverhongkong.com/eng/place-to-go/travel.guide-ninepin-group.html",
+      "author": "Hong Kong Tourism Board; panorama credited to Kelvin Yuen; other individual credits unspecified",
+      "license": "Copyright reserved; no commercial texture authorization verified",
+      "authorization": "Reference viewing only",
+      "usage": "Multi-island composition, rock colouring, low scrub and cliff reference. Photographs are not distributed as runtime textures."
+    },
+    {
+      "title": "Hong Kong UNESCO Global Geopark",
+      "url": "https://www.geopark.gov.hk/about_us/geopark/",
+      "author": "Agriculture, Fisheries and Conservation Department, HKSAR",
+      "usage": "Geographical and conservation context; no invented public piers or visitor facilities"
+    },
+    {
+      "title": "Kloppenheim 06 Pure Sky",
+      "url": "https://polyhaven.com/a/kloppenheim_06_puresky",
+      "author": "Greg Zaal, Jarod Guest / Poly Haven",
+      "license": "CC0",
+      "usage": "Shared local 360-degree sky and lighting, generic atmosphere rather than a dated Hong Kong photograph"
+    }
+  ]
+}

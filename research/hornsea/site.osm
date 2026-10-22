@@ -1,0 +1,2747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1315 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5119132542" visible="true" version="3" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9192528" lon="1.6644536">
+  <tag k="seamark:buoy_cardinal:category" v="west"/>
+  <tag k="seamark:buoy_cardinal:colour" v="yellow;black;yellow"/>
+  <tag k="seamark:buoy_cardinal:colour_pattern" v="horizontal"/>
+  <tag k="seamark:light:character" v="Q"/>
+  <tag k="seamark:light:colour" v="white"/>
+  <tag k="seamark:light:group" v="9"/>
+  <tag k="seamark:light:period" v="15"/>
+  <tag k="seamark:name" v="HOW-W"/>
+  <tag k="seamark:topmark:colour" v="black"/>
+  <tag k="seamark:topmark:shape" v="2 cones point together"/>
+  <tag k="seamark:type" v="buoy_cardinal"/>
+ </node>
+ <node id="5435295297" visible="true" version="2" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9716178" lon="1.6963365"/>
+ <node id="5718048906" visible="true" version="4" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9229171" lon="2.0373200"/>
+ <node id="8120359157" visible="true" version="2" changeset="167466730" timestamp="2025-06-10T23:08:51Z" user="Hansiepanzie" uid="22829255" lat="54.0086764" lon="1.4387690"/>
+ <node id="8120359158" visible="true" version="2" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.8352088" lon="1.4501343"/>
+ <node id="8120359161" visible="true" version="3" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9783559" lon="1.7422168"/>
+ <node id="8320773815" visible="true" version="2" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9342373" lon="1.6833542"/>
+ <node id="8320773816" visible="true" version="2" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9415887" lon="1.7293166"/>
+ <node id="8320795117" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9747677" lon="2.0544431">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R02"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795118" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9787301" lon="2.0296595">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S03"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795119" visible="true" version="6" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9808577" lon="2.0027141">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S04"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795120" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9833113" lon="1.9450393">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S07"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795121" visible="true" version="6" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9854210" lon="1.9142353">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S09"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795122" visible="true" version="6" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9859912" lon="1.8945036">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S11"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795123" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9861704" lon="1.8714619">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S12"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795124" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9862244" lon="1.8512205">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S14"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795125" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9876785" lon="1.8275145">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S15"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795126" visible="true" version="6" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9905010" lon="1.8057942">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S16"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795127" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9951488" lon="1.7716409">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T17"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795128" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9976640" lon="1.7539062">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T18"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795129" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0004588" lon="1.7264247">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T20"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795130" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0020435" lon="1.7093180">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T21"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795131" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0026740" lon="1.6813372">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T22"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="8320795132" visible="true" version="2" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9296263" lon="1.7965647"/>
+ <node id="8459192392" visible="true" version="1" changeset="100003878" timestamp="2021-02-25T21:03:54Z" user="malcolmh" uid="128186" lat="54.0102842" lon="1.5773158"/>
+ <node id="8459192400" visible="true" version="3" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9378500" lon="2.0208190"/>
+ <node id="8459192402" visible="true" version="2" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9397094" lon="1.8659155"/>
+ <node id="9379152531" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9558865" lon="1.5317864">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152532" visible="true" version="5" changeset="183826077" timestamp="2026-06-08T12:18:31Z" user="Mauricio de Alencar" uid="413080" lat="54.0064026" lon="1.4957859">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152533" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9992091" lon="1.4833037">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152534" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0068904" lon="1.4745085">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152535" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0012206" lon="1.4545258">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152536" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0073362" lon="1.4476469">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152537" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9880960" lon="1.4956020">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152538" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9875401" lon="1.4699317">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152539" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9854025" lon="1.4505083">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152540" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9718110" lon="1.4659453">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152541" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9619396" lon="1.4986712">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152542" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9631509" lon="1.4754709">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152543" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9618093" lon="1.4540318">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N35"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152544" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9483221" lon="1.5138509">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152545" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9514357" lon="1.4888433">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152546" visible="true" version="3" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9523820" lon="1.4647660">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M35"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152547" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9383282" lon="1.4575399">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="L36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152548" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9343512" lon="1.4848854">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="K35"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152549" visible="true" version="3" changeset="167771025" timestamp="2025-06-18T08:42:59Z" user="Hansiepanzie" uid="22829255" lat="53.9319431" lon="1.4646035">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="K36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152550" visible="true" version="5" changeset="167771025" timestamp="2025-06-18T08:42:59Z" user="Hansiepanzie" uid="22829255" lat="53.9231046" lon="1.4746302">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="J36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152551" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9356454" lon="1.5279871">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="L33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152552" visible="true" version="4" changeset="167771025" timestamp="2025-06-18T08:42:59Z" user="Hansiepanzie" uid="22829255" lat="53.9208132" lon="1.4999945">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="J35"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152553" visible="true" version="4" changeset="167771025" timestamp="2025-06-18T08:42:59Z" user="Hansiepanzie" uid="22829255" lat="53.9205105" lon="1.5230609">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="J34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152554" visible="true" version="4" changeset="167771025" timestamp="2025-06-18T08:42:59Z" user="Hansiepanzie" uid="22829255" lat="53.9220511" lon="1.5430792">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="J33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152555" visible="true" version="5" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8886984" lon="1.6064663">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="F31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152556" visible="true" version="5" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9015415" lon="1.5922311">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="G31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152557" visible="true" version="5" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8425720" lon="1.5871783">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B35"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152558" visible="true" version="5" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8363098" lon="1.5942139">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A35"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152559" visible="true" version="5" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8460751" lon="1.6061338">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152560" visible="true" version="5" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8362365" lon="1.6170373">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152561" visible="true" version="5" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8413860" lon="1.6328486">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152562" visible="true" version="5" changeset="167778134" timestamp="2025-06-18T11:34:59Z" user="Hansiepanzie" uid="22829255" lat="53.8475703" lon="1.6261465">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152563" visible="true" version="5" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8577017" lon="1.6147992">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="C33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152564" visible="true" version="5" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8613560" lon="1.6362963">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="C31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152565" visible="true" version="5" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8693766" lon="1.6280201">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="D31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152566" visible="true" version="5" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8776603" lon="1.6390917">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="E30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152567" visible="true" version="5" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8874573" lon="1.6281971">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="F30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152568" visible="true" version="5" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9001757" lon="1.6431412">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="G28"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152569" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9361419" lon="1.5741869">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="L30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152570" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9497568" lon="1.5587968">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152571" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9747165" lon="1.5310471">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152572" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9873784" lon="1.5169395">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152573" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0003344" lon="1.5025866">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152575" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0058852" lon="1.5254669">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T29"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152576" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9996809" lon="1.5323215">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S29"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152577" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9887598" lon="1.5444558">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R29"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152578" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9753372" lon="1.5594234">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P29"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152579" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9626054" lon="1.5737731">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N28"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152580" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9487747" lon="1.5890950">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M28"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152581" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9377709" lon="1.6013407">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="L28"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152582" visible="true" version="4" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9065698" lon="1.6357345">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="H28"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152583" visible="true" version="5" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9145051" lon="1.6270804">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="J28"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152584" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9907737" lon="1.5734686">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R27"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152585" visible="true" version="5" changeset="183826190" timestamp="2026-06-08T12:20:44Z" user="Mauricio de Alencar" uid="413080" lat="53.9982041" lon="1.5652777">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S27"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152586" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0053228" lon="1.5572342">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T27"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152587" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9875048" lon="1.6521341">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R23"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152588" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0047527" lon="1.5880584">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T26"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152589" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0044210" lon="1.6108361">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T25"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152590" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="54.0020955" lon="1.6359927">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="T23"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152591" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9945331" lon="1.5994089">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S26"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152592" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9895128" lon="1.6274889">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R25"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152593" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9789747" lon="1.5865782">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P27"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152594" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9806432" lon="1.6147704">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q26"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152595" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9653311" lon="1.6018277">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N27"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152596" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9758263" lon="1.6426504">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q25"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152597" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9651377" lon="1.6545179">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N24"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152598" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9533276" lon="1.6453179">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M25"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152599" visible="true" version="3" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9508069" lon="1.6178523">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M27"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152601" visible="true" version="4" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9320878" lon="1.6384965">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="L27"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152602" visible="true" version="5" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9244055" lon="1.6475044">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="K27"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152603" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9429458" lon="1.6791518">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M24"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152604" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9458939" lon="1.6984525">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M23"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152605" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9595391" lon="1.6831168">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N23"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152606" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9889915" lon="1.6786465">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R22"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152607" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9819818" lon="1.7040678">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q21"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152608" visible="true" version="3" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9866924" lon="1.7335459">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R20"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152609" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9851132" lon="1.7764376">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R18"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152610" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9761087" lon="1.7863488">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q18"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152611" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9659018" lon="1.7977959">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P18"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152612" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9556288" lon="1.8092959">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N18"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152613" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9426912" lon="1.8235327">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M18"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152614" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9781968" lon="1.8259462">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q16"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152615" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9677991" lon="1.8373978">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P16"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379152616" visible="true" version="3" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9574813" lon="1.8484898">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N16"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155817" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9479058" lon="1.8594514">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M16"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155818" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9697463" lon="1.8767168">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q13"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155819" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9621247" lon="1.8852191">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P13"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155820" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9486656" lon="1.8999865">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N13"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155821" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9404122" lon="1.9090682">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M13"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155822" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9330004" lon="1.9171806">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="L13"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155823" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9519562" lon="1.9378637">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N10"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155824" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9397839" lon="1.9513149">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M10"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155825" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9315641" lon="1.9603313">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="L10"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155826" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9637448" lon="1.9249298">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P10"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155827" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9738879" lon="1.9138416">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q10"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155828" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9850463" lon="1.9329852">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S08"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155829" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9832842" lon="1.9706670">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S06"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155830" visible="true" version="5" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9807364" lon="1.9894213">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="S05"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155831" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9651908" lon="1.9650445">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q07"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155832" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9554879" lon="1.9750236">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P07"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155833" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9446509" lon="1.9872427">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N07"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155834" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9357938" lon="1.9972706">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="M07"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155835" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9742231" lon="2.0806596">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R01"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155836" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9648082" lon="2.0892117">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q01"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155837" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9735366" lon="2.0389641">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="R03"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155838" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9616370" lon="2.0518561">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P03"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155839" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9476330" lon="2.0258042">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="N05"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155840" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9584110" lon="2.0139559">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P05"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="9379155841" visible="true" version="4" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9685937" lon="2.0028342">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q05"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578472" visible="true" version="4" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9266824" lon="1.6138742">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="K28"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578473" visible="true" version="4" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9145513" lon="1.5778682">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="H31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578474" visible="true" version="4" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9159921" lon="1.5966223">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="J30"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578475" visible="true" version="4" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8810012" lon="1.5889461">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="E33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578476" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8677125" lon="1.5821741">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="D34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578477" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8649795" lon="1.5624044">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="C35"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578478" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8374704" lon="1.5701292">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578479" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8364406" lon="1.5477274">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A37"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578480" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8460964" lon="1.5606593">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578481" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8472273" lon="1.5358827">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B37"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578482" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8363140" lon="1.5257261">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A38"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578483" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8365419" lon="1.5031241">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A39"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578484" visible="true" version="5" changeset="167778134" timestamp="2025-06-18T11:34:59Z" user="Hansiepanzie" uid="22829255" lat="53.8457335" lon="1.5153978">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B38"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578485" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8572349" lon="1.5481565">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="C36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578486" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8693995" lon="1.5346525">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="D36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578487" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8670377" lon="1.5137846">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="C37"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578488" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8627693" lon="1.4964865">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="C38"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578489" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8504002" lon="1.4875315">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B39"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578490" visible="true" version="4" changeset="167778134" timestamp="2025-06-18T11:34:59Z" user="Hansiepanzie" uid="22829255" lat="53.8379768" lon="1.4869021">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A40"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578491" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8366600" lon="1.4716671">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A41"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578492" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8379853" lon="1.4571188">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="A42"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578493" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8553020" lon="1.4675923">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B40"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578494" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8518211" lon="1.4546750">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="B41"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578495" visible="true" version="4" changeset="167497723" timestamp="2025-06-11T15:39:15Z" user="Hansiepanzie" uid="22829255" lat="53.8653000" lon="1.4564036">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="C40"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578496" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8760956" lon="1.4585919">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="E39"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578497" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8827246" lon="1.4960854">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="E37"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578498" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8849700" lon="1.5173155">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="D36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578499" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8812718" lon="1.5442165">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="E35"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578500" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8908038" lon="1.5562130">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="F34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578501" visible="true" version="4" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9022650" lon="1.5653799">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="G33"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578502" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9067047" lon="1.5387941">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="H34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578503" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8988764" lon="1.5019576">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="G36"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578504" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8891625" lon="1.4670578">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="F38"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578505" visible="true" version="4" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.8968937" lon="1.4583386">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="G38"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578506" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9073508" lon="1.4683444">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="H37"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="10297578507" visible="true" version="3" changeset="167498389" timestamp="2025-06-11T15:56:27Z" user="Hansiepanzie" uid="22829255" lat="53.9163965" lon="1.4583062">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="J37"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="11263316209" visible="true" version="3" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9278700" lon="2.0061636">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="L07"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="11263316210" visible="true" version="2" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9770517" lon="1.5081095">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P31"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="11263316211" visible="true" version="2" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9793106" lon="1.4573192">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="Q34"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="11263316212" visible="true" version="2" changeset="167775248" timestamp="2025-06-18T10:21:13Z" user="Hansiepanzie" uid="22829255" lat="53.9664500" lon="1.6307187">
+  <tag k="generator:method" v="wind_turbine"/>
+  <tag k="generator:output:electricity" v="8 MW"/>
+  <tag k="generator:source" v="wind"/>
+  <tag k="generator:type" v="horizontal_axis"/>
+  <tag k="manufacturer" v="Siemens Gamesa"/>
+  <tag k="model" v="SG 8.0-167 DD"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="power" v="generator"/>
+  <tag k="ref" v="P25"/>
+  <tag k="remark" v="monopile foundation"/>
+  <tag k="seamark:landmark:category" v="windmotor"/>
+  <tag k="seamark:type" v="landmark"/>
+ </node>
+ <node id="12903487611" visible="true" version="1" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9253809" lon="1.8817379"/>
+ <node id="12903487612" visible="true" version="1" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9271075" lon="1.8939488"/>
+ <node id="12903487613" visible="true" version="1" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9231418" lon="1.9222343"/>
+ <node id="12903487614" visible="true" version="1" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9189178" lon="1.9362927"/>
+ <node id="12903487615" visible="true" version="1" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9265095" lon="1.9890968"/>
+ <node id="12903487616" visible="true" version="1" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9173613" lon="1.9960231"/>
+ <node id="12903487617" visible="true" version="1" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9462481" lon="2.0844572"/>
+ <node id="12903487618" visible="true" version="1" changeset="167465532" timestamp="2025-06-10T22:07:40Z" user="Hansiepanzie" uid="22829255" lat="53.9534530" lon="2.0756464"/>
+ <node id="12903533232" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.8345917" lon="1.6495358"/>
+ <node id="12903533233" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="54.0032805" lon="1.7114943"/>
+ <node id="12903533234" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9886653" lon="1.8512835"/>
+ <node id="12903533235" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9890061" lon="1.8275738"/>
+ <node id="12903533236" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9871696" lon="1.8994867"/>
+ <node id="12903533237" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9863629" lon="1.9334281"/>
+ <node id="12903533238" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9844996" lon="1.9454168"/>
+ <node id="12903533239" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9845540" lon="1.9708042"/>
+ <node id="12903533240" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9820048" lon="1.9895165"/>
+ <node id="12903533241" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9749560" lon="2.0396135"/>
+ <node id="12903533242" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9760224" lon="2.0541132"/>
+ <node id="12903533243" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9755430" lon="2.0818554"/>
+ <node id="12903533244" visible="true" version="1" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255" lat="53.9568061" lon="2.1018612"/>
+ <node id="12903777026" visible="true" version="1" changeset="167466671" timestamp="2025-06-10T23:03:36Z" user="Hansiepanzie" uid="22829255" lat="53.9821397" lon="2.0027111"/>
+ <node id="12903777027" visible="true" version="1" changeset="167466671" timestamp="2025-06-10T23:03:36Z" user="Hansiepanzie" uid="22829255" lat="53.9799941" lon="2.0305287"/>
+ <node id="12903798130" visible="true" version="1" changeset="167466730" timestamp="2025-06-10T23:08:51Z" user="Hansiepanzie" uid="22829255" lat="53.9194977" lon="1.4445520"/>
+ <way id="871826562" visible="true" version="6" changeset="167465959" timestamp="2025-06-10T22:27:11Z" user="Hansiepanzie" uid="22829255">
+  <nd ref="12903533244"/>
+  <nd ref="12903487618"/>
+  <nd ref="12903487617"/>
+  <nd ref="8459192400"/>
+  <nd ref="5718048906"/>
+  <nd ref="12903487616"/>
+  <nd ref="12903487615"/>
+  <nd ref="12903487614"/>
+  <nd ref="12903487613"/>
+  <nd ref="12903487612"/>
+  <nd ref="12903487611"/>
+  <nd ref="8459192402"/>
+  <nd ref="8320795132"/>
+  <nd ref="8120359161"/>
+  <nd ref="5435295297"/>
+  <nd ref="8320773816"/>
+  <nd ref="8320773815"/>
+  <nd ref="5119132542"/>
+  <nd ref="12903533232"/>
+ </way>
+ <way id="871826563" visible="true" version="5" changeset="167466730" timestamp="2025-06-10T23:08:51Z" user="Hansiepanzie" uid="22829255">
+  <nd ref="12903533232"/>
+  <nd ref="8120359158"/>
+  <nd ref="12903798130"/>
+  <nd ref="8120359157"/>
+  <nd ref="8459192392"/>
+  <nd ref="12903533233"/>
+  <nd ref="12903533235"/>
+  <nd ref="12903533234"/>
+  <nd ref="12903533236"/>
+  <nd ref="12903533237"/>
+  <nd ref="12903533238"/>
+  <nd ref="12903533239"/>
+  <nd ref="12903533240"/>
+  <nd ref="12903777026"/>
+  <nd ref="12903777027"/>
+  <nd ref="12903533241"/>
+  <nd ref="12903533242"/>
+  <nd ref="12903533243"/>
+  <nd ref="12903533244"/>
+ </way>
+ <relation id="11343101" visible="true" version="15" changeset="167778134" timestamp="2025-06-18T11:34:59Z" user="Hansiepanzie" uid="22829255">
+  <member type="way" ref="871826562" role="outer"/>
+  <member type="way" ref="871826563" role="outer"/>
+  <member type="node" ref="9379152560" role="generator"/>
+  <member type="node" ref="9379152548" role="generator"/>
+  <member type="node" ref="9379152561" role="generator"/>
+  <member type="node" ref="9379152558" role="generator"/>
+  <member type="node" ref="9379152557" role="generator"/>
+  <member type="node" ref="9379152559" role="generator"/>
+  <member type="node" ref="10297578478" role="generator"/>
+  <member type="node" ref="10297578480" role="generator"/>
+  <member type="node" ref="10297578479" role="generator"/>
+  <member type="node" ref="10297578482" role="generator"/>
+  <member type="node" ref="10297578481" role="generator"/>
+  <member type="node" ref="10297578483" role="generator"/>
+  <member type="node" ref="10297578491" role="generator"/>
+  <member type="node" ref="10297578492" role="generator"/>
+  <member type="node" ref="10297578494" role="generator"/>
+  <member type="node" ref="10297578493" role="generator"/>
+  <member type="node" ref="10297578489" role="generator"/>
+  <member type="node" ref="10297578485" role="generator"/>
+  <member type="node" ref="9379152563" role="generator"/>
+  <member type="node" ref="9379152564" role="generator"/>
+  <member type="node" ref="9379152565" role="generator"/>
+  <member type="node" ref="10297578476" role="generator"/>
+  <member type="node" ref="10297578477" role="generator"/>
+  <member type="node" ref="10297578486" role="generator"/>
+  <member type="node" ref="10297578487" role="generator"/>
+  <member type="node" ref="10297578488" role="generator"/>
+  <member type="node" ref="10297578495" role="generator"/>
+  <member type="node" ref="10297578487" role="generator"/>
+  <member type="node" ref="10297578486" role="generator"/>
+  <member type="node" ref="10297578488" role="generator"/>
+  <member type="node" ref="10297578495" role="generator"/>
+  <member type="node" ref="10297578496" role="generator"/>
+  <member type="node" ref="9379152565" role="generator"/>
+  <member type="node" ref="9379152566" role="generator"/>
+  <member type="node" ref="9379152567" role="generator"/>
+  <member type="node" ref="9379152555" role="generator"/>
+  <member type="node" ref="10297578475" role="generator"/>
+  <member type="node" ref="10297578500" role="generator"/>
+  <member type="node" ref="10297578499" role="generator"/>
+  <member type="node" ref="10297578498" role="generator"/>
+  <member type="node" ref="10297578497" role="generator"/>
+  <member type="node" ref="10297578504" role="generator"/>
+  <member type="node" ref="10297578505" role="generator"/>
+  <member type="node" ref="10297578503" role="generator"/>
+  <member type="node" ref="10297578501" role="generator"/>
+  <member type="node" ref="9379152556" role="generator"/>
+  <member type="node" ref="9379152568" role="generator"/>
+  <member type="node" ref="9379152582" role="generator"/>
+  <member type="node" ref="10297578502" role="generator"/>
+  <member type="node" ref="10297578506" role="generator"/>
+  <member type="node" ref="10297578507" role="generator"/>
+  <member type="node" ref="10297578473" role="generator"/>
+  <member type="node" ref="10297578474" role="generator"/>
+  <member type="node" ref="9379152583" role="generator"/>
+  <member type="node" ref="9379152602" role="generator"/>
+  <member type="node" ref="9379152601" role="generator"/>
+  <member type="node" ref="10297578472" role="generator"/>
+  <member type="node" ref="9379152549" role="generator"/>
+  <member type="node" ref="9379152547" role="generator"/>
+  <member type="node" ref="9379152550" role="generator"/>
+  <member type="node" ref="9379152552" role="generator"/>
+  <member type="node" ref="9379152553" role="generator"/>
+  <member type="node" ref="9379152554" role="generator"/>
+  <member type="node" ref="10297578502" role="generator"/>
+  <member type="node" ref="9379152593" role="generator"/>
+  <member type="node" ref="9379152595" role="generator"/>
+  <member type="node" ref="9379152584" role="generator"/>
+  <member type="node" ref="9379152577" role="generator"/>
+  <member type="node" ref="9379152578" role="generator"/>
+  <member type="node" ref="9379152537" role="generator"/>
+  <member type="node" ref="9379152538" role="generator"/>
+  <member type="node" ref="9379152539" role="generator"/>
+  <member type="node" ref="9379152540" role="generator"/>
+  <member type="node" ref="11263316210" role="generator"/>
+  <member type="node" ref="11263316211" role="generator"/>
+  <member type="node" ref="9379152571" role="generator"/>
+  <member type="node" ref="9379152572" role="generator"/>
+  <member type="node" ref="9379152570" role="generator"/>
+  <member type="node" ref="9379152579" role="generator"/>
+  <member type="node" ref="9379152569" role="generator"/>
+  <member type="node" ref="9379152551" role="generator"/>
+  <member type="node" ref="9379152545" role="generator"/>
+  <member type="node" ref="9379152544" role="generator"/>
+  <member type="node" ref="9379152541" role="generator"/>
+  <member type="node" ref="9379152542" role="generator"/>
+  <member type="node" ref="9379152543" role="generator"/>
+  <member type="node" ref="9379152531" role="generator"/>
+  <member type="node" ref="9379152546" role="generator"/>
+  <member type="node" ref="9379152581" role="generator"/>
+  <member type="node" ref="9379152580" role="generator"/>
+  <member type="node" ref="11263316212" role="generator"/>
+  <member type="node" ref="9379152597" role="generator"/>
+  <member type="node" ref="9379152596" role="generator"/>
+  <member type="node" ref="9379152592" role="generator"/>
+  <member type="node" ref="9379152606" role="generator"/>
+  <member type="node" ref="9379152587" role="generator"/>
+  <member type="node" ref="9379152594" role="generator"/>
+  <member type="node" ref="9379152589" role="generator"/>
+  <member type="node" ref="9379152588" role="generator"/>
+  <member type="node" ref="9379152591" role="generator"/>
+  <member type="node" ref="9379152590" role="generator"/>
+  <member type="node" ref="9379152585" role="generator"/>
+  <member type="node" ref="9379152599" role="generator"/>
+  <member type="node" ref="9379152598" role="generator"/>
+  <member type="node" ref="9379152532" role="generator"/>
+  <member type="node" ref="9379152534" role="generator"/>
+  <member type="node" ref="9379152586" role="generator"/>
+  <member type="node" ref="9379152576" role="generator"/>
+  <member type="node" ref="9379152533" role="generator"/>
+  <member type="node" ref="9379152535" role="generator"/>
+  <member type="node" ref="9379152573" role="generator"/>
+  <member type="node" ref="9379152575" role="generator"/>
+  <member type="node" ref="9379152536" role="generator"/>
+  <member type="node" ref="9379152603" role="generator"/>
+  <member type="node" ref="9379152605" role="generator"/>
+  <member type="node" ref="9379152604" role="generator"/>
+  <member type="node" ref="8320795129" role="generator"/>
+  <member type="node" ref="9379152608" role="generator"/>
+  <member type="node" ref="8320795130" role="generator"/>
+  <member type="node" ref="9379152607" role="generator"/>
+  <member type="node" ref="8320795131" role="generator"/>
+  <member type="node" ref="9379152614" role="generator"/>
+  <member type="node" ref="9379155818" role="generator"/>
+  <member type="node" ref="9379152610" role="generator"/>
+  <member type="node" ref="9379152615" role="generator"/>
+  <member type="node" ref="9379152611" role="generator"/>
+  <member type="node" ref="9379152612" role="generator"/>
+  <member type="node" ref="9379155819" role="generator"/>
+  <member type="node" ref="9379152616" role="generator"/>
+  <member type="node" ref="9379152613" role="generator"/>
+  <member type="node" ref="9379155817" role="generator"/>
+  <member type="node" ref="9379155820" role="generator"/>
+  <member type="node" ref="9379152609" role="generator"/>
+  <member type="node" ref="8320795125" role="generator"/>
+  <member type="node" ref="8320795127" role="generator"/>
+  <member type="node" ref="8320795126" role="generator"/>
+  <member type="node" ref="8320795128" role="generator"/>
+  <member type="node" ref="9379155831" role="generator"/>
+  <member type="node" ref="9379155841" role="generator"/>
+  <member type="node" ref="8320795118" role="generator"/>
+  <member type="node" ref="8320795119" role="generator"/>
+  <member type="node" ref="9379155830" role="generator"/>
+  <member type="node" ref="8320795120" role="generator"/>
+  <member type="node" ref="9379155829" role="generator"/>
+  <member type="node" ref="9379155827" role="generator"/>
+  <member type="node" ref="8320795121" role="generator"/>
+  <member type="node" ref="8320795123" role="generator"/>
+  <member type="node" ref="9379155828" role="generator"/>
+  <member type="node" ref="8320795124" role="generator"/>
+  <member type="node" ref="8320795122" role="generator"/>
+  <member type="node" ref="9379155826" role="generator"/>
+  <member type="node" ref="9379155832" role="generator"/>
+  <member type="node" ref="9379155823" role="generator"/>
+  <member type="node" ref="9379155840" role="generator"/>
+  <member type="node" ref="9379155839" role="generator"/>
+  <member type="node" ref="9379155821" role="generator"/>
+  <member type="node" ref="9379155822" role="generator"/>
+  <member type="node" ref="9379155825" role="generator"/>
+  <member type="node" ref="9379155834" role="generator"/>
+  <member type="node" ref="9379155824" role="generator"/>
+  <member type="node" ref="11263316209" role="generator"/>
+  <member type="node" ref="9379155833" role="generator"/>
+  <member type="node" ref="9379155838" role="generator"/>
+  <member type="node" ref="9379155836" role="generator"/>
+  <member type="node" ref="8320795117" role="generator"/>
+  <member type="node" ref="9379155837" role="generator"/>
+  <member type="node" ref="9379155835" role="generator"/>
+  <member type="node" ref="9379152562" role="generator"/>
+  <member type="node" ref="10297578484" role="generator"/>
+  <member type="node" ref="10297578490" role="generator"/>
+  <tag k="name" v="Hornsea 2 Offshore Wind Farm"/>
+  <tag k="note" v="Partly producing power as of December 2021"/>
+  <tag k="operator" v="Ørsted"/>
+  <tag k="operator:wikidata" v="Q1241260"/>
+  <tag k="plant:method" v="wind_turbine"/>
+  <tag k="plant:output:electricity" v="1400 MW"/>
+  <tag k="plant:source" v="wind"/>
+  <tag k="power" v="plant"/>
+  <tag k="repd:id" v="2502"/>
+  <tag k="seamark:information" v="Windfarm construction area. All vessels should navigate with caution in the area adjoining windfarm Hornsea Project One."/>
+  <tag k="seamark:name" v="Hornsea Two"/>
+  <tag k="seamark:production_area:category" v="wind_farm"/>
+  <tag k="seamark:production_area:condition" v="under_construction"/>
+  <tag k="seamark:source" v="https://english.defensie.nl/topics/notices-to-mariners/weekly-editions/2020/46 (337/20)"/>
+  <tag k="seamark:type" v="production_area"/>
+  <tag k="site" v="wind_farm"/>
+  <tag k="start_date" v="2021-12-20"/>
+  <tag k="type" v="multipolygon"/>
+  <tag k="website" v="https://hornseaprojects.co.uk/hornsea-project-two"/>
+  <tag k="wikidata" v="Q113663075"/>
+ </relation>
+</osm>

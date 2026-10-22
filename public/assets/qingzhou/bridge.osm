@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1283 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="6030181812" visible="true" version="4" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2828579" lon="113.7262302"/>
+ <node id="6030181813" visible="true" version="4" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2832552" lon="113.7262183"/>
+ <node id="9537462950" visible="true" version="4" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2833091" lon="113.7373666"/>
+ <node id="9537462951" visible="true" version="4" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2829180" lon="113.7373838"/>
+ <node id="9901730976" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2829962" lon="113.7262261"/>
+ <node id="9901730977" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2831138" lon="113.7262226"/>
+ <node id="9901730978" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2830382" lon="113.7373785"/>
+ <node id="9901730979" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2831598" lon="113.7373732"/>
+ <way id="640078676" visible="true" version="3" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193">
+  <nd ref="6030181813"/>
+  <nd ref="9901730977"/>
+  <nd ref="9901730976"/>
+  <nd ref="6030181812"/>
+  <tag k="bridge:support" v="pier"/>
+  <tag k="layer" v="1"/>
+  <tag k="man_made" v="expansion_joint"/>
+ </way>
+ <way id="1035385700" visible="true" version="2" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193">
+  <nd ref="6030181813"/>
+  <nd ref="9537462950"/>
+ </way>
+ <way id="1080261809" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193">
+  <nd ref="9537462951"/>
+  <nd ref="6030181812"/>
+ </way>
+ <way id="1080261810" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193">
+  <nd ref="9537462950"/>
+  <nd ref="9901730979"/>
+  <nd ref="9901730978"/>
+  <nd ref="9537462951"/>
+  <tag k="layer" v="1"/>
+  <tag k="man_made" v="expansion_joint"/>
+ </way>
+ <relation id="14373679" visible="true" version="3" changeset="181217921" timestamp="2026-04-12T08:08:12Z" user="mapadu" uid="9755853">
+  <member type="way" ref="1080261809" role="outer"/>
+  <member type="way" ref="640078676" role="outer"/>
+  <member type="way" ref="1035385700" role="outer"/>
+  <member type="way" ref="1080261810" role="outer"/>
+  <tag k="bridge:structure" v="cable-stayed"/>
+  <tag k="man_made" v="bridge"/>
+  <tag k="material" v="steel"/>
+  <tag k="name" v="青州航道桥"/>
+  <tag k="name:zh" v="青州航道桥"/>
+  <tag k="type" v="multipolygon"/>
+  <tag k="wikidata" v="Q56424437"/>
+ </relation>
+</osm>

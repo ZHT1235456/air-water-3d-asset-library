@@ -1,0 +1,33 @@
+{
+  "errors": [],
+  "memory": [
+    {
+      "geometries": 1230,
+      "textures": 14
+    },
+    {
+      "geometries": 1230,
+      "textures": 14
+    },
+    {
+      "geometries": 1230,
+      "textures": 14
+    }
+  ],
+  "performance": {
+    "vehicles": 12,
+    "meanMs": 16.66629213483145,
+    "fps": 60.00134834490666,
+    "canvas": [
+      1600,
+      885
+    ],
+    "drawCalls": 1276
+  },
+  "orbit": {
+    "frames": 90,
+    "minTriangles": 1073650,
+    "maxTriangles": 1610570
+  },
+  "result": "passed"
+}

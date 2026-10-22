@@ -1,0 +1,31 @@
+node_modules/
+dist/
+test-results/
+.DS_Store
+tmp/
+.env
+.env.*
+*.local
+
+# Browser runs are reproducible; curated screenshots live in docs/development-log/images/.
+artifacts/**/*.png
+artifacts/*.png
+
+# Research-only third-party images/documents and large source downloads stay local.
+research/**/*.jpg
+research/**/*.jpeg
+research/**/*.png
+research/**/*.pdf
+research/**/design.txt
+research/**/*.zip
+research/**/*.gz
+
+# Keep the LaTeX source, figures and final PDF, not compiler intermediates.
+docs/development-log/*.aux
+docs/development-log/*.log
+docs/development-log/*.out
+docs/development-log/*.toc
+docs/development-log/*.synctex.gz
+docs/development-log/*.xdv
+docs/development-log/*.fls
+docs/development-log/*.fdb_latexmk

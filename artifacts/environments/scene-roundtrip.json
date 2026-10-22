@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "environment": {
+    "variant": "lake",
+    "seed": 2101
+  },
+  "vehicles": [
+    {
+      "id": "v1",
+      "modelId": "quadrotor-inspection",
+      "position": [
+        0,
+        10,
+        0
+      ],
+      "yaw": 0,
+      "scale": 1,
+      "colors": {
+        "primary": "#e7ecef",
+        "secondary": "#28363f",
+        "accent": "#df6c39"
+      }
+    },
+    {
+      "id": "v2",
+      "modelId": "usv-inspection",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "yaw": 0,
+      "scale": 1,
+      "colors": {
+        "primary": "#e7ecef",
+        "secondary": "#31444f",
+        "accent": "#df6c39"
+      }
+    },
+    {
+      "id": "v3",
+      "modelId": "quadrotor-protected",
+      "position": [
+        35.09977098777524,
+        14,
+        0
+      ],
+      "yaw": 0.7853981633974484,
+      "scale": 1,
+      "colors": {
+        "primary": "#e4ebeb",
+        "secondary": "#304649",
+        "accent": "#3366aa"
+      }
+    }
+  ],
+  "view": {
+    "selectedId": "v3",
+    "cameraPosition": [
+      36.74939433833771,
+      15.35232797074281,
+      2.274212639839018
+    ],
+    "target": [
+      35,
+      13.952812500072644,
+      0
+    ],
+    "fov": 42,
+    "labels": true,
+    "waterBoundary": false,
+    "obstacles": false,
+    "spawns": false,
+    "waterAnimation": true,
+    "rotorAnimation": false
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "fullscreen": "passed",
+  "keyboard": "passed",
+  "reducedMotionDefault": "passed",
+  "webglUnavailable": "passed",
+  "contextLoss": "passed"
+}

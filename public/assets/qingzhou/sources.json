@@ -1,0 +1,61 @@
+{
+  "site": "港珠澳大桥青州航道桥",
+  "status": "实景校核版；不等同于竣工测绘复刻",
+  "retrieved": "2026-10-21",
+  "coordinates": {
+    "datum": "WGS84",
+    "origin": [
+      113.7316087,
+      22.283037
+    ],
+    "axes": "X east, Y up, Z south",
+    "source": "OSM tower nodes 6030181481 / 6030181482",
+    "accuracy": "Community map; positional error unverified; tower spacing follows 458 m engineering design rather than OSM spacing."
+  },
+  "sources": [
+    {
+      "url": "https://www.hzmb.gov.hk/sc/main-bridge.html",
+      "institution": "香港路政署",
+      "facts": [
+        "主跨458米",
+        "三线双程"
+      ]
+    },
+    {
+      "url": "https://www.engineering.org.cn/sscae/EN/PDF/1160097051063149102",
+      "institution": "中交公路规划设计院作者 / 中国工程科学 2015 17(1),27–35",
+      "facts": [
+        "110+236+458+236+110米",
+        "H形塔",
+        "中国结横撑",
+        "扇形双索面"
+      ],
+      "use": "研究参考，论文与图不进入运行资源"
+    },
+    {
+      "url": "https://www.fheb.cn/html/ccteb/news/2016/zjxw_0416/3781.shtml",
+      "institution": "中交隧道工程局",
+      "facts": [
+        "1150米主桥",
+        "163米塔高",
+        "边跨大节段宽41.8米"
+      ],
+      "use": "工程参数参考"
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/14373679",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "localFile": "bridge.osm"
+    }
+  ],
+  "unverified": [
+    "桥面标高47.5米、塔基7.8米的高程基准尚未与当前水位统一",
+    "塔柱截面、承台尺寸、索锚位置和索数量采用待校核构造",
+    "仅构建1150米主桥，未构建相邻引桥、远岸和实测海床",
+    "所用CC0天空为通用照明素材，并非当地实拍天空",
+    "没有竣工BIM、现场摄影测量或误差评定，不宣称精确复刻"
+  ],
+  "sky": "../environment/sources.json"
+}

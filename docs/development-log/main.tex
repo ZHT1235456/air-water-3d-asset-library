@@ -1,0 +1,227 @@
+\documentclass[UTF8,a4paper,11pt,fontset=fandol]{ctexart}
+\usepackage[margin=21mm,headheight=15pt]{geometry}
+\usepackage{graphicx,xcolor,booktabs,tabularx,array,fancyhdr,float,caption,listings,tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[colorlinks=true,linkcolor=sea,urlcolor=sea]{hyperref}
+\definecolor{sea}{HTML}{146679}
+\definecolor{ink}{HTML}{23343E}
+\definecolor{pale}{HTML}{EDF4F6}
+\definecolor{muted}{HTML}{61727B}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{3pt}
+\linespread{1.12}
+\ctexset{section={format=\Large\bfseries\color{sea}},subsection={format=\normalsize\bfseries\color{ink}}}
+\captionsetup{font=small,labelfont=bf,textfont={color=muted},skip=7pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\color{muted}空海 · 素材库开发日志}
+\fancyhead[R]{\small\color{muted}2026.10.22}
+\fancyfoot[C]{\small\color{muted}\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\hypersetup{pdftitle={空海：无人机、无人艇与海洋工程环境素材库开发日志},pdfauthor={朱华天, GPT-6.1 Sol, GPT-6 Astra}}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,frame=single,rulecolor=\color{pale},backgroundcolor=\color{pale},showstringspaces=false,xleftmargin=6pt,xrightmargin=6pt}
+\newcommand{\shot}[3]{\begin{figure}[H]\centering\includegraphics[width=#2\linewidth]{images/#1}\caption{#3}\end{figure}}
+\newcommand{\repo}{https://github.com/ZHT1235456/air-water-3d-asset-library}
+\begin{document}
+\thispagestyle{empty}
+{\color{sea}\small DEVELOPMENT JOURNAL \quad / \quad THREE.JS + VITE}
+\vspace{7mm}
+\begin{center}
+{\Huge\bfseries\color{ink}空海}\\[4mm]
+{\LARGE\bfseries 无人机、无人艇与海洋工程环境素材库}\\[3mm]
+{\large 中文开发日志}\\[6mm]
+{\large 朱华天，GPT-6.1 Sol，GPT-6 Astra}\\[4mm]
+{\large 2026年10月22日}\\[2mm]
+{\small\url{https://github.com/ZHT1235456/air-water-3d-asset-library}}
+\end{center}
+\vspace{3mm}
+\shot{ninepin-aerial.jpg}{1}{香港果洲群岛鸟瞰：真实岸线、历史地形数据与实时海面相结合。}
+\noindent\colorbox{pale}{\parbox{\dimexpr\linewidth-2\fboxsep}{\vspace{2mm}\textbf{项目起点}\quad 笔者用 GPT-6 Astra 建了一个素材库。从四旋翼无人机和单尖船首无人艇出发，逐步扩展为可复用的程序化模型、中文编辑工作台，以及基于具体地点公开资料构建的水域环境。本文记录需求如何落到代码、截图、数据来源与验收结果中。\vspace{2mm}}}
+\vfill
+\noindent{\small\color{muted}本文署名依照项目发起者要求列示。图中内容为本项目浏览器运行截图；天空及地理数据的第三方来源在文末和仓库台账中注明。}
+\clearpage
+
+\section{从设备造型开始：让模型成为可复用资产}
+最初的目标很具体：使用 Three.js 与 Vite 制作四旋翼无人机和无人艇，并确保船首只有一个尖点。随后，模型数量从六款扩展至十二款。技术栈采用 TypeScript；截至本文的锁文件版本为 Three.js 0.180 系列、Vite 8 系列、TypeScript 5.9 系列，实际安装以 \texttt{package-lock.json} 为准。
+
+六款无人机分别是轻型巡检、专业测绘、重载作业、近距巡检、应急照明与物资运输；六款无人艇分别是轻型巡检、水文测量、综合作业、水上救援、环境采样与长航时观测。每架无人机恰有四个旋翼组，每款无人艇采用单体船壳和唯一尖船首。
+
+\begin{figure}[H]\centering
+\includegraphics[width=.49\linewidth]{images/quadrotor.jpg}\hfill
+\includegraphics[width=.49\linewidth]{images/usv.jpg}
+\caption{轻型巡检无人机与水文测量无人艇。配色、尺寸、部件名称与释放接口均由构造代码管理。}
+\end{figure}
+
+\subsection{把约束放进几何，而不是停留在描述中}
+无人艇船壳由连续纵向截面构建，首端左右舷汇聚于中轴线上的同一顶点；底部、舷侧、甲板与船尾组成封闭表面。验证时检查闭合边、朝外绕序、体积符号及唯一船首，而非仅凭一个透视截图判断。
+
+设备统一采用米制坐标、Y 轴向上、+Z 为前向。无人机原点位于中心机身，无人艇原点位于设计水线中心。模型模块不依赖页面、相机或工作台循环；返回的 \texttt{root}、\texttt{parts}、\texttt{update}、\texttt{dispose} 可供其他项目组合使用。
+
+\begin{lstlisting}
+const drone = createQuadrotor({ variant: 'inspection', scale: 1 });
+const boat = createUSV({ variant: 'survey', scale: 1 });
+scene.add(drone.root, boat.root);
+drone.update(dt, { rotorSpeed: 12 }); // radians per second
+// Independent lifetimes:
+drone.dispose();
+boat.dispose();
+\end{lstlisting}
+
+\subsection{交互承担检查工作}
+模型工作台支持环绕、平移、缩放、标准视角、配色、线框、坐标轴、旋翼动画和截图。底视与俯视用于检查船壳、桨盘和设备布置。模型比例为演示设定，不构成制造图纸或产品规格。
+\clearpage
+
+\section{从基础水域走向具有空间尺度的工程环境}
+最初的环境接口覆盖湖面、河道、港池、岛礁、桥区和滨水六类通用预设。随着视觉目标提高，主要展示入口转向深水港以及具体地点的桥梁、风电场、群岛。通用预设保留 API 兼容，但不再出现在当前环境列表中。
+
+\shot{deepwater.jpg}{.68}{深水港原创工程示范：岸桥、堆场、船舶与远山提供米制尺度参照。}
+
+\subsection{先说明实景依据，再说明可见内容}
+深水港依据大型集装箱港口的工程组织逻辑建模，但其设施布局是原创示范，不能称为洋山港逐项测绘复刻。青州、九洲航道桥则结合公开地图与工程资料进行局部实景校核；没有资料支持的小构件仍需标明近似程度。
+
+\shot{qingzhou.jpg}{.68}{青州航道桥：主跨、塔柱、桥墩与航道之间具有实际三维深度。}
+\noindent\textbf{一个关键修正：}旋转观察深水港时曾出现岸壁闪烁。后续采用对数深度缓冲、检查重叠表面与近远裁剪范围，并保留环绕截图进行回归。宏大场景需要同时处理几何尺度与深度精度，不能仅把相机远裁剪面不断推远。
+\clearpage
+
+\section{加入非桥梁场景：风电阵列与群岛}
+\begin{table}[H]\centering\small
+\begin{tabularx}{\linewidth}{@{}lXl@{}}\toprule
+当前入口 & 数据或工程依据 & 展示范围\\\midrule
+深水港示范 & 原创工程组织与设施建模 & $2400\times1800$ m\\
+青州航道桥 & 地图位置、公开主跨资料 & $1700\times1200$ m\\
+九洲航道桥 & 公开跨径与地图轴线 & 见独立配置\\
+Hornsea 2 & G33 周边 12 台有公开坐标的风机 & $8000\times7000$ m\\
+香港果洲群岛 & 23 条岸线、地政总署 5 m DTM & $5000\times4000$ m\\\bottomrule
+\end{tabularx}
+\caption{环境由独立配置和统一注册表管理；展示范围不是法定工程或通航边界。}
+\end{table}
+
+\shot{hornsea.jpg}{.64}{北海 Hornsea 2 局部巡检区。真实机位形成纵深，167 m 叶轮提供尺度参照。}
+风电场只使用快照中能够明确定位的十二台机组，没有用规则随机网格补造整座风场。机组外形与附属平台参考工程摄影；机位、公开叶轮直径与推算尺寸分别记录，避免混淆其可靠程度。
+
+\shot{ninepin-waterline.jpg}{.64}{果洲群岛岛间水道：岩岸、设备、反射与天空形成近中远层次。}
+群岛保留原始岸线折点，采用香港地政总署 5 m 高程网格，在岸线内部生成 10 m 渲染网格。顶面共有 8,068 个顶点、13,479 个三角面。高程与岸线采集时点并不相同，低位接缝处理、固定水位与水下封底均有明确说明；高度场不能准确表达海蚀洞与悬挑。
+\clearpage
+
+\section{天空为什么自然：统一光照，而非单独更换背景}
+这套天空的基础是 Poly Haven 的 \textit{Kloppenheim 06 Pure Sky}，一个本地打包的 2K HDR 全景。它保留天空摄影的云层、亮度跨度与色彩渐变。背景按环绕方向采样，因此能够支持大范围旋转；云本身是静态摄影内容。
+
+\begin{center}
+\begin{tikzpicture}[node distance=9mm, every node/.style={font=\small},
+box/.style={draw=sea,rounded corners=2pt,fill=pale,text width=33mm,align=center,minimum height=12mm},
+arr/.style={-{Latex},thick,draw=sea}]
+\node[box] (hdr) {本地 HDR 全景\\天空与光色依据};
+\node[box,right=of hdr] (light) {PMREM 环境光\\方向光对齐};
+\node[box,right=of light] (water) {海面反射\\地平线取色};
+\node[box,below=of light] (final) {ACES 色调映射\\统一曝光与远景雾};
+\draw[arr] (hdr)--(light);\draw[arr] (light)--(water);
+\draw[arr] (hdr.south)|-(final.west);\draw[arr] (water.south)|-(final.east);
+\draw[arr] (light)--(final);
+\end{tikzpicture}
+\end{center}
+
+\subsection{同一环境影响天空、物体和水}
+背景管理模块加载 HDR，将原图设为场景背景，并使用 PMREM 过滤结果作为物理材质的环境反射。程序从上半球最亮像素估算太阳方向，使方向光与水面高光共享方向。该估算服务于视觉一致性，并非天文时间和太阳方位测量。
+
+当前天空强度为 0.75，环境强度为 0.65，曝光为 0.85，使用 ACES Filmic 色调映射。模型因此能够接收到天空的冷暖关系，而不只是在蓝色背景前独立打光。
+
+\subsection{海天接缝与动态水面}
+水面采用官方 Reflector 的平面反射通道，叠加自定义多尺度波纹法线、Fresnel 反射、太阳高光及运动触发尾流。远海依据 HDR 的地平线颜色雾化，减轻平面边缘与颜色断层。水位固定 Y=0，着色波纹不改变碰撞数据和船体姿态。
+
+\shot{ninepin-waterline.jpg}{.74}{同一 HDR 光色贯穿云天、海面反射与岩岸材质，贴水镜头尤其能暴露接缝问题。}
+
+\noindent\textbf{一次有效的隔离排查：}低机位出现三角形杂影时，先隐藏岸边泡沫，再隐藏岛体，杂影仍在；关闭噪声相位后杂影消失。最终将波纹的正弦散列替换为整数网格散列，修复了本机渲染中的噪声断层。没有将最初怀疑的“岛体封底”当作已证实原因。
+\clearpage
+
+\section{环境接口与多载具编辑：让画面能够复用}
+环境模块位于 \texttt{src/environments/}，与设备模型和页面编辑器解耦。统一入口返回视觉根节点、空间数据、展示建议、更新方法和释放方法。下面是可在宿主项目中使用的最小组合；宿主仍需提供渲染器、相机与光照。
+\begin{lstlisting}
+const environment = createEnvironment({
+  variant: 'ninepin', seed: 5104
+});
+const drone = createQuadrotor({ variant: 'inspection' });
+const boat = createUSV({ variant: 'inspection' });
+drone.root.position.set(-200, 10, 240);
+boat.root.position.set(-200, 0, 240);
+scene.add(environment.root, drone.root, boat.root);
+
+function update(dt: number) {
+  environment.update(dt);
+  drone.update(dt, { rotorSpeed: 12 });
+  boat.update(dt, { rotorSpeed: 4 });
+}
+\end{lstlisting}
+
+\subsection{视觉定义与空间数据同源}
+水域用 XZ 多边形及孔洞描述，岛屿从可通行水域中扣除。静态障碍采用平面轮廓加最低、最高高度；桥面与桥墩分别记录，使同一水平位置在不同高度得到不同检查结果。无人机使用完整桨盘扫掠包围范围，不随当前桨叶角度改变。
+
+群岛障碍为整岛轮廓及最高点形成的保守柱体，低空贴坡可能产生保守重叠提示。此机制用于位置检查，不是精确网格碰撞或航行安全评估。
+
+\subsection{配置只保存必要信息}
+工作台支持重复添加十二款模型、平移与偏航编辑、数值输入、改色、删除、聚焦和显示层。无人艇 Y 固定为水位，无人机默认出生高度为 10 m。拖动控件期间暂停相机拖拽。
+
+JSON 保存版本号、环境种子、载具 ID、型号、位置、朝向、配色与查看状态；导入时重新构造模型，不保存 Three.js 对象。结构损坏、未知型号及非法数值会在替换当前场景之前被拒绝。各环境保留页面会话草稿，长期保存依靠导出文件。
+
+\subsection{释放与重复绘制}
+重复风机、植被及设施使用实例化或共享几何。每个环境拥有自己的可释放资源，反射目标单独管理；多实例更新、暂停和释放互不影响。远景小于屏幕阈值的载具会被裁剪，标签承担全景中的定位任务。
+\clearpage
+
+\section{验收记录：用可重复结果约束视觉判断}
+本文整理时执行的 \texttt{npm test} 共 20 项通过，TypeScript 检查与生产构建通过。已有模型测试覆盖十二款的有限坐标、旋翼数量、船壳闭合和唯一尖船首；环境测试增加确定性、空间数据、出生点、高低空障碍区分以及资源释放。
+
+\begin{table}[H]\centering\small
+\begin{tabularx}{\linewidth}{@{}lX@{}}\toprule
+验证层级 & 本次记录\\\midrule
+模型与环境测试 & 20 项通过，包含十二款设备和群岛拓扑\\
+生产构建 & \texttt{tsc --noEmit} 与 Vite 构建通过\\
+浏览器交互 & 五入口、四镜头、编辑、暂停、JSON 往返与错误导入保护通过\\
+重复切换 & 三轮群岛切换后均为 131 个几何体、7 个纹理\\
+窄屏 & 390 px 宽界面无水平溢出\\
+短时性能 & 1600$\times$885、DPR 1、12 个载具，约 60 FPS\\\bottomrule
+\end{tabularx}
+\caption{浏览器性能和资源数据来自 \texttt{artifacts/ninepin/acceptance.json}。}
+\end{table}
+
+测试使用本机 Edge 无头模式和 Intel Arc 140V。静止与连续环绕的平均帧间隔约 16.67 ms，P95 约 16.8 ms。这里统计 requestAnimationFrame 间隔，不是独立 GPU 时间；全景中存在小于 2 px 的载具裁剪，因此不能宣称十二个精细模型同时占满画面仍有同样表现。资源检查使用三个载具，未观察到持续增长。
+
+\shot{workbench.jpg}{.8}{中文模型工作台。设备细节可通过标准视角、配色、显示与动画控制检查。}
+
+\subsection{仍然保留的限制}
+实时渲染截图不等于离线影视品质。项目尚未实现动力学、浮力、流体仿真、路径规划、实时天气或实测海床。桥梁小构件、风机附属设施与群岛岩柱仍有近似；深水港属于原创工程示范。验收日志和这些边界一起公开，才能使成果便于继续开发。
+\clearpage
+
+\section{运行、发布与下一步}
+\subsection{本地启动与文档编译}
+仓库包括源码、锁文件、本地 HDR、公开地理数据、开发日志 LaTeX 源码、PDF 和展示截图。安装依赖后，运行场景不需要在线地图、外部模型或 CDN。
+\begin{lstlisting}
+npm ci
+npm run dev
+npm test
+npm run build
+npm run test:ninepin
+# Run browser acceptance after starting the dev server.
+
+cd docs/development-log
+xelatex -interaction=nonstopmode -halt-on-error main.tex
+xelatex -interaction=nonstopmode -halt-on-error main.tex
+\end{lstlisting}
+
+\subsection{公开发布的素材边界}
+本文配图全部来自本项目浏览器截图。天空采用 Poly Haven CC0 素材，保留作者 Greg Zaal、Jarod Guest 及来源记录；岸线和机位 © OpenStreetMap contributors，遵循 ODbL 1.0；果洲高程 © 香港特别行政区政府地政总署，经 DATA.GOV.HK 提供，保留来源、使用条款与修改说明。
+
+研究时查看的机构摄影、论文原图和未取得分发许可的参考图片，不随公开仓库提交。大型原始下载文件留在本地，仓库提供可复现所需的局部数据与来源链接。公开可见不意味着所有文件具有同一许可，第三方数据的原有条款继续适用。
+
+\subsection{后续开发方向}
+接下来可围绕三方面推进：依据现场摄影和更高精度数据完善近岸岩壁与工程小构件；通过更多显卡、分辨率和近景载具组合测试调节质量等级；在不破坏当前独立接口的前提下，增加新的具体地点与受约束的任务演示。先证明数据与镜头成立，再扩大场景数量。
+
+\section*{来源与延伸阅读}
+\begin{enumerate}\small
+\item 项目仓库：\url{\repo}。
+\item 天空素材：\href{https://polyhaven.com/a/kloppenheim_06_puresky}{Poly Haven, Kloppenheim 06 Pure Sky}，CC0 1.0。
+\item 地图与版权：\url{https://www.openstreetmap.org/copyright}。
+\item 香港地政总署：\href{https://data.gov.hk/en-data/dataset/hk-landsd-openmap-5m-grid-dtm}{5 m 网格数字地形模型}；使用条件见 DATA.GOV.HK。
+\item 项目工程来源及许可台账：\texttt{public/assets/*/sources.json}，以及 \texttt{docs/} 中各环境说明。
+\end{enumerate}
+\vfill
+\noindent{\color{sea}\rule{\linewidth}{.5pt}}
+\noindent{\small 本日志记录截至 2026年10月22日的项目状态。它既是一次从设备模型到海洋环境库的开发整理，也是后续复用、校核和继续改进的入口。}
+\end{document}

@@ -1,0 +1,66 @@
+{
+  "site": "港珠澳大桥九洲航道桥",
+  "status": "实景校核版，非竣工测绘精度",
+  "retrieved": "2026-10-21",
+  "coordinates": {
+    "datum": "WGS84",
+    "origin": [
+      113.5964636,
+      22.22046655
+    ],
+    "axes": "X east / Y up / Z south",
+    "towerNodes": [
+      6030181788,
+      6030181789
+    ],
+    "relation": 14373675,
+    "accuracy": "OSM community mapping; position uncertainty unmeasured; span constrained by published design."
+  },
+  "verified": {
+    "spansMetres": [
+      85,
+      127.5,
+      268,
+      127.5,
+      85
+    ],
+    "lengthMetres": 693,
+    "towerTopDesignElevationMetres": 120,
+    "structure": "风帆形塔；中央双索面；钢箱组合梁"
+  },
+  "sources": [
+    {
+      "url": "https://www.engineering.org.cn/sscae/EN/PDF/1160097051063149102",
+      "institution": "中交公路规划设计院作者 / 中国工程科学 2015 17(1),27–35",
+      "use": "工程尺寸与桥型参考，论文不随运行资源发布"
+    },
+    {
+      "url": "https://www.rmhb.com.cn/yxsj/zttp/201803/t20180306_800120242.html",
+      "institution": "人民画报，2018-03-06",
+      "use": "风帆塔设计高程120米的报道；不是以当前海面为基准的实测高度"
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/14373675",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "localFile": "bridge.osm"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:View_of_the_Hong_Kong-Zhuhai-Macao_Bridge_West_Section_from_Zhuhai_Qingl%C3%BC_South_Road_20250130-2.jpg",
+      "author": "JULIANISME",
+      "date": "2025-01-30",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "use": "仅校核风帆轮廓；图片未打包到网页、未作为背景贴图"
+    }
+  ],
+  "unverified": [
+    "塔顶工程高程120米尚未换算至统一潮位基准；当前仅以数值作为展示标高",
+    "桥面45米、桥宽35.6米、梁厚3.5米为暂定展示参数",
+    "风帆曲线、构件截面、斜索根数与锚点、灯具间距缺少竣工尺寸",
+    "只重建693米主桥及邻近水域，不包含准确引桥、海床或沿岸城市",
+    "天空为通用CC0 HDRI，非当地实拍；海况不代表实时或历史现场"
+  ],
+  "sky": "../environment/sources.json"
+}

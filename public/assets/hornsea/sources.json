@@ -1,0 +1,44 @@
+{
+  "scene": "Hornsea 2 · G33 周边 12 台风机巡检区",
+  "variant": "hornsea",
+  "reviewed": "2026-10-21",
+  "scope": "实景局部校核版：位置来自 OSM，风机大尺度来自运营方，非竣工测绘或完整风场。",
+  "verified": ["OSM relation 11343101 的机位编号与经纬度", "SG 8.0-167 DD 风机的 167 m 叶轮直径、81 m 叶片", "运营方公布全场 165 台，位于英国约克郡外海约 89 km"],
+  "provisional": ["轮毂高 116.5 m：由约 200 m 总高减去 83.5 m 半径推算；官方资料也有超过 200 m 的描述，待竣工图核实", "塔筒直径、机舱轮廓、单桩、登乘梯与平台细部为照片指导的近似值", "停机叶片相位和统一朝向仅为展示设定，不代表拍摄日期的风向", "Y=0 为展示水位；没有潮汐、海床、水深、真实海况或时变禁航区数据", "本地等距近似投影，不是测量控制坐标；未包含风场外部设施和海底电缆"],
+  "sources": [
+    {
+      "title": "Hornsea 2 official project and multi-angle photographic references",
+      "url": "https://orsted.co.uk/energy-solutions/offshore-wind/our-wind-farms/hornsea2",
+      "author": "Ørsted; individual photographer not identified on page",
+      "license": "Copyright owner reserved; no commercial texture license verified",
+      "usage": "Reference only: turbine top close-up, sea-level turbine with service vessel, weather and project map. Photographs are not shipped as runtime textures.",
+      "authorization": "Reference viewing only; no permission to reuse photography as commercial artwork claimed"
+    },
+    {
+      "title": "First Turbine Installed at Hornsea Two, 2021-05",
+      "url": "https://orsted.co.uk/media/newsroom/news/2021/05/first-turbine-installed-at-hornsea-two-offshore-wind-farm",
+      "author": "Ørsted",
+      "license": "Facts used for dimensional reference; photography copyright reserved",
+      "usage": "167 m rotor diameter, 81 m blade and approximate 200 m total height"
+    },
+    {
+      "title": "OpenStreetMap Hornsea 2 relation 11343101",
+      "url": "https://www.openstreetmap.org/relation/11343101",
+      "author": "OpenStreetMap contributors",
+      "license": "ODbL 1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "authorization": "Open-data license with attribution and applicable share-alike terms",
+      "rawSnapshot": "/assets/hornsea/site.osm",
+      "derivedDatabase": "/assets/hornsea/turbines.json",
+      "derivedDatabaseLicense": "ODbL 1.0",
+      "usage": "12 nearest mapped generators around G33, retaining real positions and IDs. Snapshot contains 164 generator nodes, not the full official count of 165; missing units are not invented. Stale OSM commissioning/capacity tags are not used."
+    },
+    {
+      "title": "Kloppenheim 06 Pure Sky",
+      "url": "https://polyhaven.com/a/kloppenheim_06_puresky",
+      "author": "Poly Haven; creator attribution retained in /assets/environment/sources.json",
+      "license": "CC0",
+      "usage": "Shared local 360-degree HDR sky and image-based lighting; generic atmosphere, not a photographed Hornsea sky"
+    }
+  ]
+}

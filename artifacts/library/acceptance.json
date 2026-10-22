@@ -1,0 +1,44 @@
+{
+  "errors": [],
+  "entries": [
+    {
+      "variant": "deepwater",
+      "source": "/assets/environment/sources.json"
+    },
+    {
+      "variant": "qingzhou",
+      "source": "/assets/qingzhou/sources.json"
+    },
+    {
+      "variant": "jiuzhou",
+      "source": "/assets/jiuzhou/sources.json"
+    }
+  ],
+  "memory": [
+    {
+      "geometries": 108,
+      "textures": 7
+    },
+    {
+      "geometries": 108,
+      "textures": 7
+    },
+    {
+      "geometries": 108,
+      "textures": 7
+    }
+  ],
+  "performance": {
+    "vehicles": 12,
+    "meanMs": 16.666386554621813,
+    "fps": 60.00100842030972,
+    "p95Ms": 16.80000000000291,
+    "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "canvas": [
+      1600,
+      885
+    ],
+    "calls": 1509
+  },
+  "result": "passed"
+}

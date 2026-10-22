@@ -1,0 +1,21 @@
+{
+  "verifiedAt": "2026-10-20",
+  "assets": [
+    {
+      "file": "kloppenheim_06_puresky_2k.hdr",
+      "title": "Kloppenheim 06 (Pure Sky)",
+      "authors": ["Greg Zaal", "Jarod Guest"],
+      "publisher": "Poly Haven",
+      "source": "https://polyhaven.com/a/kloppenheim_06_puresky",
+      "download": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloppenheim_06_puresky_2k.hdr",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "authorization": "Public-domain dedication; commercial use and redistribution allowed under CC0. No individual permission requested or needed.",
+      "use": "360 degree sky background and environment illumination, not geographical evidence for Yangshan.",
+      "bytes": 4434394,
+      "sha256": "99451201586489ef3288c97bfac2a2ac232a5491c51a1faf0ec8ea39f3ccd533"
+    }
+  ],
+  "referencePolicy": "Engineering reference photographs are linked in docs/marine-references.md, not copied into the application or distributed. Their commercial image permissions have not been obtained.",
+  "generated": "All port, ship, coast and water geometry and shaders are code-authored demonstration assets. Existing drone and USV source files remain unchanged."
+}

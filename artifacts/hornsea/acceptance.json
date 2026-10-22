@@ -1,0 +1,55 @@
+{
+  "errors": [],
+  "entries": [
+    {
+      "variant": "deepwater",
+      "source": "/assets/environment/sources.json"
+    },
+    {
+      "variant": "qingzhou",
+      "source": "/assets/qingzhou/sources.json"
+    },
+    {
+      "variant": "jiuzhou",
+      "source": "/assets/jiuzhou/sources.json"
+    },
+    {
+      "variant": "hornsea",
+      "source": "/assets/hornsea/sources.json"
+    }
+  ],
+  "memory": [
+    {
+      "geometries": 114,
+      "textures": 7
+    },
+    {
+      "geometries": 114,
+      "textures": 7
+    },
+    {
+      "geometries": 114,
+      "textures": 7
+    }
+  ],
+  "waterlineCameraY": 4.000000000000028,
+  "performance": {
+    "vehicles": 12,
+    "meanMs": 16.6655462184874,
+    "fps": 60.004033884630886,
+    "p95Ms": 16.900000000001455,
+    "gpu": "ANGLE (Intel, Intel(R) Arc(TM) 140V GPU (16GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "canvas": [
+      1600,
+      885
+    ],
+    "calls": 737
+  },
+  "performanceOrbit": {
+    "mode": "camera orbit, planar reflections refreshed",
+    "meanMs": 16.667226890756314,
+    "fps": 59.997983261066814,
+    "p95Ms": 16.799999999999272
+  },
+  "result": "passed"
+}

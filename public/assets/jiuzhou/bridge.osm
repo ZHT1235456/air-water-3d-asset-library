@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1301 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="6030181790" visible="true" version="3" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2221959" lon="113.5994004"/>
+ <node id="6030181791" visible="true" version="3" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2224012" lon="113.5992463"/>
+ <node id="6030181802" visible="true" version="2" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2216783" lon="113.5986468"/>
+ <node id="6030181803" visible="true" version="2" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2218991" lon="113.5984899"/>
+ <node id="6030181992" visible="true" version="2" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2188830" lon="113.5937029"/>
+ <node id="6030181993" visible="true" version="2" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2205618" lon="113.5963468"/>
+ <node id="6030182068" visible="true" version="2" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2203473" lon="113.5965044"/>
+ <node id="6030182069" visible="true" version="2" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2186703" lon="113.5938754"/>
+ <node id="9901730956" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2196827" lon="113.5954625"/>
+ <node id="9901730959" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2222334" lon="113.5993722"/>
+ <node id="9901730960" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2223458" lon="113.5992879"/>
+ <node id="9901730961" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2187089" lon="113.5938441"/>
+ <node id="9901730962" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2188317" lon="113.5937445"/>
+ <node id="9901730965" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193" lat="22.2198877" lon="113.5953158"/>
+ <way id="640078667" visible="true" version="3" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193">
+  <nd ref="6030182069"/>
+  <nd ref="9901730961"/>
+  <nd ref="9901730962"/>
+  <nd ref="6030181992"/>
+  <tag k="bridge:support" v="pier"/>
+  <tag k="layer" v="1"/>
+  <tag k="man_made" v="expansion_joint"/>
+ </way>
+ <way id="640078669" visible="true" version="3" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193">
+  <nd ref="6030181791"/>
+  <nd ref="9901730960"/>
+  <nd ref="9901730959"/>
+  <nd ref="6030181790"/>
+  <tag k="bridge:support" v="pier"/>
+  <tag k="layer" v="1"/>
+  <tag k="man_made" v="expansion_joint"/>
+ </way>
+ <way id="1035385699" visible="true" version="5" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193">
+  <nd ref="6030181992"/>
+  <nd ref="9901730965"/>
+  <nd ref="6030181993"/>
+  <nd ref="6030181803"/>
+  <nd ref="6030181791"/>
+ </way>
+ <way id="1080261786" visible="true" version="1" changeset="123890407" timestamp="2022-07-21T11:46:42Z" user="Kovoschiz" uid="6250193">
+  <nd ref="6030181790"/>
+  <nd ref="6030181802"/>
+  <nd ref="6030182068"/>
+  <nd ref="9901730956"/>
+  <nd ref="6030182069"/>
+ </way>
+ <relation id="14373675" visible="true" version="2" changeset="135333782" timestamp="2023-04-25T09:11:13Z" user="Kovoschiz" uid="6250193">
+  <member type="way" ref="1035385699" role="outer"/>
+  <member type="way" ref="640078669" role="outer"/>
+  <member type="way" ref="1080261786" role="outer"/>
+  <member type="way" ref="640078667" role="outer"/>
+  <tag k="bridge:structure" v="cable-stayed"/>
+  <tag k="layer" v="1"/>
+  <tag k="man_made" v="bridge"/>
+  <tag k="material" v="steel"/>
+  <tag k="name" v="九洲航道桥"/>
+  <tag k="name:zh" v="九洲航道桥"/>
+  <tag k="type" v="multipolygon"/>
+ </relation>
+</osm>

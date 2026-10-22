@@ -1,0 +1,108 @@
+{
+  "checks": [
+    {
+      "model": "quadrotor-inspection",
+      "geometries": 205,
+      "textures": 3,
+      "triangles": 88486,
+      "calls": 209
+    },
+    {
+      "model": "quadrotor-survey",
+      "geometries": 210,
+      "textures": 3,
+      "triangles": 89550,
+      "calls": 214
+    },
+    {
+      "model": "quadrotor-heavy",
+      "geometries": 225,
+      "textures": 3,
+      "triangles": 98422,
+      "calls": 229
+    },
+    {
+      "model": "quadrotor-protected",
+      "geometries": 241,
+      "textures": 3,
+      "triangles": 97702,
+      "calls": 245
+    },
+    {
+      "model": "quadrotor-rescue",
+      "geometries": 229,
+      "textures": 3,
+      "triangles": 90278,
+      "calls": 233
+    },
+    {
+      "model": "quadrotor-cargo",
+      "geometries": 240,
+      "textures": 3,
+      "triangles": 104986,
+      "calls": 244
+    },
+    {
+      "model": "usv-inspection",
+      "geometries": 90,
+      "textures": 3,
+      "triangles": 37654,
+      "calls": 93
+    },
+    {
+      "model": "usv-survey",
+      "geometries": 106,
+      "textures": 3,
+      "triangles": 43306,
+      "calls": 110
+    },
+    {
+      "model": "usv-utility",
+      "geometries": 144,
+      "textures": 3,
+      "triangles": 54630,
+      "calls": 148
+    },
+    {
+      "model": "usv-rescue",
+      "geometries": 123,
+      "textures": 3,
+      "triangles": 48650,
+      "calls": 127
+    },
+    {
+      "model": "usv-sampling",
+      "geometries": 127,
+      "textures": 3,
+      "triangles": 45374,
+      "calls": 131
+    },
+    {
+      "model": "usv-endurance",
+      "geometries": 179,
+      "textures": 3,
+      "triangles": 81222,
+      "calls": 183
+    }
+  ],
+  "memory": [
+    {
+      "geometries": 206,
+      "textures": 3
+    },
+    {
+      "geometries": 206,
+      "textures": 3
+    },
+    {
+      "geometries": 206,
+      "textures": 3
+    },
+    {
+      "geometries": 206,
+      "textures": 3
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

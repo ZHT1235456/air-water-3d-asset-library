@@ -1,0 +1,87 @@
+{
+  "scenes": [
+    {
+      "variant": "lake",
+      "vehicles": 2,
+      "issues": [],
+      "geometries": 330,
+      "calls": 336
+    },
+    {
+      "variant": "river",
+      "vehicles": 2,
+      "issues": [],
+      "geometries": 387,
+      "calls": 393
+    },
+    {
+      "variant": "harbor",
+      "vehicles": 2,
+      "issues": [],
+      "geometries": 372,
+      "calls": 379
+    },
+    {
+      "variant": "islands",
+      "vehicles": 2,
+      "issues": [],
+      "geometries": 344,
+      "calls": 350
+    },
+    {
+      "variant": "bridge",
+      "vehicles": 2,
+      "issues": [],
+      "geometries": 424,
+      "calls": 430
+    },
+    {
+      "variant": "waterfront",
+      "vehicles": 2,
+      "issues": [],
+      "geometries": 361,
+      "calls": 367
+    }
+  ],
+  "memory": [
+    {
+      "geometries": 366,
+      "textures": 8
+    },
+    {
+      "geometries": 366,
+      "textures": 8
+    },
+    {
+      "geometries": 366,
+      "textures": 8
+    }
+  ],
+  "errors": [],
+  "gizmoHover": "X",
+  "gizmoDragging": true,
+  "gizmoDragChangedPosition": true,
+  "performance": {
+    "vehicles": 12,
+    "frameMsMean": 27.976190476190474,
+    "frameMsP95": 33.400000000001455,
+    "approximateFps": 35.74468085106383,
+    "calls": 2203,
+    "triangles": 900447,
+    "memory": {
+      "geometries": 2163,
+      "textures": 18
+    },
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+    "note": "Local headless Edge, 1440×1000 CSS viewport, measured requestAnimationFrame intervals; not a device-independent guarantee."
+  },
+  "desktopLabels": {
+    "visible": 12,
+    "overlaps": 0
+  },
+  "mobileLabels": {
+    "visible": 12,
+    "overlaps": 0
+  },
+  "result": "passed"
+}

@@ -1,8 +1,8 @@
 import { Quaternion, Vector3 } from 'three';
 import type { QuadrotorVariant, USVVariant } from '../models';
-import { clamp, duration, finite, quadrotorProfile, usvProfile, type Quat, type Vec3 } from './profiles';
+import { duration, finite, quadrotorProfile, usvProfile, type Quat, type Vec3 } from './profiles';
 import { QuadrotorController, QuadrotorDynamics } from './quadrotor';
-import { steerUSV, USVDynamics, type USVCommand } from './usv';
+import { manualUSVCommand, steerUSV, USVDynamics } from './usv';
 
 export interface PhysicalOverrides { mass: number; maxThrust: number; motorTimeConstant: number; dragScale: number }
 export interface LabInput { powered: boolean; mode: 'manual' | 'position'; throttle: number; turn: number; target: Vec3; yaw: number; cruise: number; wind: Vec3; current: [number, number] }
@@ -52,12 +52,7 @@ export class VehicleExperiment {
     for (let k = 0; k < Math.ceil(dt / .005); k++) {
       if (this.boat) {
         const b = this.boat, env = { current: i.current, wind: [i.wind[0], i.wind[2]] as [number, number] };
-        // With +Z bow and +Y up, starboard is -X: a right helm needs negative yaw.
-        // Keep the bow-turn request consistent astern; actuator slew/lag still applies.
-        const shaftDirection = Math.sign(b.state.propellerSpeed[0]) || Math.sign(i.throttle) || 1;
-        let c: USVCommand = b.profile.propulsion === 'single-azimuth'
-          ? { throttle: [i.throttle], steering: i.turn * b.profile.maxSteering * shaftDirection }
-          : { throttle: [clamp(i.throttle - i.turn * .5, -1, 1), clamp(i.throttle + i.turn * .5, -1, 1)] };
+        let c = manualUSVCommand(b, i.throttle, i.turn, env);
         if (i.mode === 'position') {
           const delta: [number, number] = [i.target[0] - b.state.position[0], i.target[2] - b.state.position[1]], scale = Math.min(.6, i.cruise / Math.max(.001, Math.hypot(...delta)));
           c = steerUSV(b, [delta[0] * scale, delta[1] * scale], env);

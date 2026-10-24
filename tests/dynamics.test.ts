@@ -69,6 +69,24 @@ test('fixed twin thrusters ignore azimuth commands and keep their force along th
   assert.ok(body.worldVelocity[1] > 0);
 });
 
+test('manual countersteering reverses an established turn ahead and astern without resetting momentum', () => {
+  for (const variant of Object.keys(usvPresets) as (keyof typeof usvPresets)[]) for (const throttle of [.65, -.65]) {
+    const p = usvProfile(variant);
+    const e = new VehicleExperiment('usv', variant, { mass: p.mass, maxThrust: p.maxThrust, motorTimeConstant: p.motorTimeConstant, dragScale: 1 }, { powered: true, mode: 'manual', throttle, turn: .7, target: [0, 0, 0], yaw: 0, cruise: 2, wind: [0, 0, 0], current: [0, 0] });
+    for (let i = 0; i < 400; i++) e.step();
+    assert.ok(e.boat!.state.velocity[2] < -.1, `${variant}: establish right turn`);
+    for (const turn of [-.2, .7, -.7, .2, 0]) {
+      const before = e.boat!.snapshot(); e.input.turn = turn;
+      assert.equal(e.boat!.state.velocity[2], before.velocity[2], 'moving the helm must not reset the physical yaw rate');
+      // Astern thrust is only 65% of ahead thrust, and a single pod must slew before
+      // the old turn decays. Allow its physical reversal to take longer.
+      for (let i = 0; i < (throttle < 0 ? 600 : 400); i++) e.step();
+      if (turn) assert.ok(e.boat!.state.velocity[2] * Math.sign(turn) < -.02, `${variant}: countersteer ${turn}, actual yaw rate ${e.boat!.state.velocity[2]}`);
+      else assert.ok(Math.abs(e.boat!.state.velocity[2]) < .03, `${variant}: centre helm must remove the established turn`);
+    }
+  }
+});
+
 test('quadrotor hover balances gravity, free fall and tilted thrust obey Newton equations', () => {
   const p = quadrotorProfile(); p.linearDrag = p.quadraticDrag = [0, 0, 0];
   const hover = new QuadrotorDynamics(p, [0, 10, 0]), rotor = Math.sqrt(p.mass * gravity / (4 * p.thrustCoefficient));

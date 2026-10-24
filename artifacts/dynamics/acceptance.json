@@ -187,57 +187,179 @@
       "id": "usv-survey",
       "throttle": -0.65,
       "turn": -0.35,
-      "bowScreenOffset": -0.045317495519726594,
+      "bowScreenOffset": -0.09787298458499602,
       "thrustAlignment": 1
     },
     {
       "id": "usv-survey",
       "throttle": -0.65,
       "turn": 0.35,
-      "bowScreenOffset": 0.04531749551972648,
+      "bowScreenOffset": 0.09787298458499588,
       "thrustAlignment": 1
     },
     {
       "id": "usv-survey",
       "throttle": 0.65,
       "turn": -0.35,
-      "bowScreenOffset": -0.06989978077020448,
-      "thrustAlignment": 1.0000000000000002
+      "bowScreenOffset": -0.10677110066424561,
+      "thrustAlignment": 1
     },
     {
       "id": "usv-survey",
       "throttle": 0.65,
       "turn": 0.35,
-      "bowScreenOffset": 0.06989978077020438,
-      "thrustAlignment": 1.0000000000000002
+      "bowScreenOffset": 0.10677110066424553,
+      "thrustAlignment": 1
     },
     {
       "id": "usv-inspection",
       "throttle": -0.65,
       "turn": -0.35,
-      "bowScreenOffset": -0.12861043782560738,
+      "bowScreenOffset": -0.15039980729646982,
       "thrustAlignment": 1
     },
     {
       "id": "usv-inspection",
       "throttle": -0.65,
       "turn": 0.35,
-      "bowScreenOffset": 0.12861043782560727,
+      "bowScreenOffset": 0.1503998072964697,
       "thrustAlignment": 1
     },
     {
       "id": "usv-inspection",
       "throttle": 0.65,
       "turn": -0.35,
-      "bowScreenOffset": -0.21453222648954784,
-      "thrustAlignment": 1.0000000000000002
+      "bowScreenOffset": -0.15953148763591343,
+      "thrustAlignment": 1
     },
     {
       "id": "usv-inspection",
       "throttle": 0.65,
       "turn": 0.35,
-      "bowScreenOffset": 0.21453222648954773,
-      "thrustAlignment": 1.0000000000000002
+      "bowScreenOffset": 0.1595314876359133,
+      "thrustAlignment": 1
+    }
+  ],
+  "countersteering": [
+    {
+      "id": "usv-inspection",
+      "rates": [
+        {
+          "turn": 0.7,
+          "time": 7.999999999999852,
+          "rate": -0.4550177434788777
+        },
+        {
+          "turn": -0.2,
+          "time": 16.20000000000106,
+          "rate": 0.13007657453709695,
+          "yawChange": 0.0260152564000537
+        },
+        {
+          "turn": 0.7,
+          "time": 24.39999999999943,
+          "rate": -0.6144513309062305,
+          "yawChange": -0.12426435906734712
+        },
+        {
+          "turn": -0.7,
+          "time": 32.599999999998225,
+          "rate": 0.45508137559223494,
+          "yawChange": 0.09089199876716575
+        },
+        {
+          "turn": 0.2,
+          "time": 40.80000000000242,
+          "rate": -0.1300780970808831,
+          "yawChange": -0.026016007187206647
+        },
+        {
+          "turn": 0,
+          "time": 49.000000000006615,
+          "rate": 6.139635910841992e-9,
+          "yawChange": 1.4289813776713345e-9
+        }
+      ]
+    },
+    {
+      "id": "usv-survey",
+      "rates": [
+        {
+          "turn": 0.7,
+          "time": 7.999999999999852,
+          "rate": -0.3046975086604244
+        },
+        {
+          "turn": -0.2,
+          "time": 16.20000000000106,
+          "rate": 0.1185603543802408,
+          "yawChange": 0.022857286268546217
+        },
+        {
+          "turn": 0.7,
+          "time": 24.39999999999943,
+          "rate": -0.2851779056630911,
+          "yawChange": -0.05682488789210516
+        },
+        {
+          "turn": -0.7,
+          "time": 32.599999999998225,
+          "rate": 0.31149344457661826,
+          "yawChange": 0.06282832737153976
+        },
+        {
+          "turn": 0.2,
+          "time": 40.80000000000242,
+          "rate": -0.117853537914716,
+          "yawChange": -0.022665645883695074
+        },
+        {
+          "turn": 0,
+          "time": 49.000000000006615,
+          "rate": 0.00017656909062649406,
+          "yawChange": 0.000037736227911283615
+        }
+      ]
+    },
+    {
+      "id": "usv-patrol",
+      "rates": [
+        {
+          "turn": 0.7,
+          "time": 7.999999999999852,
+          "rate": -0.1703952194036478
+        },
+        {
+          "turn": -0.2,
+          "time": 16.20000000000106,
+          "rate": 0.04740158993799252,
+          "yawChange": 0.009485373523914487
+        },
+        {
+          "turn": 0.7,
+          "time": 24.39999999999943,
+          "rate": -0.17485570600979894,
+          "yawChange": -0.035120395787054004
+        },
+        {
+          "turn": -0.7,
+          "time": 32.599999999998225,
+          "rate": 0.16506624640197842,
+          "yawChange": 0.03301777592419577
+        },
+        {
+          "turn": 0.2,
+          "time": 40.80000000000242,
+          "rate": -0.04735364306732795,
+          "yawChange": -0.009475744015439661
+        },
+        {
+          "turn": 0,
+          "time": 49.000000000006615,
+          "rate": 0.00003883567977097663,
+          "yawChange": 0.0000082376252144023
+        }
+      ]
     }
   ],
   "result": "passed"

@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 const folder = 'artifacts/dynamics'; await mkdir(folder, { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--ignore-gpu-blocklist'] });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
-const report = { errors: [], models: [], steering: [] };
+const report = { errors: [], models: [], steering: [], countersteering: [] };
 page.on('pageerror', e => report.errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') report.errors.push(m.text()); });
 const advance = async steps => page.evaluate(count => { const s = window.__dynamicsLab.simulation; for (let i = 0; i < count; i++) s.step(); return s.snapshot(); }, steps);
 try {
@@ -78,6 +78,34 @@ try {
     assert.ok(rendered.thrustAlignment > .999999, `${id}: arrow must match the actual thruster axis`);
     if (id === 'usv-survey') assert.equal(frame.steering, 0);
     report.steering.push({ id, throttle, turn, ...rendered });
+  }
+  for (const id of ['usv-inspection', 'usv-survey', 'usv-patrol']) {
+    await page.locator('#dyn-model').selectOption(id);
+    await page.locator('#dyn-throttle').fill('0.65'); await page.locator('#dyn-turn').fill('0.7');
+    let frame = await advance(400);
+    assert.ok(frame.angularVelocity[1] < -.1, `${id}: establish a right turn before countersteering`);
+    const rates = [{ turn: .7, time: frame.time, rate: frame.angularVelocity[1] }];
+    for (const turn of [-.2, .7, -.7, .2, 0]) {
+      const before = await page.evaluate(() => window.__dynamicsLab.simulation.snapshot());
+      await page.locator('#dyn-turn').fill(String(turn));
+      const changed = await page.evaluate(() => window.__dynamicsLab.simulation.snapshot());
+      assert.equal(changed.input.turn, turn, `${id}: the slider must update the actual command`);
+      for (const field of ['time', 'position', 'velocity', 'quaternion', 'angularVelocity', 'rotorSpeed']) assert.deepEqual(changed[field], before[field], `${id}: moving the slider must preserve ${field}`);
+      frame = await advance(400);
+      if (turn) assert.ok(frame.angularVelocity[1] * Math.sign(turn) < -.02, `${id}: countersteer ${turn}, actual yaw rate ${frame.angularVelocity[1]}`);
+      else assert.ok(Math.abs(frame.angularVelocity[1]) < .03, `${id}: centre helm must stop the established turn`);
+      await page.locator('#dyn-replay').evaluate(el => { el.max = String(window.__dynamicsLab.simulation.frames.length - 1); el.value = el.max; el.dispatchEvent(new Event('input')); });
+      const bowBefore = await page.evaluate(() => { const root = window.__dynamicsLab.view.model.root; return root.getWorldDirection(root.position.clone()).toArray(); });
+      frame = await advance(10);
+      await page.locator('#dyn-replay').evaluate(el => { el.max = String(window.__dynamicsLab.simulation.frames.length - 1); el.value = el.max; el.dispatchEvent(new Event('input')); });
+      const rendered = await page.evaluate(() => { const root = window.__dynamicsLab.view.model.root; return { bow: root.getWorldDirection(root.position.clone()).toArray(), quaternion: root.quaternion.toArray() }; });
+      assert.deepEqual(rendered.quaternion, frame.quaternion, `${id}: render the integrated orientation`);
+      const yawChange = bowBefore[2] * rendered.bow[0] - bowBefore[0] * rendered.bow[2];
+      if (turn) assert.ok(yawChange * Math.sign(turn) < -.002, `${id}: rendered bow must rotate toward the requested side`);
+      rates.push({ turn, time: frame.time, rate: frame.angularVelocity[1], yawChange });
+      if (id === 'usv-survey' && turn === -.2) await page.screenshot({ path: `${folder}/countersteering-left.png`, fullPage: true });
+    }
+    report.countersteering.push({ id, rates });
   }
   await page.screenshot({ path: `${folder}/boat-desktop.png`, fullPage: true });
   for (const camera of ['overview', 'top', 'follow']) await page.locator('#dyn-camera').selectOption(camera);

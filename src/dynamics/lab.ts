@@ -66,7 +66,7 @@ export function createDynamicsLab(host: HTMLElement) {
     if (!valid()) { refresh(); return; }
     try { simulation = new VehicleExperiment(kind, variant, parameters(), commands()); invalid = false; }
     catch (error) { invalid = true; message(String(error), true); refresh(); return; }
-    $('#dyn-capacity').textContent = kind === 'quadrotor' ? `最大推重比 ${(4 * number('thrust') / (number('mass') * gravity)).toFixed(2)}。${4 * number('thrust') <= number('mass') * gravity ? '当前推力不足以起飞。' : '实际推力受电机响应与姿态控制约束。'}` : `${simulation.boat!.profile.propulsion === 'twin' ? '双桨差速转向' : '单桨转向，不能原地回转'} · 附加质量与阻力分轴计算。`;
+    $('#dyn-capacity').textContent = kind === 'quadrotor' ? `最大推重比 ${(4 * number('thrust') / (number('mass') * gravity)).toFixed(2)}。${4 * number('thrust') <= number('mass') * gravity ? '当前推力不足以起飞。' : '实际推力受电机响应与姿态控制约束。'}` : `${simulation.boat!.profile.propulsion === 'twin' ? '双桨差速转向' : '单桨转向，不能原地回转'} · 转向根据实际角速度反馈调节，反打时自动减速。`;
     view?.view($<HTMLSelectElement>('#dyn-camera').value); message(view ? '已复位。运行后可实时调整目标、风流和动力开关。' : '无法启动三维视口，请开启浏览器硬件加速后刷新。', !view); refresh(); draw();
   }
   function chooseExperiment() {
@@ -74,7 +74,7 @@ export function createDynamicsLab(host: HTMLElement) {
     input('power').checked = selectedExperiment !== 'drift';
     input('target-x').value = selectedExperiment === 'waypoint' ? '8' : '0'; input('target-z').value = selectedExperiment === 'waypoint' ? '12' : '0'; input('target-y').value = selectedExperiment === 'waypoint' ? '5' : '3';
     input('yaw').value = '0'; input('wind-x').value = selectedExperiment === 'wind' ? '4' : '0'; input('wind-z').value = '0'; input('current-x').value = selectedExperiment === 'drift' ? '0.5' : '0'; input('current-z').value = '0'; input('throttle').value = '.65'; input('turn').value = '0';
-    $('#dyn-description').textContent = ({ hover: '从地面起飞并保持目标高度。关闭动力可以观察推力衰减与下落。', waypoint: '载具依靠姿态或航向调整接近目标；可在运行中修改目标位置。', wind: '在 4 m/s 侧风中起飞并悬停，观察倾斜补偿及各电机推力。', manual: '逐渐加速，调节转向；关闭动力后观察惯性滑行与阻力减速。', drift: '初始关闭推进器，观察水流通过相对流速和水阻逐渐带动船体。' } as Record<string, string>)[selectedExperiment];
+    $('#dyn-description').textContent = ({ hover: '从地面起飞并保持目标高度。关闭动力可以观察推力衰减与下落。', waypoint: '载具依靠姿态或航向调整接近目标；可在运行中修改目标位置。', wind: '在 4 m/s 侧风中起飞并悬停，观察倾斜补偿及各电机推力。', manual: '滑杆请求艇首左转或右转，回中后逐渐停止旋转。反打时自动减速；关闭动力可观察惯性滑行。', drift: '初始关闭推进器，观察水流通过相对流速和水阻逐渐带动船体。' } as Record<string, string>)[selectedExperiment];
     $('#dyn-manual').hidden = kind !== 'usv' || selectedExperiment === 'waypoint'; $('#dyn-target-fields').hidden = kind === 'usv' && selectedExperiment !== 'waypoint';
     reset();
   }

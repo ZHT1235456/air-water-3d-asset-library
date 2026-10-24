@@ -68,6 +68,47 @@ export class USVDynamics {
   }
 }
 
+/** Closed-loop manual helm for the model's actual single or twin propulsion layout.
+ * A hull already turning at speed needs to brake before its finite yaw authority can
+ * overcome the added-mass coupling. Commands never modify the integrated state. */
+export function manualUSVCommand(body: USVDynamics, throttle: number, turn: number, conditions = calmWater()): USVCommand {
+  finite([throttle, turn, ...conditions.current, ...conditions.wind]);
+  throttle = clamp(throttle, -1, 1); turn = clamp(turn, -1, 1);
+  const p = body.profile, s = body.state;
+  const [u, v, r] = s.velocity, sn = Math.sin(s.yaw), cs = Math.cos(s.yaw);
+  const ur = u - sn * conditions.current[0] - cs * conditions.current[1], vr = v - cs * conditions.current[0] + sn * conditions.current[1];
+  const relativeWind = cs * conditions.wind[0] - sn * conditions.wind[1] - v;
+  const windMoment = p.length * .05 * .6125 * p.windArea[1] * relativeWind * Math.abs(relativeWind);
+  const forwardLimit = p.maxThrust, reverseLimit = p.maxThrust * p.reverseRatio;
+  const yawAuthority = p.propulsion === 'twin' ? 2 * p.arm * reverseLimit : p.arm * forwardLimit * Math.sin(p.maxSteering);
+  const dampingRoot = p.linearDrag[2] + Math.sqrt(p.linearDrag[2] ** 2 + 4 * p.quadraticDrag[2] * yawAuthority * .7);
+  const rateLimit = dampingRoot > 0 ? Math.min(.65, 2 * yawAuthority * .7 / dampingRoot) : .65;
+  // Right helm is negative yaw. The reference respects this hull's thrust/drag envelope.
+  const desiredR = -turn * rateLimit;
+  const moment = (p.inertia + p.addedMass[2]) * 4 * (desiredR - r)
+    + (p.linearDrag[2] + p.quadraticDrag[2] * Math.abs(r)) * r
+    - (p.addedMass[0] - p.addedMass[1]) * ur * vr - windMoment;
+  const nominalForce = p.maxThrust * throttle * Math.abs(throttle) * (throttle < 0 ? p.reverseRatio : 1);
+  const countersteering = desiredR * r < -.005, yawLimited = Math.abs(moment) > .85 * yawAuthority;
+  const slowing = (countersteering || yawLimited) && Math.abs(u) > .25;
+  const shaft = (force: number) => Math.sign(force) * Math.sqrt(clamp(Math.abs(force) / (force < 0 ? reverseLimit : forwardLimit), 0, 1));
+  if (p.propulsion === 'single-azimuth') {
+    // No independent pivot torque: azimuth and thrust share the same physical actuator.
+    // Reduce forward power during countersteering; reversing it would also reverse the
+    // yaw moment before the slew-limited pod has reached its opposite angle.
+    const force = nominalForce * (slowing ? .2 : 1), actual = Math.abs(s.thrust[0]) > .1 ? s.thrust[0] : force;
+    const steering = Math.abs(actual) > .01 ? Math.asin(clamp(-moment / (p.arm * actual), -Math.sin(p.maxSteering), Math.sin(p.maxSteering))) : 0;
+    return { throttle: [shaft(force)], steering };
+  }
+  let surge = 2 * nominalForce;
+  if (slowing) surge = -Math.sign(u) * Math.min(2 * reverseLimit * .6, (p.mass + p.addedMass[0]) * Math.abs(u) * 1.4);
+  const forces = [surge / 2 + moment / (2 * p.arm), surge / 2 - moment / (2 * p.arm)];
+  // Scale the whole wrench at actuator saturation, preserving braking direction instead
+  // of adding forward thrust just to satisfy an infeasible differential request.
+  const scale = Math.min(1, ...forces.map(f => f > forwardLimit ? forwardLimit / f : f < -reverseLimit ? -reverseLimit / f : 1));
+  return { throttle: forces.map(f => shaft(f * scale)) };
+}
+
 /** Velocity-to-thrust controller. No direct changes to vehicle position or heading. */
 export function steerUSV(body: USVDynamics, desiredVelocity: [number, number], conditions = calmWater(), options: { allowReverse?: boolean } = {}): USVCommand {
   finite(desiredVelocity);

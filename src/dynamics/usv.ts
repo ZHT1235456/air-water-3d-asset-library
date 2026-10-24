@@ -4,10 +4,15 @@ export interface WaterConditions { current: [number, number]; wind: [number, num
 export const calmWater = (): WaterConditions => ({ current: [0, 0], wind: [0, 0] });
 export interface USVState {
   time: number; position: [number, number]; yaw: number;
-  /** Absolute body velocities: forward +Z, starboard +X, yaw about +Y. */
+  /** Absolute body velocities: forward +Z, port +X, yaw about +Y (port turn). */
   velocity: Vec3; propellerSpeed: number[]; propellerPhase: number[]; thrust: number[]; steering: number;
 }
-export interface USVCommand { /** Signed shaft speed / maximum shaft speed. */ throttle: number[]; steering?: number }
+export interface USVCommand {
+  /** Signed shaft speed / maximum shaft speed. Twin order: -X (starboard), +X (port). */
+  throttle: number[];
+  /** Single stern thruster azimuth about +Y; ignored by fixed twin thrusters. */
+  steering?: number;
+}
 
 /** Fossen planar equations with diagonal added mass. Integrates absolute body velocity;
  * water-relative velocity is used for added-mass Coriolis terms and damping.
@@ -31,7 +36,9 @@ export class USVDynamics {
     if (command.throttle.length !== this.state.thrust.length) throw new RangeError('推进器指令数量不匹配');
     const n = Math.ceil(dt / .01), h = dt / n, p = this.profile, s = this.state;
     for (let k = 0; k < n; k++) {
-      s.steering += clamp(clamp(command.steering ?? 0, -p.maxSteering, p.maxSteering) - s.steering, -p.steeringRate * h, p.steeringRate * h);
+      s.steering = p.propulsion === 'single-azimuth'
+        ? s.steering + clamp(clamp(command.steering ?? 0, -p.maxSteering, p.maxSteering) - s.steering, -p.steeringRate * h, p.steeringRate * h)
+        : 0;
       s.propellerSpeed.forEach((omega, i) => {
         s.propellerSpeed[i] += (clamp(command.throttle[i], -1, 1) * p.maxPropellerSpeed - omega) * (1 - Math.exp(-h / p.motorTimeConstant));
         const ratio = s.propellerSpeed[i] / p.maxPropellerSpeed;

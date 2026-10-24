@@ -68,7 +68,8 @@ export function createUSV(options: ModelOptions<USVVariant> = {}) {
   rod(mast, [0, baseY, mastZ], [0, baseY + mastH, mastZ], utility ? 0.017 : 0.012, m.metal);
   rod(mast, [-cw * 0.48, baseY + mastH * 0.70, mastZ], [cw * 0.48, baseY + mastH * 0.70, mastZ], 0.012, m.secondary);
   for (const side of [-1, 1]) {
-    cylinder(mast, 0.024, 0.03, [side * cw * 0.45, baseY + mastH * 0.73, mastZ], side < 0 ? m.red : m.green);
+    // +Z bow / +Y up makes -X starboard (green), +X port (red).
+    cylinder(mast, 0.024, 0.03, [side * cw * 0.45, baseY + mastH * 0.73, mastZ], side < 0 ? m.green : m.red);
     rod(mast, [side * cw * 0.35, baseY + mastH * 0.72, mastZ], [side * cw * 0.35, baseY + mastH * 0.72 + 0.18, mastZ], 0.003, m.rubber);
   }
   const gnss = bind('gnss-antenna', cylinder(mast, 0.042, 0.025, [0, baseY + mastH, mastZ], m.primary, 0.036));

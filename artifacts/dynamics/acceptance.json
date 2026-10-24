@@ -182,5 +182,63 @@
       "speed": 2.9557591344063585
     }
   ],
+  "steering": [
+    {
+      "id": "usv-survey",
+      "throttle": -0.65,
+      "turn": -0.35,
+      "bowScreenOffset": -0.045317495519726594,
+      "thrustAlignment": 1
+    },
+    {
+      "id": "usv-survey",
+      "throttle": -0.65,
+      "turn": 0.35,
+      "bowScreenOffset": 0.04531749551972648,
+      "thrustAlignment": 1
+    },
+    {
+      "id": "usv-survey",
+      "throttle": 0.65,
+      "turn": -0.35,
+      "bowScreenOffset": -0.06989978077020448,
+      "thrustAlignment": 1.0000000000000002
+    },
+    {
+      "id": "usv-survey",
+      "throttle": 0.65,
+      "turn": 0.35,
+      "bowScreenOffset": 0.06989978077020438,
+      "thrustAlignment": 1.0000000000000002
+    },
+    {
+      "id": "usv-inspection",
+      "throttle": -0.65,
+      "turn": -0.35,
+      "bowScreenOffset": -0.12861043782560738,
+      "thrustAlignment": 1
+    },
+    {
+      "id": "usv-inspection",
+      "throttle": -0.65,
+      "turn": 0.35,
+      "bowScreenOffset": 0.12861043782560727,
+      "thrustAlignment": 1
+    },
+    {
+      "id": "usv-inspection",
+      "throttle": 0.65,
+      "turn": -0.35,
+      "bowScreenOffset": -0.21453222648954784,
+      "thrustAlignment": 1.0000000000000002
+    },
+    {
+      "id": "usv-inspection",
+      "throttle": 0.65,
+      "turn": 0.35,
+      "bowScreenOffset": 0.21453222648954773,
+      "thrustAlignment": 1.0000000000000002
+    }
+  ],
   "result": "passed"
 }

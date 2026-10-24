@@ -25,6 +25,7 @@ export function createDynamicsScene(host: HTMLElement) {
   const target = new T.Group(); scene.add(target);
   for (const angle of [0, Math.PI / 2]) { const ring = new T.Mesh(new T.TorusGeometry(.45, .012, 6, 48), new T.MeshBasicMaterial({ color: '#c7773a', transparent: true, opacity: .8 })); ring.rotation.x = angle; target.add(ring); }
   const velocity = new T.ArrowHelper(new T.Vector3(0, 0, 1), new T.Vector3(), 1, '#b4f2e1', .2, .11), thrust = new T.ArrowHelper(new T.Vector3(0, 1, 0), new T.Vector3(), 1, '#e4a15e', .2, .11); scene.add(velocity, thrust);
+  velocity.name = 'velocity-vector'; thrust.name = 'thrust-vector';
   const traceGeometry = new T.BufferGeometry(), tracePositions = new Float32Array(1802 * 3); traceGeometry.setAttribute('position', new T.BufferAttribute(tracePositions, 3)); traceGeometry.setDrawRange(0, 0);
   const trace = new T.Line(traceGeometry, new T.LineBasicMaterial({ color: '#297d78', transparent: true, opacity: .75 })); trace.frustumCulled = false; scene.add(trace);
   let model: ModelHandle | undefined, kind: 'usv' | 'quadrotor' = 'quadrotor', size = 1, following = true, lastPosition = new T.Vector3(), current: DynamicsFrame | undefined, disposed = false;
@@ -50,7 +51,10 @@ export function createDynamicsScene(host: HTMLElement) {
     if (following) { const d = p.clone().sub(lastPosition); camera.position.add(d); controls.target.add(d); } lastPosition.copy(p);
     target.position.set(...frame.input.target); if (kind === 'usv') target.position.y = .35; target.visible = frame.input.mode === 'position';
     const v = new T.Vector3(...frame.velocity), direction = new T.Vector3(0, 1, 0).applyQuaternion(model.root.quaternion);
-    if (kind === 'usv') direction.set(Math.sin(frame.steering), 0, Math.cos(frame.steering)).applyQuaternion(model.root.quaternion);
+    if (kind === 'usv') {
+      const steering = model.parts['thruster-center'] ? frame.steering : 0;
+      direction.set(Math.sin(steering), 0, Math.cos(steering)).applyQuaternion(model.root.quaternion);
+    }
     const total = frame.thrust.reduce((s, x) => s + x, 0); if (total < 0) direction.negate();
     velocity.position.copy(p).add(new T.Vector3(0, kind === 'usv' ? .65 : .1, 0)); thrust.position.copy(velocity.position);
     velocity.visible = vectors && v.length() > .025; thrust.visible = vectors && Math.abs(total) > .01;

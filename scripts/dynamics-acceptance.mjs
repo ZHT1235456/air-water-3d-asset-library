@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 const folder = 'artifacts/dynamics'; await mkdir(folder, { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--ignore-gpu-blocklist'] });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
-const report = { errors: [], models: [] };
+const report = { errors: [], models: [], steering: [] };
 page.on('pageerror', e => report.errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') report.errors.push(m.text()); });
 const advance = async steps => page.evaluate(count => { const s = window.__dynamicsLab.simulation; for (let i = 0; i < count; i++) s.step(); return s.snapshot(); }, steps);
 try {
@@ -54,10 +54,31 @@ try {
   await page.locator('#dyn-defaults').click(); assert.equal(await page.locator('#dyn-mass').inputValue(), '4.8'); assert.equal(await page.locator('#dyn-run').isEnabled(), true);
   await page.locator('#dyn-thrust').fill(''); await page.locator('#dyn-thrust').blur(); assert.equal(await page.locator('#dyn-json').isDisabled(), true);
   await page.locator('#dyn-defaults').click(); assert.equal(await page.locator('#dyn-json').isEnabled(), true);
-  await page.locator('#dyn-model').selectOption('usv-inspection');
-  await page.locator('#dyn-turn').fill('0.5'); const turn = await advance(500);
-  assert.ok(turn.angularVelocity[1] > 0); assert.ok(turn.steering < 0);
-  await page.locator('#dyn-replay').evaluate(el => { el.max = String(window.__dynamicsLab.simulation.frames.length - 1); el.value = el.max; el.dispatchEvent(new Event('input')); });
+  for (const id of ['usv-survey', 'usv-inspection']) for (const throttle of [-.65, .65]) for (const turn of [-.35, .35]) {
+    await page.locator('#dyn-model').selectOption(id);
+    assert.deepEqual(await page.locator('#dyn-motors .dyn-motor > span').allTextContents(), id === 'usv-survey' ? ['右桨', '左桨'] : ['单桨']);
+    await page.locator('#dyn-throttle').fill(String(throttle)); await page.locator('#dyn-turn').fill(String(turn));
+    assert.match(await page.locator('#dyn-turn-value').innerText(), turn > 0 ? /右转/ : /左转/);
+    const frame = await advance(100);
+    await page.locator('#dyn-replay').evaluate(el => { el.max = String(window.__dynamicsLab.simulation.frames.length - 1); el.value = el.max; el.dispatchEvent(new Event('input')); });
+    const rendered = await page.evaluate(() => {
+      const lab = window.__dynamicsLab, view = lab.view, root = view.model.root, length = lab.simulation.boat.profile.length;
+      // Inspect the rendered bow from an upright camera behind the starting heading.
+      view.controls.enableDamping = false; view.controls.target.copy(root.position);
+      view.camera.position.copy(root.position).add(root.position.clone().set(0, length * 1.5, -length * 3)); view.controls.update();
+      view.render(lab.simulation.snapshot(), lab.simulation.frames, true, true);
+      const bow = root.localToWorld(root.position.clone().set(0, 0, length / 2)).project(view.camera);
+      const stern = root.localToWorld(root.position.clone().set(0, 0, -length / 2)).project(view.camera);
+      const thrust = root.parent.getObjectByName('thrust-vector'), direction = root.position.clone().set(0, 1, 0).applyQuaternion(thrust.quaternion);
+      const expected = (view.model.parts['thruster-center'] ?? root).getWorldDirection(root.position.clone());
+      if (lab.simulation.snapshot().thrust.reduce((sum, force) => sum + force, 0) < 0) expected.negate();
+      return { bowScreenOffset: bow.x - stern.x, thrustAlignment: direction.dot(expected) };
+    });
+    assert.ok(rendered.bowScreenOffset * Math.sign(turn) > .01, `${id}: rendered bow must turn ${turn > 0 ? 'right' : 'left'} at throttle ${throttle}`);
+    assert.ok(rendered.thrustAlignment > .999999, `${id}: arrow must match the actual thruster axis`);
+    if (id === 'usv-survey') assert.equal(frame.steering, 0);
+    report.steering.push({ id, throttle, turn, ...rendered });
+  }
   await page.screenshot({ path: `${folder}/boat-desktop.png`, fullPage: true });
   for (const camera of ['overview', 'top', 'follow']) await page.locator('#dyn-camera').selectOption(camera);
   await page.locator('#dyn-vectors').uncheck(); await page.locator('#dyn-trail').uncheck(); await page.locator('#dyn-vectors').check(); await page.locator('#dyn-trail').check();

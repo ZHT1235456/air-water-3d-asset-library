@@ -2,7 +2,7 @@
   "version": 1,
   "parameterBasis": "engineering-estimate-v1",
   "model": "quadrotor-survey",
-  "units": "m, kg, s, N, radians; right-handed X right, Y up, Z forward; quaternion xyzw",
+  "units": "m, kg, s, N, radians; right-handed Y up; model +Z forward, -X right; quaternion xyzw",
   "physicsStep": 0.005,
   "profile": {
     "variant": "survey",

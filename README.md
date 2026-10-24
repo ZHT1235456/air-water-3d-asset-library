@@ -166,7 +166,9 @@ interface ModelColors {
 | 清理无人艇 | `collection-conveyor`、`collection-basket`、`work-beacon` |
 | 巡逻无人艇 | `observation-tower`、`patrol-radar`、`patrol-camera`、`patrol-fenders` |
 
-`left/right` 在模型局部坐标中分别对应 −X / +X，`front/rear` 分别对应 +Z / −Z。按名称访问部件时，先确认对应款式包含该部件。
+`left/right` 沿用资产命名，分别对应模型局部 −X / +X，`front/rear` 分别对应 +Z / −Z。在 Y 向上、+Z 为艇首的右手系中，面向艇首时右舷为 −X、左舷为 +X；不要把部件名直接当作航海左右舷。按名称访问部件时，先确认对应款式包含该部件。
+
+动力学界面的电机标签按实际方位显示；无人艇舷灯按[航行规则第 21 条](https://www.navcen.uscg.gov/navigation-rules-amalgamated)采用左舷红、右舷绿。
 
 ## 工作台操作
 

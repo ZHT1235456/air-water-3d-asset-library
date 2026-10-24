@@ -43,6 +43,32 @@ test('marine velocity controller reaches target speed without setting velocity o
   const v = body.worldVelocity; assert.ok(Math.hypot(v[0] - 1.5, v[1] - 2) < .2);
 });
 
+test('manual helm turns the bow to the requested side, ahead and astern at different headings', () => {
+  const up = new Vector3(0, 1, 0);
+  for (const variant of Object.keys(usvPresets) as (keyof typeof usvPresets)[]) {
+    for (const yaw of [0, 1.1, 3.02]) for (const throttle of [.65, -.65]) for (const turn of [-.35, .35]) {
+      const p = usvProfile(variant);
+      const experiment = new VehicleExperiment('usv', variant, { mass: p.mass, maxThrust: p.maxThrust, motorTimeConstant: p.motorTimeConstant, dragScale: 1 }, { powered: true, mode: 'manual', throttle, turn, target: [0, 0, 0], yaw: 0, cruise: 2, wind: [0, 0, 0], current: [0, 0] });
+      experiment.boat!.state.yaw = yaw;
+      const initialForward = new Vector3(0, 0, 1).applyQuaternion(new Quaternion(...experiment.snapshot().quaternion));
+      // A person standing upright and looking over the bow has right = forward × up.
+      const right = initialForward.clone().cross(up).normalize();
+      for (let i = 0; i < 75; i++) experiment.step();
+      const frame = experiment.snapshot(), forward = new Vector3(0, 0, 1).applyQuaternion(new Quaternion(...frame.quaternion));
+      assert.ok(forward.dot(right) * Math.sign(turn) > .02, `${variant}: heading=${yaw}, throttle=${throttle}, turn=${turn}`);
+      if (p.propulsion === 'twin') assert.equal(frame.steering, 0, 'fixed twin thrusters must not acquire a steering angle');
+    }
+  }
+});
+
+test('fixed twin thrusters ignore azimuth commands and keep their force along the hull', () => {
+  const body = new USVDynamics(usvProfile('survey'));
+  for (let i = 0; i < 100; i++) body.step(.02, { throttle: [.65, .65], steering: .5 });
+  assert.equal(body.state.steering, 0);
+  assert.ok(Math.abs(body.state.yaw) < 1e-12 && Math.abs(body.worldVelocity[0]) < 1e-12);
+  assert.ok(body.worldVelocity[1] > 0);
+});
+
 test('quadrotor hover balances gravity, free fall and tilted thrust obey Newton equations', () => {
   const p = quadrotorProfile(); p.linearDrag = p.quadraticDrag = [0, 0, 0];
   const hover = new QuadrotorDynamics(p, [0, 10, 0]), rotor = Math.sqrt(p.mass * gravity / (4 * p.thrustCoefficient));

@@ -11,14 +11,14 @@ const markup = () => `<main class="dynamics-workbench">
   <aside class="dyn-config"><details open id="dyn-setup"><summary>载具与试验 <span>18 款模型</span></summary><div class="dyn-panel-content">
     <label>载具<select id="dyn-model">${[['quadrotor', quadrotorPresets, '四旋翼无人机'], ['usv', usvPresets, '无人艇']].map(([kind, presets, title]) => `<optgroup label="${title}">${Object.entries(presets).map(([v, p]) => `<option value="${kind}-${v}">${p.code} · ${p.name}</option>`).join('')}</optgroup>`).join('')}</select></label>
     <label>试验<select id="dyn-experiment"></select></label><p id="dyn-description" class="dyn-hint"></p>
-    <div id="dyn-manual" class="dyn-fields"><label>油门 / 倒车<input id="dyn-throttle" type="range" min="-1" max="1" step="0.01" value="0.65"/><output id="dyn-throttle-value"></output></label><label>转向（正值向右）<input id="dyn-turn" type="range" min="-1" max="1" step="0.01" value="0"/><output id="dyn-turn-value"></output></label></div>
+    <div id="dyn-manual" class="dyn-fields"><label>油门 / 倒车<input id="dyn-throttle" type="range" min="-1" max="1" step="0.01" value="0.65"/><output id="dyn-throttle-value"></output></label><label>艇首转向<input id="dyn-turn" type="range" min="-1" max="1" step="0.01" value="0"/><output id="dyn-turn-value"></output></label></div>
     <div id="dyn-target-fields"><h2>目标位置 <small>m · 世界坐标</small></h2><div class="dyn-fields">${field('target-x', 'X', 0, -100, 100)}${field('target-y', '高度 Y', 3, .2, 60)}${field('target-z', 'Z', 0, -100, 100)}${field('yaw', '航向 °', 0, -180, 180, 1)}${field('cruise', '巡航 m/s', 2.5, .2, 8)}</div></div>
     <label class="dyn-check dyn-power"><input id="dyn-power" type="checkbox" checked/>动力接通</label><p class="dyn-hint">关闭后电机逐渐停转，惯性仍会保留。</p>
     <section class="dyn-actuators"><h2>推进器反馈 <small>实际转速 / 推力</small></h2><div id="dyn-motors"></div></section>
     <details class="dyn-method"><summary>方程与适用范围</summary><code id="dyn-equation"></code><p id="dyn-limits"></p><a id="dyn-reference" target="_blank" rel="noreferrer">模型依据 ↗</a></details>
   </div></details></aside>
   <section class="dyn-stage"><header><div><div class="eyebrow">AIR / WATER · DYNAMICS</div><h1>动力学试验场</h1><p id="dyn-subtitle"></p></div><span id="dyn-state">就绪</span></header>
-    <div class="dyn-view-wrap"><div id="dyn-viewport"></div><div class="dyn-view-tools"><label>视角<select id="dyn-camera"><option value="follow">跟随载具</option><option value="overview">试验场全景</option><option value="top">俯视</option></select></label><label class="dyn-check"><input type="checkbox" id="dyn-vectors" checked/>向量</label><label class="dyn-check"><input type="checkbox" id="dyn-trail" checked/>轨迹</label></div><div class="dyn-view-key"><span>● 速度 × 2</span><span>● 推力方向</span><span>◎ 目标</span></div><span class="dyn-world-note">1 单位 = 1 米 · X 右 / Y 上 / Z 前</span></div>
+    <div class="dyn-view-wrap"><div id="dyn-viewport"></div><div class="dyn-view-tools"><label>视角<select id="dyn-camera"><option value="follow">跟随载具</option><option value="overview">试验场全景</option><option value="top">俯视</option></select></label><label class="dyn-check"><input type="checkbox" id="dyn-vectors" checked/>向量</label><label class="dyn-check"><input type="checkbox" id="dyn-trail" checked/>轨迹</label></div><div class="dyn-view-key"><span>● 速度 × 2</span><span>● 推力方向</span><span>◎ 目标</span></div><span class="dyn-world-note">1 单位 = 1 米 · Y 向上 / 模型前向 +Z</span></div>
     <div class="dyn-telemetry"><div><span>仿真时间</span><strong id="dyn-time"></strong></div><div><span>地速</span><strong id="dyn-speed"></strong></div><div><span id="dyn-attitude-label">离地高度</span><strong id="dyn-altitude"></strong></div><div><span id="dyn-rate-label">倾斜角</span><strong id="dyn-attitude"></strong></div></div>
     <div class="dyn-playback"><button id="dyn-run" class="dyn-primary">运行试验</button><button id="dyn-step">单步 0.02 s</button><button id="dyn-reset" disabled>复位</button><label>速度<select id="dyn-rate"><option value="1">1 ×</option><option value="4">4 ×</option><option value="8">8 ×</option></select></label></div>
     <div class="dyn-timeline"><label for="dyn-replay">历史回看</label><input type="range" id="dyn-replay" min="0" max="0" value="0" disabled/><output id="dyn-replay-time">实时</output></div><p id="dyn-message" role="status" aria-live="polite"></p>
@@ -88,7 +88,8 @@ export function createDynamicsLab(host: HTMLElement) {
     $('#dyn-limits').textContent = kind === 'quadrotor' ? '四元数姿态、四电机独立推力、反扭矩、惯量耦合、空气阻力及电机滞后。位置—速度—姿态—角速度级联控制。平面接地为简化接触；未建模桨叶柔性、地效、电池和传感器。' : '纵荡、横荡、艏摇，附加质量及科氏项，线性和二次阻力、风流及推进器滞后。重心假定在几何中心；未建模波浪、横摇、纵摇、升沉或障碍接触。';
     $<HTMLAnchorElement>('#dyn-reference').href = kind === 'quadrotor' ? 'https://docs.px4.io/main/en/flight_stack/controller_diagrams' : 'https://fossen.biz/html/marineCraftModel.html';
     $('#dyn-attitude-label').textContent = kind === 'quadrotor' ? '离地高度' : '艏向'; $('#dyn-rate-label').textContent = kind === 'quadrotor' ? '倾斜角' : '艏摇角速度';
-    const names = kind === 'quadrotor' ? ['前左', '前右', '后左', '后右'] : variant === 'inspection' ? ['单桨'] : ['左桨', '右桨'];
+    // Display physical sides while retaining the model asset's -X, +X channel order.
+    const names = kind === 'quadrotor' ? ['前右', '前左', '后右', '后左'] : variant === 'inspection' ? ['单桨'] : ['右桨', '左桨'];
     $('#dyn-motors').innerHTML = names.map((name, i) => `<div class="dyn-motor"><span>${name}</span><strong id="dyn-motor-${i}"></strong><meter id="dyn-meter-${i}" min="0" max="1" value="0" aria-label="${name}推力比例"></meter></div>`).join('');
     view?.setModel(kind, variant); $<HTMLSelectElement>('#dyn-camera').value = 'follow'; defaults(); chooseExperiment();
   }
@@ -109,7 +110,9 @@ export function createDynamicsLab(host: HTMLElement) {
     input('step').disabled = invalid || running || finished || !view; input('reset').disabled = simulation.time === 0 && !invalid;
     input('replay').max = String(simulation.frames.length - 1); input('replay').value = String(replay >= 0 ? replay : simulation.frames.length - 1); input('replay').disabled = simulation.frames.length < 2 || running;
     $('#dyn-replay-time').textContent = replay >= 0 ? `${f.time.toFixed(1)} s` : '实时';
-    $('#dyn-throttle-value').textContent = `${(number('throttle') * 100).toFixed(0)} %`; $('#dyn-turn-value').textContent = number('turn').toFixed(2);
+    $('#dyn-throttle-value').textContent = `${(number('throttle') * 100).toFixed(0)} %`;
+    const turn = number('turn'), turnLabel = turn === 0 ? '直航' : `${turn > 0 ? '右' : '左'}转 ${(Math.abs(turn) * 100).toFixed(0)} %`;
+    $('#dyn-turn-value').textContent = turnLabel; input('turn').setAttribute('aria-valuetext', turnLabel);
     if (running) message(`${kind === 'quadrotor' ? f.grounded ? '地面接触' : '飞行中' : '静水面试验'} · ${f.saturated ? '已触及控制限幅' : '推力正常'} · ${f.input.powered ? '动力接通' : '动力已关闭'}。`);
   }
   function step() {
@@ -129,7 +132,7 @@ export function createDynamicsLab(host: HTMLElement) {
   $('#dyn-camera').onchange = () => { view?.view($<HTMLSelectElement>('#dyn-camera').value); draw(); };
   for (const id of ['vectors', 'trail']) input(id).onchange = draw;
   input('replay').oninput = () => { replay = number('replay'); running = false; message('当前读数与三维姿态均来自选定历史时刻；继续运行将返回最新状态。'); refresh(); draw(); };
-  $('#dyn-json').onclick = () => download(`${kind}-${variant}-dynamics.json`, JSON.stringify({ version: 1, parameterBasis, model: `${kind}-${variant}`, units: 'm, kg, s, N, radians; right-handed X right, Y up, Z forward; quaternion xyzw', physicsStep: .005, profile: simulation.profile, frames: simulation.resultFrames() }, null, 2), 'application/json');
+  $('#dyn-json').onclick = () => download(`${kind}-${variant}-dynamics.json`, JSON.stringify({ version: 1, parameterBasis, model: `${kind}-${variant}`, units: 'm, kg, s, N, radians; right-handed Y up; model +Z forward, -X right; quaternion xyzw', physicsStep: .005, profile: simulation.profile, frames: simulation.resultFrames() }, null, 2), 'application/json');
   $('#dyn-csv').onclick = () => download(`${kind}-${variant}-dynamics.csv`, dynamicsCSV(simulation.resultFrames()), 'text/csv;charset=utf-8');
   let previous = performance.now(), accumulator = 0;
   const tick = (now: number) => { const dt = Math.min(.05, (now - previous) / 1000); previous = now;

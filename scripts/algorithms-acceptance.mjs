@@ -23,7 +23,7 @@ try {
   await page.locator('#mode-algorithms').click(); await ready();
   assert.match(await page.locator('#algo-attribution').innerText(), /OpenStreetMap/);
   assert.ok((await page.request.get(new URL(await page.locator('#algo-attribution').getAttribute('href'), page.url()).href)).ok());
-  assert.equal(await page.locator('[data-algorithm]').count(), 5);
+  assert.equal(await page.locator('[data-algorithm]').count(), 13);
   assert.equal(await page.locator('#algo-count').inputValue(), '1');
   await page.screenshot({ path: `${folder}/astar-desktop.png` });
   for (const algorithm of ['astar', 'dijkstra', 'leader', 'consensus', 'coverage']) {

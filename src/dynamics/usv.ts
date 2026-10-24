@@ -69,12 +69,12 @@ export class USVDynamics {
 }
 
 /** Velocity-to-thrust controller. No direct changes to vehicle position or heading. */
-export function steerUSV(body: USVDynamics, desiredVelocity: [number, number], conditions = calmWater()): USVCommand {
+export function steerUSV(body: USVDynamics, desiredVelocity: [number, number], conditions = calmWater(), options: { allowReverse?: boolean } = {}): USVCommand {
   finite(desiredVelocity);
   const p = body.profile, s = body.state, [u, , r] = s.velocity, speed = Math.hypot(...desiredVelocity);
   let heading = speed > .015 ? Math.atan2(desiredVelocity[0], desiredVelocity[1]) : s.yaw, sign = 1;
   // Reversible propulsion avoids an artificial 180° heading jump near a station-keeping target.
-  if (Math.abs(wrap(heading - s.yaw)) > Math.PI / 2) { heading = wrap(heading + Math.PI); sign = -1; }
+  if (options.allowReverse !== false && Math.abs(wrap(heading - s.yaw)) > Math.PI / 2) { heading = wrap(heading + Math.PI); sign = -1; }
   const error = wrap(heading - s.yaw), desiredU = sign * speed * Math.max(0, Math.cos(error)) ** 2;
   const relativeU = u - Math.sin(s.yaw) * conditions.current[0] - Math.cos(s.yaw) * conditions.current[1];
   let x = (p.mass + p.addedMass[0]) * 1.1 * (desiredU - u) + (p.linearDrag[0] + p.quadraticDrag[0] * Math.abs(relativeU)) * relativeU;

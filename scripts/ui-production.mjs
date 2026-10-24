@@ -56,6 +56,15 @@ try {
   assert.ok(await page.evaluate(() => { const canvas = document.querySelector('#dyn-viewport canvas'), gl = canvas.getContext('webgl2'); return canvas.width > 300 && !!gl && gl.getError() === gl.NO_ERROR; }));
   await page.locator('#dyn-model').selectOption('usv-survey'); await page.locator('#dyn-step').click(); assert.match(await page.locator('#dyn-time').innerText(), /0.02/);
   report.dynamics = 'quadrotor 6-DOF / USV 3-DOF / replay / WebGL passed';
+  await page.locator('#mode-algorithms').click();
+  for (const algorithm of ['los', 'patrol', 'sampling', 'search', 'tracking', 'station', 'docking', 'avoidance']) {
+    await page.locator(`[data-algorithm="${algorithm}"]`).click();
+    await page.waitForFunction(() => document.querySelector('#algo-state')?.textContent === '就绪');
+    assert.equal(await page.locator('#algo-motion').inputValue(), 'dynamics'); assert.equal(await page.locator('#algo-motion').isDisabled(), true);
+    await page.locator('#algo-step').click(); assert.match(await page.locator('#algo-time').innerText(), /0.1/);
+    assert.match(await page.locator('#algo-physical-readout').innerText(), /推力/);
+    assert.equal(await page.locator('#algo-task-progress').isVisible(), true); report.methods.push(algorithm);
+  }
   assert.deepEqual(report.errors, []); report.result = 'passed';
 } finally { await writeFile('artifacts/ui/production.json', JSON.stringify(report, null, 2)); await browser.close(); await new Promise(resolve => server.httpServer.close(resolve)); }
 console.log(JSON.stringify(report));

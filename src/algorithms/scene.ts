@@ -34,7 +34,9 @@ export function createExperimentScene(host: HTMLElement, callbacks: {
   scene.add(sun, sun.target, new T.HemisphereLight('#e5f3ff', '#64766b', 0.7));
   const generator = new T.PMREMGenerator(renderer), room = new RoomEnvironment(), fallback = generator.fromScene(room, 0.04);
   room.dispose(); generator.dispose(); scene.environment = fallback.texture;
-  const routes = new T.Group(), trails = new T.Group(), markers = new T.Group(); scene.add(routes, trails, markers);
+  const routes = new T.Group(), trails = new T.Group(), markers = new T.Group(), taskObjects = new T.Group(); scene.add(routes, trails, markers, taskObjects);
+  let checkpointNodes: T.Mesh<T.TorusGeometry, T.MeshBasicMaterial>[] = [], forceArrows: T.ArrowHelper[] = [];
+  let referenceNode: T.Group | undefined, referenceLabel: HTMLSpanElement | undefined;
   let environment: EnvironmentHandle | undefined, background: ReturnType<typeof createMarineBackground> | undefined;
   let models: ModelHandle[] = [], boatLabels: HTMLButtonElement[] = [], endpoints: { node: T.Object3D; label: HTMLSpanElement }[] = [];
   const leaders = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); leaders.classList.add('algo-label-leaders'); labels.appendChild(leaders);
@@ -70,6 +72,7 @@ export function createExperimentScene(host: HTMLElement, callbacks: {
   function clearPlan() {
     models.forEach(m => m.dispose()); models = []; boatLabels.forEach(removeLabel); boatLabels = [];
     release(routes); release(trails); traceLines = []; plan = undefined; lastFrame = undefined; lastTrailKey = ''; following = false;
+    release(taskObjects); checkpointNodes = []; forceArrows = []; referenceNode = undefined; if (referenceLabel) removeLabel(referenceLabel); referenceLabel = undefined;
     environment?.setVessels?.([]);
   }
   function setEndpoints(start: Point2, goal: Point2 | undefined, centre = false) {
@@ -97,7 +100,23 @@ export function createExperimentScene(host: HTMLElement, callbacks: {
       handle.root.position.set(p[0], 0, p[1]); scene.add(handle.root); models.push(handle);
       const label = document.createElement('button'); label.className = 'algo-vessel-label'; label.textContent = `${String(i + 1).padStart(2, '0')} 号艇`;
       label.setAttribute('aria-label', `聚焦 ${i + 1} 号艇`); label.style.setProperty('--boat-color', fleetColors[i % fleetColors.length]); label.onclick = () => { selected = i; focusBoat(); callbacks.select(i); }; attachLabel(label); boatLabels.push(label);
+      const force = new T.ArrowHelper(new T.Vector3(0, 0, 1), new T.Vector3(p[0], 1.4, p[1]), 2, '#eeb168', .7, .3); force.name = `thrust-vector-${i}`; taskObjects.add(force); forceArrows.push(force);
     });
+    next.mission?.checkpoints.forEach((cp, i) => {
+      const ring = new T.Mesh(new T.TorusGeometry(Math.max(1.2, next.config.radius * .7), .12, 6, 32), new T.MeshBasicMaterial({ color: fleetColors[cp.boat % fleetColors.length], transparent: true, opacity: .55, depthTest: false }));
+      ring.rotation.x = Math.PI / 2; ring.position.set(cp.point[0], .35, cp.point[1]); ring.name = `task-checkpoint-${i}`; taskObjects.add(ring); checkpointNodes.push(ring);
+    });
+    const area = next.mission?.area;
+    if (area) {
+      const points = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([x, z]) => new T.Vector3(area.centre[0] + x * area.width / 2, .25, area.centre[1] + z * area.height / 2));
+      const outline = new T.LineLoop(new T.BufferGeometry().setFromPoints(points), new T.LineBasicMaterial({ color: '#95ddd5', transparent: true, opacity: .6 })); taskObjects.add(outline);
+    }
+    if (next.mission?.target) {
+      referenceNode = new T.Group(); referenceNode.name = 'task-reference'; taskObjects.add(referenceNode);
+      const buoy = new T.Mesh(new T.ConeGeometry(1.3, 2.8, 6), new T.MeshStandardMaterial({ color: '#f3c05d', roughness: .6 })); buoy.position.y = 1.4; referenceNode.add(buoy);
+      const halo = new T.Mesh(new T.TorusGeometry(3, .15, 6, 48), new T.MeshBasicMaterial({ color: '#f3c05d' })); halo.rotation.x = Math.PI / 2; halo.position.y = .25; referenceNode.add(halo);
+      referenceLabel = document.createElement('span'); referenceLabel.className = 'algo-endpoint'; referenceLabel.textContent = '参考目标'; referenceLabel.style.setProperty('--boat-color', '#f3c05d'); attachLabel(referenceLabel);
+    }
     renderer.shadowMap.needsUpdate = true; environment?.invalidateReflection?.();
   }
   function setPose(target: T.Vector3, offset: T.Vector3) {
@@ -145,7 +164,8 @@ export function createExperimentScene(host: HTMLElement, callbacks: {
       occupied.push({ x, y, width, height }); label.style.left = `${x}px`; label.style.top = `${y}px`;
       line.setAttribute('x1', String(px)); line.setAttribute('y1', String(py)); line.setAttribute('x2', String(x)); line.setAttribute('y2', String(y + (py > y ? height / 2 : -height / 2)));
     };
-    endpoints.forEach(e => position(e.node, e.label, false)); models.forEach((m, i) => { position(m.root, boatLabels[i], true); boatLabels[i].setAttribute('aria-pressed', String(i === selected)); });
+    endpoints.forEach(e => position(e.node, e.label, false)); if (referenceNode && referenceLabel) position(referenceNode, referenceLabel, false);
+    models.forEach((m, i) => { position(m.root, boatLabels[i], true); boatLabels[i].setAttribute('aria-pressed', String(i === selected)); });
   }
   function render(frame: Frame | undefined, history: Frame[], dt: number) {
     if (!active || disposed || !environment) return;
@@ -156,8 +176,15 @@ export function createExperimentScene(host: HTMLElement, callbacks: {
         if (v.dynamics) {
           m.update(0, { rotorAngles: v.dynamics.propellerPhase.map((phase, j) => phase * (j ? -1 : 1)) });
           if (m.parts['thruster-center']) m.parts['thruster-center'].rotation.y = v.dynamics.steering;
+          const force = forceArrows[i], total = v.dynamics.thrust.reduce((s, t) => s + t, 0), angle = m.parts['thruster-center'] ? v.dynamics.steering : 0;
+          const direction = new T.Vector3(Math.sin(angle), 0, Math.cos(angle)).applyQuaternion(m.root.quaternion); if (total < 0) direction.negate();
+          force.position.copy(m.root.position).add(new T.Vector3(0, 1.4, 0)); force.setDirection(direction); force.setLength(Math.max(.1, Math.min(6, Math.abs(total) * .06)), .6, .25); force.visible = Math.abs(total) > .1;
         } else if (dt > 0) m.update(dt, { rotorSpeed: 10 });
+        if (!v.dynamics) forceArrows[i].visible = false;
       });
+      const done = new Set(frame.mission?.completed ?? []);
+      checkpointNodes.forEach((node, i) => { node.material.color.set(done.has(i) ? '#81d7b3' : fleetColors[plan!.mission!.checkpoints[i].boat % fleetColors.length]); node.material.opacity = done.has(i) ? .9 : .4; });
+      if (referenceNode && frame.mission?.target) referenceNode.position.set(frame.mission.target[0], 0, frame.mission.target[1]);
       if (following && models[selected]) { const p = models[selected].root.position, delta = p.clone().sub(followAnchor); camera.position.add(delta); controls.target.add(delta); followAnchor.copy(p); }
       const key = `${history.length}:${frame.time}`;
       if (key !== lastTrailKey) {
@@ -198,7 +225,7 @@ export function createExperimentScene(host: HTMLElement, callbacks: {
   renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); active = false; callbacks.status('三维视口已中断，请刷新恢复'); });
   return {
     scene, camera, renderer, controls, setEnvironment, setPlan, clearPlan, setEndpoints, view, follow, render,
-    get models() { return models; }, get environment() { return environment; }, get frame() { return lastFrame; },
+    get models() { return models; }, get selectedIndex() { return selected; }, get environment() { return environment; }, get frame() { return lastFrame; },
     setPicking(value: boolean) { pickMode = value; controls.enabled = !value; renderer.domElement.style.cursor = value ? 'crosshair' : 'grab'; },
     setActive(value: boolean) { active = value; if (value) resize(); },
     dispose() { disposed = true; observer.disconnect(); background?.dispose(); clearPlan(); release(markers); environment?.dispose(); controls.dispose(); fallback.dispose(); sun.shadow.dispose(); renderer.dispose(); renderer.domElement.remove(); labels.remove(); },

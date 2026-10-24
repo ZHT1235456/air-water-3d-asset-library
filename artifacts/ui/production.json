@@ -5,7 +5,15 @@
     "dijkstra",
     "leader",
     "consensus",
-    "coverage"
+    "coverage",
+    "los",
+    "patrol",
+    "sampling",
+    "search",
+    "tracking",
+    "station",
+    "docking",
+    "avoidance"
   ],
   "kinematicBaseline": "hidden physics inputs isolated",
   "dynamics": "quadrotor 6-DOF / USV 3-DOF / replay / WebGL passed",

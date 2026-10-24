@@ -17,6 +17,7 @@
     "test:ninepin": "node scripts/ninepin-acceptance.mjs",
     "test:usv-sites": "node scripts/usv-sites-acceptance.mjs",
     "test:algorithms": "node scripts/algorithms-acceptance.mjs",
+    "test:missions": "node scripts/missions-acceptance.mjs",
     "test:dynamics": "node scripts/dynamics-acceptance.mjs",
     "test:ui": "node scripts/ui-acceptance.mjs",
     "data:usv-sites": "python scripts/extract-usv-sites.py && tsx scripts/export-usv-scenarios.ts"

@@ -23,7 +23,7 @@ const entries: Entry[] = [
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="app-header">
     <a class="brand" href="./" aria-label="空海模型工作台首页"><span class="brand-symbol">${icon('cube')}</span><span>空海<span class="brand-divider">/</span><span class="brand-sub">模型工作台</span></span></a>
-    <nav class="workspace-tabs" aria-label="工作台"><button id="mode-models" aria-pressed="true"><strong>模型库</strong><small>18 款载具</small></button><button id="mode-environments" aria-pressed="false"><strong>环境库</strong><small>8 个水域</small></button><button id="mode-algorithms" aria-pressed="false"><strong>算法库</strong><small>5 项实验</small></button><button id="mode-dynamics" aria-pressed="false"><strong>动力学</strong><small>推力与惯性</small></button></nav>
+    <nav class="workspace-tabs" aria-label="工作台"><button id="mode-models" aria-pressed="true"><strong>模型库</strong><small>18 款载具</small></button><button id="mode-environments" aria-pressed="false"><strong>环境库</strong><small>8 个水域</small></button><button id="mode-algorithms" aria-pressed="false"><strong>算法库</strong><small>13 项任务与方法</small></button><button id="mode-dynamics" aria-pressed="false"><strong>动力学</strong><small>推力与惯性</small></button></nav>
     <div class="local-status"><span></span> 本地工作区</div>
   </header>
   <main class="workspace">

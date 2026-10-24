@@ -1,0 +1,316 @@
+{
+  "errors": [],
+  "missions": [
+    {
+      "id": "los",
+      "status": "complete",
+      "reason": "",
+      "time": 450.19999999973555,
+      "boats": 1,
+      "radius": 2,
+      "distance": 875.691582030275,
+      "separation": null,
+      "maxTerminalSpeed": 0.10591719123465831,
+      "maxTerminalYawRate": 1.2298280955652092e-8,
+      "completed": [
+        0
+      ],
+      "dwell": [
+        0
+      ],
+      "phases": [
+        "任务完成"
+      ],
+      "progress": 1,
+      "rmsError": 0.02800642944823901,
+      "maxError": 0.6318003090667191,
+      "work": 32485.823123835748,
+      "avoidanceCount": 0,
+      "holdingTime": 0
+    },
+    {
+      "id": "patrol",
+      "status": "complete",
+      "reason": "",
+      "time": 147.69000000001066,
+      "boats": 3,
+      "radius": 2,
+      "distance": 740.1553600183903,
+      "separation": 49.9999999999985,
+      "maxTerminalSpeed": 0.0766936134902972,
+      "maxTerminalYawRate": 0.07997501193571249,
+      "completed": [
+        0,
+        4,
+        8,
+        1,
+        5,
+        9,
+        2,
+        6,
+        10,
+        3,
+        7,
+        11
+      ],
+      "dwell": [
+        0,
+        0,
+        0
+      ],
+      "phases": [
+        "任务完成",
+        "任务完成",
+        "任务完成"
+      ],
+      "progress": 1,
+      "rmsError": 0.8491920997340932,
+      "maxError": 2.7577601384409007,
+      "work": 38346.638533507794,
+      "avoidanceCount": 0,
+      "holdingTime": 0
+    },
+    {
+      "id": "sampling",
+      "status": "complete",
+      "reason": "",
+      "time": 162.08999999999756,
+      "boats": 3,
+      "radius": 2,
+      "distance": 607.7524062546468,
+      "separation": 49.99999999998454,
+      "maxTerminalSpeed": 0.07684764766051193,
+      "maxTerminalYawRate": 0.07997498601117815,
+      "completed": [
+        0,
+        6,
+        12,
+        1,
+        7,
+        13,
+        2,
+        8,
+        14,
+        3,
+        9,
+        15,
+        4,
+        10,
+        16,
+        5,
+        11,
+        17
+      ],
+      "dwell": [
+        0,
+        0,
+        0
+      ],
+      "phases": [
+        "任务完成",
+        "任务完成",
+        "任务完成"
+      ],
+      "progress": 1,
+      "rmsError": 0.2158391359331866,
+      "maxError": 0.9158103629047503,
+      "work": 28379.488006175572,
+      "avoidanceCount": 0,
+      "holdingTime": 0
+    },
+    {
+      "id": "search",
+      "status": "complete",
+      "reason": "",
+      "time": 353.7499999998233,
+      "boats": 3,
+      "radius": 2,
+      "distance": 1552.8616495055544,
+      "separation": 49.99999999626502,
+      "maxTerminalSpeed": 0.09706670055941315,
+      "maxTerminalYawRate": 0.07997654977141215,
+      "completed": [
+        0,
+        12,
+        24,
+        1,
+        13,
+        25,
+        2,
+        14,
+        26,
+        3,
+        15,
+        27,
+        4,
+        16,
+        28,
+        5,
+        17,
+        29,
+        6,
+        18,
+        30,
+        7,
+        19,
+        31,
+        8,
+        20,
+        32,
+        9,
+        21,
+        33,
+        10,
+        22,
+        34,
+        11,
+        23,
+        35
+      ],
+      "dwell": [
+        0,
+        0,
+        0
+      ],
+      "phases": [
+        "任务完成",
+        "任务完成",
+        "任务完成"
+      ],
+      "progress": 1,
+      "rmsError": 1.0779363908183373,
+      "maxError": 3.439242355889398,
+      "work": 108550.66386565186,
+      "avoidanceCount": 0,
+      "holdingTime": 0
+    },
+    {
+      "id": "tracking",
+      "status": "complete",
+      "reason": "",
+      "time": 45.009999999999614,
+      "boats": 3,
+      "radius": 2,
+      "distance": 80.15155164926753,
+      "separation": 11.999999999999897,
+      "maxTerminalSpeed": 0.7444174324428985,
+      "maxTerminalYawRate": 0.01654787311198242,
+      "completed": [],
+      "dwell": [
+        0,
+        0,
+        0
+      ],
+      "phases": [
+        "目标伴随",
+        "目标伴随",
+        "目标伴随"
+      ],
+      "target": [
+        -44.77168482703618,
+        167.56574593114215
+      ],
+      "progress": 1,
+      "rmsError": 0.10097391336328254,
+      "maxError": 0.4222582260043131,
+      "work": 747.2859504405403,
+      "avoidanceCount": 0,
+      "holdingTime": 45.009999999999614
+    },
+    {
+      "id": "station",
+      "status": "complete",
+      "reason": "",
+      "time": 79.24000000000363,
+      "boats": 3,
+      "radius": 2,
+      "distance": 28.50652804641141,
+      "separation": 11.99999999999978,
+      "maxTerminalSpeed": 0.00012309583746201064,
+      "maxTerminalYawRate": 0.00005616926623431126,
+      "completed": [
+        0,
+        1,
+        2
+      ],
+      "dwell": [
+        0,
+        0,
+        0
+      ],
+      "phases": [
+        "任务完成",
+        "任务完成",
+        "任务完成"
+      ],
+      "progress": 1,
+      "rmsError": 1.4192144292429427,
+      "maxError": 2.9999993968375693,
+      "work": 166.1711384365237,
+      "avoidanceCount": 0,
+      "holdingTime": 45
+    },
+    {
+      "id": "docking",
+      "status": "complete",
+      "reason": "",
+      "time": 70.82999999999933,
+      "boats": 1,
+      "radius": 2,
+      "distance": 79.66002318162393,
+      "separation": null,
+      "maxTerminalSpeed": 0.05516646360376009,
+      "maxTerminalYawRate": 0,
+      "completed": [
+        0,
+        1
+      ],
+      "dwell": [
+        0
+      ],
+      "phases": [
+        "任务完成"
+      ],
+      "progress": 1,
+      "rmsError": 0.04859339753612728,
+      "maxError": 0.6388656514266131,
+      "work": 2611.7952589595575,
+      "avoidanceCount": 0,
+      "holdingTime": 0
+    },
+    {
+      "id": "avoidance",
+      "status": "complete",
+      "reason": "",
+      "time": 89.08000000000867,
+      "boats": 3,
+      "radius": 2,
+      "distance": 249.75589281151275,
+      "separation": 5.581052302331685,
+      "maxTerminalSpeed": 0.06336079049304223,
+      "maxTerminalYawRate": 0.07999905568330291,
+      "completed": [
+        0,
+        1,
+        2
+      ],
+      "dwell": [
+        0,
+        0,
+        0
+      ],
+      "phases": [
+        "任务完成",
+        "任务完成",
+        "任务完成"
+      ],
+      "progress": 1,
+      "rmsError": 2.255885586057363,
+      "maxError": 7.148725395534522,
+      "work": 15306.047437182342,
+      "avoidanceCount": 337,
+      "holdingTime": 0
+    }
+  ],
+  "result": "passed"
+}

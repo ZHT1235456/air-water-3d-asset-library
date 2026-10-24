@@ -10,6 +10,7 @@ import { algorithmMarkup } from './markup';
 import { createExperimentScene, fleetColors, type ExperimentCamera } from './scene';
 import { compactPanel } from '../responsive';
 import { parameterBasis, usvProfile } from '../dynamics';
+import { isMission, singleVessel, suggestMissionCentre, usesArea, usesGoal } from './missions';
 
 const format = (n: number, digits = 1) => Number.isFinite(n) ? n.toFixed(digits) : '—';
 function download(name: string, content: string, type: string) {
@@ -26,7 +27,7 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
   narrow.addEventListener('change', revealMethod);
   const num = (s: string) => $<HTMLInputElement>(s).valueAsNumber;
   let active = true, disposed = false, running = false, busy = false, replay = -1, animation = 0;
-  let algorithm: AlgorithmId = 'astar', environment: EnvironmentVariant = 'westlake', model: USVVariant = 'survey';
+  let algorithm: AlgorithmId = 'los', environment: EnvironmentVariant = 'westlake', model: USVVariant = 'survey';
   let spatial: SpatialData, domain: NavigationDomain, plan: ExperimentPlan | undefined, simulation: ExperimentSimulation | undefined;
   let worker: Worker | undefined, generation = 0;
   let start: Point2 = [-60, 150], goal: Point2 = [-850, -200];
@@ -50,9 +51,10 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
     });
   } catch { $('#algo-viewport').textContent = '无法启动三维视口，请开启浏览器硬件加速后刷新。'; }
   const settings = () => ({ algorithm, motion: $<HTMLSelectElement>('#algo-motion').value, vehicle: model,
-    current: $<HTMLSelectElement>('#algo-motion').value === 'dynamics' ? [num('#algo-current-x'), num('#algo-current-z')] : [0, 0], wind: $<HTMLSelectElement>('#algo-motion').value === 'dynamics' ? [num('#algo-wind-x'), num('#algo-wind-z')] : [0, 0], start: [...start], goal: ['consensus', 'coverage'].includes(algorithm) ? [...start] : [...goal], fleetSize: algorithm === 'astar' || algorithm === 'dijkstra' ? 1 : num('#algo-count'),
-    speed: num('#algo-speed'), spacing: ['leader', 'consensus'].includes(algorithm) ? num('#algo-spacing') : 12, gain: ['leader', 'consensus'].includes(algorithm) ? num('#algo-gain') : 0.35, gridSize: algorithm === 'consensus' ? 100 : num('#algo-grid'), radius, minY, maxY,
-    formation: $<HTMLSelectElement>('#algo-formation').value as Formation, coverageWidth: algorithm === 'coverage' ? num('#algo-width') : 240, coverageHeight: algorithm === 'coverage' ? num('#algo-height') : 200, laneSpacing: algorithm === 'coverage' ? num('#algo-lane') : 25 } as ExperimentConfig);
+    current: $<HTMLSelectElement>('#algo-motion').value === 'dynamics' ? [num('#algo-current-x'), num('#algo-current-z')] : [0, 0], wind: $<HTMLSelectElement>('#algo-motion').value === 'dynamics' ? [num('#algo-wind-x'), num('#algo-wind-z')] : [0, 0], start: [...start], goal: usesGoal(algorithm) ? [...goal] : [...start], fleetSize: singleVessel(algorithm) ? 1 : num('#algo-count'),
+    speed: num('#algo-speed'), spacing: ['leader', 'consensus', 'station', 'tracking'].includes(algorithm) ? num('#algo-spacing') : 12, gain: ['leader', 'consensus'].includes(algorithm) ? num('#algo-gain') : 0.35, gridSize: ['consensus', 'station', 'tracking'].includes(algorithm) ? 100 : num('#algo-grid'), radius, minY, maxY,
+    formation: $<HTMLSelectElement>('#algo-formation').value as Formation, coverageWidth: usesArea(algorithm) ? num('#algo-width') : 240, coverageHeight: usesArea(algorithm) ? num('#algo-height') : 200, laneSpacing: algorithm === 'coverage' ? num('#algo-lane') : 25,
+    mission: isMission(algorithm) ? { lookahead: ['station', 'tracking'].includes(algorithm) ? 8 : num('#algo-lookahead'), dwellTime: ['sampling', 'docking'].includes(algorithm) ? num('#algo-dwell') : 4, laps: algorithm === 'patrol' ? num('#algo-laps') : 1, duration: ['station', 'tracking'].includes(algorithm) ? num('#algo-duration') : 45, targetSpeed: algorithm === 'tracking' ? num('#algo-target-speed') : .8 } : undefined } as ExperimentConfig);
   function syncCoordinates() {
     for (const [id, p] of [['start', start], ['goal', goal]] as const) { $<HTMLInputElement>(`#algo-${id}-x`).value = p[0].toFixed(1); $<HTMLInputElement>(`#algo-${id}-z`).value = p[1].toFixed(1); }
   }
@@ -80,31 +82,61 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
     $('#algo-scene-name').textContent = `${environmentPresets[environment].name} · ${environment === 'deepwater' ? '原创工程布局' : '公开地理数据'} · 三维运动实验`;
     const source = environmentLibrary.find(e => e.variant === environment)!;
     const attribution = $<HTMLAnchorElement>('#algo-attribution'); attribution.href = source.source; attribution.textContent = source.attribution;
+    if (isMission(algorithm)) missionDefaults();
     syncCoordinates(); view?.setEnvironment(environment);
+  }
+  function missionDefaults() {
+    $<HTMLSelectElement>('#algo-motion').value = 'dynamics'; $('#algo-physics-fields').hidden = false;
+    $<HTMLInputElement>('#algo-speed').value = '2';
+    for (const id of ['current-x', 'current-z', 'wind-x', 'wind-z']) $<HTMLInputElement>(`#algo-${id}`).value = '0';
+    if (algorithm === 'station') { $<HTMLInputElement>('#algo-current-x').value = '0.2'; $<HTMLInputElement>('#algo-current-z').value = '0.1'; $<HTMLInputElement>('#algo-wind-x').value = '3'; }
+    if (usesArea(algorithm) || algorithm === 'station') {
+      const width = 150, height = 90;
+      $<HTMLInputElement>('#algo-width').value = String(width); $<HTMLInputElement>('#algo-height').value = String(height);
+      start = suggestMissionCentre(domain, start, width, height, radius) ?? start;
+    }
+    if (algorithm === 'docking') {
+      for (const a of [0, Math.PI / 2, Math.PI, -Math.PI / 2]) {
+        const p: Point2 = [start[0] + 80 * Math.sin(a), start[1] + 80 * Math.cos(a)];
+        if (domain.segmentClear(start, p, radius + 5)) { goal = p; break; }
+      }
+    }
+    syncCoordinates();
   }
   function invalidate() {
     generation++; worker?.terminate(); worker = undefined; busy = false; running = false; replay = -1; plan = undefined; simulation = undefined;
-    view?.clearPlan(); view?.setEndpoints(start, ['consensus', 'coverage'].includes(algorithm) ? undefined : goal, ['consensus', 'coverage'].includes(algorithm)); $('#algo-follow').setAttribute('aria-pressed', 'false');
+    view?.clearPlan(); view?.setEndpoints(start, usesGoal(algorithm) ? goal : undefined, !usesGoal(algorithm)); $('#algo-follow').setAttribute('aria-pressed', 'false');
     $('#algo-follow').textContent = '跟随 01 号艇';
     $('#algo-plan-info').textContent = ''; message('参数已更新，点击下方「生成方案」计算新的航线。'); refresh(); draw();
   }
   function selectAlgorithm(id: AlgorithmId) {
-    if (!['astar', 'dijkstra'].includes(algorithm)) fleetCount = num('#algo-count');
-    algorithm = id; picking = null; invalidate(); $('#algo-follow').textContent = '跟随 01 号艇';
+    const wasMission = isMission(algorithm);
+    if (!singleVessel(algorithm)) fleetCount = num('#algo-count');
+    algorithm = id; picking = null;
+    if (isMission(id)) { if (!singleVessel(id)) fleetCount = 3; missionDefaults(); }
+    else {
+      if (wasMission) $<HTMLInputElement>('#algo-speed').value = '4';
+      for (const key of ['current-x', 'current-z', 'wind-x', 'wind-z']) $<HTMLInputElement>(`#algo-${key}`).value = '0';
+    }
+    invalidate(); $('#algo-follow').textContent = '跟随 01 号艇';
     const a = algorithmCatalog.find(a => a.id === id)!;
     host.querySelectorAll<HTMLButtonElement>('[data-algorithm]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.algorithm === id)));
     revealMethod();
     $('#algo-title').textContent = a.name; $('#algo-description').textContent = a.description; $('#algo-equation').textContent = a.equation; $('#algo-note').textContent = a.note;
     const reference = $<HTMLAnchorElement>('#algo-reference'); reference.hidden = !a.reference;
     if (a.reference) { reference.textContent = `${a.reference.title} ↗`; reference.href = a.reference.url; }
-    const formation = id === 'leader' || id === 'consensus', hasGoal = id === 'astar' || id === 'dijkstra' || id === 'leader';
-    $('#algo-formation-fields').hidden = $('#algo-formation-label').hidden = !formation;
-    $('#algo-coverage-fields').hidden = id !== 'coverage'; $('#algo-grid-label').hidden = id === 'consensus';
+    const formation = id === 'leader' || id === 'consensus', hasGoal = usesGoal(id), task = isMission(id);
+    $('#algo-formation-fields').hidden = !formation && !['station', 'tracking'].includes(id); $('#algo-formation-label').hidden = !formation;
+    $<HTMLInputElement>('#algo-gain').parentElement!.hidden = !formation;
+    $('#algo-coverage-fields').hidden = !usesArea(id); $('#algo-lane-label').hidden = id !== 'coverage'; $('#algo-grid-label').hidden = ['consensus', 'station', 'tracking'].includes(id);
+    $('#algo-mission-fields').hidden = !task; $('#algo-task-progress').hidden = !task;
+    $('#algo-lookahead-label').hidden = !task || ['station', 'tracking'].includes(id); $('#algo-dwell-label').hidden = !['sampling', 'docking'].includes(id); $('#algo-laps-label').hidden = id !== 'patrol'; $('#algo-duration-label').hidden = !['station', 'tracking'].includes(id); $('#algo-target-speed-label').hidden = id !== 'tracking';
+    $<HTMLSelectElement>('#algo-motion').disabled = task;
     $('#algo-goal-fields').hidden = !hasGoal; $<HTMLOptionElement>('#algo-goal-option').disabled = !hasGoal; $('#algo-goal-option').hidden = !hasGoal; $<HTMLSelectElement>('#algo-pick-mode').value = '';
-    $('#algo-count-label').hidden = id === 'astar' || id === 'dijkstra';
-    $<HTMLInputElement>('#algo-count').disabled = id === 'astar' || id === 'dijkstra';
-    $<HTMLInputElement>('#algo-count').value = String(id === 'astar' || id === 'dijkstra' ? 1 : fleetCount);
-    $('#algo-start-option').textContent = $('#algo-start-label').textContent = id === 'coverage' ? '设覆盖中心' : id === 'consensus' ? '设编队中心' : '设起点';
+    $('#algo-count-label').hidden = singleVessel(id); $<HTMLInputElement>('#algo-count').disabled = singleVessel(id);
+    $<HTMLInputElement>('#algo-count').max = id === 'avoidance' ? '6' : '12'; $<HTMLInputElement>('#algo-count').min = id === 'avoidance' ? '2' : '1';
+    $<HTMLInputElement>('#algo-count').value = String(singleVessel(id) ? 1 : fleetCount);
+    $('#algo-start-option').textContent = $('#algo-start-label').textContent = !hasGoal ? '设任务中心' : '设起点';
     void build();
   }
   async function build() {
@@ -130,7 +162,7 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
   function fitMission() { view?.view('mission'); $<HTMLSelectElement>('#algo-camera').value = 'mission'; }
   function draw(dt = 0) { view?.render(frame(), simulation?.frames ?? [], dt); }
   function refresh() {
-    const s = simulation, end = s && ['complete', 'blocked', 'timeout'].includes(s.status);
+    const s = simulation, end = s && ['complete', 'blocked', 'timeout'].includes(s.status), f = frame(), task = f?.mission;
     $('#algo-state').textContent = busy ? '计算中' : replay >= 0 ? '历史回看' : !s ? '待生成' : running ? '运行中' : s.status === 'complete' ? '已完成' : s.status === 'blocked' ? '受阻停止' : s.status === 'timeout' ? '到达时限' : s.time > 0 ? '已暂停' : '就绪';
     $('#algo-state').classList.toggle('is-running', running);
     $<HTMLButtonElement>('#algo-run').disabled = busy || !view;
@@ -144,9 +176,22 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
     $('#algo-separation').innerHTML = s && s.vessels.length > 1 ? `${format(s.minSeparation)} <small>m</small>` : '—';
     $('#algo-metric-label').textContent = algorithm === 'coverage' ? '采样点到达率' : ['leader', 'consensus'].includes(algorithm) ? '编队 RMS 误差' : '搜索节点';
     $('#algo-metric').innerHTML = !s || !plan ? '—' : algorithm === 'coverage' ? `${format(s.coverage * 100, 0)} <small>%</small>` : ['leader', 'consensus'].includes(algorithm) ? `${format(s.formationError, 2)} <small>m</small>` : plan.expanded.toLocaleString();
+    const selected = view?.selectedIndex ?? 0, physical = f?.vessels[selected]?.dynamics;
+    $('#algo-execution-model').textContent = plan?.config.motion === 'kinematic' ? '规划 → 运动学基线' : '任务 → 引导 → 推进器 → 水动力学';
+    $('#algo-physical-readout').textContent = physical ? `${String(selected + 1).padStart(2, '0')} 号艇 · 推力 ${physical.thrust.map(x => format(x, 0)).join(' / ')} N · 艏摇 ${format(physical.velocity[2] * 180 / Math.PI)} °/s` : s ? '运动学对照 · 无力与力矩积分' : '等待载具就位';
+    if (isMission(algorithm)) {
+      $('#algo-metric-label').textContent = algorithm === 'avoidance' ? '避碰重规划' : ['tracking', 'station', 'los'].includes(algorithm) ? 'RMS 误差' : '检查点完成';
+      $('#algo-metric').innerHTML = !task || !plan ? '—' : algorithm === 'avoidance' ? `${task.avoidanceCount} <small>次</small>` : ['tracking', 'station', 'los'].includes(algorithm) ? `${format(task.rmsError, 2)} <small>m</small>` : `${task.completed.length} <small>/ ${plan.mission!.checkpoints.length}</small>`;
+      const completedFrame = s?.status === 'complete' && f && f.time >= s.time - 1e-7;
+      const progress = task ? Math.min(task.progress, completedFrame ? 1 : .99) : 0;
+      $<HTMLProgressElement>('#algo-progress-meter').value = progress; $('#algo-task-percent').textContent = `${format(progress * 100, 0)} %`;
+      $('#algo-task-stage').textContent = completedFrame ? algorithm === 'tracking' ? '伴随观测时段结束' : '任务完成' : task ? task.phases.map((p, i) => `${String(i + 1).padStart(2, '0')} ${p}`).join(' · ') : '待执行';
+      $('#algo-task-summary').textContent = task ? `RMS / 最大误差 ${format(task.rmsError, 2)} / ${format(task.maxError, 2)} m · 推力做功 ${format(task.work / 1000, 2)} kJ${['station', 'tracking'].includes(algorithm) ? ` · 有效时长 ${format(task.holdingTime)} s` : ''}` : '任务状态由实际位置、速度与停留时间判定。';
+    }
     const slider = $<HTMLInputElement>('#algo-replay'); slider.max = String(Math.max(0, (s?.frames.length ?? 1) - 1)); slider.value = replay >= 0 ? String(replay) : slider.max; slider.disabled = !s || s.frames.length < 2 || running;
     $('#algo-replay-time').textContent = replay >= 0 ? `${format(frame()!.time)} s` : '实时';
     $('#algo-distance').parentElement!.title = $('#algo-separation').parentElement!.title = $('#algo-metric').parentElement!.title = '完整运行的统计结果；回看时仅改变场景与时间';
+    if (isMission(algorithm)) $('#algo-metric').parentElement!.title = '当前或选定历史时刻的任务统计';
     view?.setPicking(!!picking);
   }
   function terminalMessage() {
@@ -169,6 +214,12 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
       colors: { primary: p.primary, secondary: p.secondary, accent: fleetColors[i % fleetColors.length] } })), view: { selectedId: null, cameraPosition: [centre[0] + span * 0.4, span, centre[1] + span * 0.75], target: [centre[0], 0, centre[1]], labels: true, waterBoundary: false, obstacles: false, spawns: false, waterAnimation: false, rotorAnimation: false } };
   }
   host.querySelectorAll<HTMLButtonElement>('[data-algorithm]').forEach(button => button.onclick = () => selectAlgorithm(button.dataset.algorithm as AlgorithmId));
+  $('#algo-catalog-filter').onchange = () => {
+    const filter = $<HTMLSelectElement>('#algo-catalog-filter').value;
+    const buttons = [...host.querySelectorAll<HTMLButtonElement>('[data-algorithm]')];
+    buttons.forEach(b => b.hidden = filter !== 'all' && (b.dataset.task === 'true') !== (filter === 'mission'));
+    if (buttons.find(b => b.dataset.algorithm === algorithm)?.hidden) selectAlgorithm(buttons.find(b => !b.hidden)!.dataset.algorithm as AlgorithmId);
+  };
   $<HTMLSelectElement>('#algo-environment').value = environment; $<HTMLSelectElement>('#algo-model').value = model;
   $('#algo-environment').onchange = () => { environment = $<HTMLSelectElement>('#algo-environment').value as EnvironmentVariant; invalidate(); loadEnvironment(); void build(); };
   $('#algo-model').onchange = () => { model = $<HTMLSelectElement>('#algo-model').value as USVVariant; modelEnvelope(); domain = new NavigationDomain(spatial, { minY, maxY }); invalidate(); };
@@ -198,20 +249,21 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
   $('#algo-viewport').addEventListener('keydown', e => {
     if (e.key === 'Escape' && picking) { picking = null; $<HTMLSelectElement>('#algo-pick-mode').value = ''; message('已退出选点，可继续观察场景。'); refresh(); }
   });
-  $('#algo-replay').oninput = () => { running = false; replay = num('#algo-replay'); message('正在回看历史时刻；航程、中心距和误差显示完整运行结果。'); refresh(); draw(); };
+  $('#algo-replay').oninput = () => { running = false; replay = num('#algo-replay'); message(isMission(algorithm) ? '正在回看历史时刻；任务状态与三维场景同步，航程和中心距为完整统计。' : '正在回看历史时刻；航程、中心距和误差显示完整运行结果。'); refresh(); draw(); };
   $('#algo-csv').onclick = () => download(`${environment}-${algorithm}-trajectory.csv`, trajectoryCSV(resultFrames()), 'text/csv;charset=utf-8');
   $('#algo-json').onclick = () => {
     if (!plan || !simulation) return;
     download(`${environment}-${algorithm}-experiment.json`, JSON.stringify({ version: 2, coordinateSystem: 'local metres, X/Z, Y=0', parameterBasis, dynamics: plan.config.motion === 'kinematic' ? null : usvProfile(model), environment: { variant: environment, seed: environmentPresets[environment].seed }, modelId: `usv-${model}`, method: algorithmCatalog.find(a => a.id === algorithm), plan,
-      result: { status: simulation.status === 'running' && !running ? 'paused' : simulation.status, stopReason: simulation.stopReason, time: simulation.time, distance: simulation.distance, minSeparation: Number.isFinite(simulation.minSeparation) ? simulation.minSeparation : null, formationError: simulation.formationError, coverage: simulation.coverage, blockedSteps: simulation.blockedSteps }, frames: resultFrames(), scene: sceneConfig() }, null, 2), 'application/json');
+      result: { status: simulation.status === 'running' && !running ? 'paused' : simulation.status, stopReason: simulation.stopReason, time: simulation.time, distance: simulation.distance, minSeparation: Number.isFinite(simulation.minSeparation) ? simulation.minSeparation : null, formationError: simulation.formationError, coverage: simulation.coverage, blockedSteps: simulation.blockedSteps, mission: simulation.currentFrame().mission }, frames: resultFrames(), scene: sceneConfig() }, null, 2), 'application/json');
   };
   $('#algo-open-scene').onclick = async () => { if (!simulation) return; running = false; refresh(); try { await openScene(sceneConfig()); } catch (error) { message(`三维场景打开失败：${String(error)}`, true); } };
   let previous = performance.now(), accumulator = 0;
   const tick = (now: number) => {
     const dt = Math.min(0.05, (now - previous) / 1000); previous = now;
     if (active && !document.hidden && running) {
-      accumulator += dt * Number($<HTMLSelectElement>('#algo-rate').value);
-      while (accumulator >= 0.1 && running) { step(); accumulator -= 0.1; }
+      accumulator = Math.min(2, accumulator + dt * Number($<HTMLSelectElement>('#algo-rate').value));
+      const deadline = performance.now() + 12;
+      while (accumulator >= 0.1 && running && performance.now() < deadline) { step(); accumulator -= 0.1; }
       refresh();
     } else accumulator = 0;
     if (active && !document.hidden) draw(running ? dt : 0);

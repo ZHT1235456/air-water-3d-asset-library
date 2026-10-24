@@ -3,6 +3,9 @@ import { distance, NavigationDomain, pathLength, sweptSeparation } from './navig
 import { GridPlanner } from './pathfinding';
 import type { ExperimentConfig, ExperimentPlan, Formation, Frame, RunStatus, VesselState } from './types';
 import { USVDynamics, usvProfile, steerUSV } from '../dynamics';
+import { buildMission, isMission, MissionRuntime, singleVessel } from './missions';
+import { PredictiveAvoidance } from './avoidance';
+import { holdUSV } from './control';
 
 export function formationOffsets(n: number, spacing: number, formation: Formation, yaw = 0): Point2[] {
   return Array.from({ length: n }, (_, i) => {
@@ -19,7 +22,7 @@ function validate(c: ExperimentConfig) {
   if (c.motion && !['dynamics', 'kinematic'].includes(c.motion)) throw new Error('未知运动模型');
   if (c.vehicle) usvProfile(c.vehicle);
   for (const v of [c.current, c.wind]) if (v && (v.length !== 2 || !v.every(x => Number.isFinite(x) && Math.abs(x) <= 30))) throw new Error('风流速度应为有限的 X/Z 分量，绝对值不超过 30 m/s');
-  if (!['astar', 'dijkstra', 'leader', 'consensus', 'coverage'].includes(c.algorithm)) throw new Error('未知算法');
+  if (!['astar', 'dijkstra', 'leader', 'consensus', 'coverage'].includes(c.algorithm) && !isMission(c.algorithm)) throw new Error('未知算法');
   if (!['wedge', 'column', 'line'].includes(c.formation)) throw new Error('未知队形');
   if (![c.start, c.goal].every(p => p.length === 2 && p.every(v => Number.isFinite(v) && Math.abs(v) <= 1e6))) throw new Error('起终点坐标无效');
   if (!Number.isInteger(c.fleetSize) || c.fleetSize < 1 || c.fleetSize > 12) throw new Error('艇数应为 1–12');
@@ -32,7 +35,7 @@ function validate(c: ExperimentConfig) {
 export function buildExperiment(spatial: SpatialData, input: ExperimentConfig): ExperimentPlan {
   validate(input);
   const c = structuredClone(input);
-  if (c.algorithm === 'astar' || c.algorithm === 'dijkstra') c.fleetSize = 1;
+  if (singleVessel(c.algorithm)) c.fleetSize = 1;
   const domain = new NavigationDomain(spatial, c), planner = new GridPlanner(domain, c.gridSize, c.radius);
   const plan: ExperimentPlan = { config: c, initial: [], routes: [], offsets: [], targets: [], samples: [], excludedSamples: 0, expanded: 0, gridCost: 0, routeLength: 0 };
   const record = (a: Point2, b: Point2, p = planner) => {
@@ -40,7 +43,9 @@ export function buildExperiment(spatial: SpatialData, input: ExperimentConfig): 
     plan.expanded += result.expanded; plan.gridCost += result.gridCost;
     return result.path;
   };
-  if (c.algorithm === 'astar' || c.algorithm === 'dijkstra') {
+  if (isMission(c.algorithm)) {
+    buildMission(plan, domain, planner);
+  } else if (c.algorithm === 'astar' || c.algorithm === 'dijkstra') {
     plan.initial = [clone(c.start)]; plan.routes = [record(c.start, c.goal)]; plan.targets = [clone(c.goal)];
   } else if (c.algorithm === 'leader') {
     const yaw = Math.atan2(c.goal[0] - c.start[0], c.goal[1] - c.start[1]);
@@ -99,6 +104,8 @@ export class ExperimentSimulation {
   blockedSteps = 0;
   stopReason = '';
   readonly bodies: USVDynamics[];
+  readonly mission?: MissionRuntime;
+  private avoidance = new PredictiveAvoidance();
   private stationaryTime = 0;
   private nextSampleTime = 0.5;
   constructor(readonly plan: ExperimentPlan, readonly domain: NavigationDomain) {
@@ -107,6 +114,7 @@ export class ExperimentSimulation {
       const target = plan.routes[i][v.waypoint]; v.yaw = Math.atan2(target[0] - v.position[0], target[1] - v.position[1]);
       return new USVDynamics(usvProfile(plan.config.vehicle), v.position, v.yaw);
     });
+    if (plan.mission) this.mission = new MissionRuntime(plan);
     this.measure(); this.capture();
   }
   get formationError() {
@@ -121,7 +129,7 @@ export class ExperimentSimulation {
     for (let i = 0; i < this.vessels.length; i++) for (let j = 0; j < i; j++) this.minSeparation = Math.min(this.minSeparation, distance(this.vessels[i].position, this.vessels[j].position));
     this.plan.samples.forEach(({ point, boat }, i) => { if (distance(this.vessels[boat].position, point) < (this.bodies.length ? .8 : .6)) this.visited.add(i); });
   }
-  currentFrame(): Frame { return { time: this.time, vessels: this.vessels.map((v, i) => ({ position: clone(v.position), yaw: v.yaw, ...(this.bodies[i] ? { dynamics: this.bodies[i].snapshot() } : {}) })) }; }
+  currentFrame(): Frame { return { time: this.time, vessels: this.vessels.map((v, i) => ({ position: clone(v.position), yaw: v.yaw, ...(this.bodies[i] ? { dynamics: this.bodies[i].snapshot() } : {}) })), ...(this.mission ? { mission: this.mission.snapshot(this.time) } : {}) }; }
   private capture() { this.frames.push(this.currentFrame()); }
   private stepDynamics(dt: number) {
     const c = this.plan.config, env = { current: c.current ?? [0, 0] as Point2, wind: c.wind ?? [0, 0] as Point2 }, h = dt / Math.ceil(dt / .01);
@@ -136,7 +144,10 @@ export class ExperimentSimulation {
         return cap([delta[0] * .65, delta[1] * .65], speed);
       };
       let desired: Point2[];
-      if (c.algorithm === 'consensus') {
+      if (this.mission) {
+        desired = this.mission.guidance(this.vessels, this.bodies, this.time, this.domain);
+        if (c.algorithm === 'avoidance' && this.mission.completed.size < this.plan.mission!.checkpoints.length) { desired = this.avoidance.command(this.time, this.bodies, desired, this.domain, c.radius, env); this.mission.avoidanceCount = this.avoidance.interventions; }
+      } else if (c.algorithm === 'consensus') {
         const q = old.map((p, i) => [p[0] - this.plan.offsets[i][0], p[1] - this.plan.offsets[i][1]] as Point2), mean = centroid(q);
         desired = q.map(p => cap([c.gain * (mean[0] - p[0]), c.gain * (mean[1] - p[1])]));
       } else if (c.algorithm === 'leader') {
@@ -148,12 +159,19 @@ export class ExperimentSimulation {
         const velocity = this.bodies[i].worldVelocity, speed = Math.hypot(...velocity), horizon = .6 + speed / 1.2;
         const ahead: Point2 = [old[i][0] + velocity[0] * horizon, old[i][1] + velocity[1] * horizon];
         if (!this.domain.segmentClear(old[i], ahead, c.radius)) desired[i] = [0, 0];
-        for (let j = 0; j < i; j++) {
+        for (let j = 0; j < i && c.algorithm !== 'avoidance'; j++) {
           const other = this.bodies[j].worldVelocity, otherAhead: Point2 = [old[j][0] + other[0] * horizon, old[j][1] + other[1] * horizon];
           if (sweptSeparation(old[i], ahead, old[j], otherAhead) < 2 * c.radius + .3) { desired[i] = [0, 0]; desired[j] = [0, 0]; }
         }
       }
-      this.bodies.forEach((b, i) => b.step(h, steerUSV(b, desired[i], env), env));
+      this.bodies.forEach((b, i) => {
+        const v = this.vessels[i], route = this.plan.routes[i], near = distance(v.position, route[v.waypoint]);
+        const terminal = v.waypoint === route.length - 1;
+        const holding = this.mission && c.algorithm !== 'tracking' && (c.algorithm === 'station' || (terminal && near < 5) || (['sampling', 'docking'].includes(c.algorithm) && near < 3));
+        const command = holding ? holdUSV(b, route[v.waypoint], env, c.algorithm === 'docking' ? this.plan.mission?.dockYaw : undefined, Math.min(c.speed, c.algorithm === 'docking' ? .55 : .6))
+          : steerUSV(b, desired[i], env, this.mission && !['station', 'tracking', 'sampling'].includes(c.algorithm) ? { allowReverse: false } : {});
+        b.step(h, command, env);
+      });
       const next = this.bodies.map(b => b.state.position);
       let unsafe = next.some((p, i) => !this.domain.segmentClear(old[i], p, c.radius));
       for (let i = 0; i < next.length; i++) for (let j = 0; j < i; j++) if (sweptSeparation(old[i], next[i], old[j], next[j]) < 2 * c.radius) unsafe = true;
@@ -167,12 +185,12 @@ export class ExperimentSimulation {
         const d = distance(old[i], next[i]); moved += d; v.distance += d; v.position = clone(next[i]); v.yaw = this.bodies[i].state.yaw;
         for (let j = 0; j < i; j++) this.minSeparation = Math.min(this.minSeparation, sweptSeparation(old[i], next[i], old[j], next[j]));
       });
-      this.time += h; this.measure();
+      this.time += h; this.measure(); this.mission?.update(this.vessels, this.bodies, this.time, h);
       const slow = this.bodies.every(b => Math.hypot(...b.worldVelocity) < .18 && Math.abs(b.state.velocity[2]) < .12);
       const arrived = c.algorithm === 'consensus' ? this.formationError < .3 : this.vessels.every((v, i) => distance(v.position, this.plan.targets[i]) < .6);
-      if (arrived && slow && (c.algorithm !== 'coverage' || this.visited.size === this.plan.samples.length)) this.status = 'complete';
+      if (this.mission ? this.mission.finished(this.vessels, this.bodies, this.time) : arrived && slow && (c.algorithm !== 'coverage' || this.visited.size === this.plan.samples.length)) this.status = 'complete';
       this.stationaryTime = moved < 1e-4 ? this.stationaryTime + h : 0;
-      if (this.status === 'running' && this.stationaryTime >= 10) { this.status = 'blocked'; this.stopReason = '连续 10 秒无有效进展，请调整航线、艇间距或风流条件。'; }
+      if (this.status === 'running' && this.stationaryTime >= 10 && !this.mission) { this.status = 'blocked'; this.stopReason = '连续 10 秒无有效进展，请调整航线、艇间距或风流条件。'; }
       if (this.status === 'running' && this.time >= 1800) this.status = 'timeout';
       if (this.status !== 'running') break;
     }
@@ -237,7 +255,7 @@ export class ExperimentSimulation {
 }
 
 export function trajectoryCSV(frames: Frame[]) {
-  const rows = ['time_s,vessel_id,x_m,z_m,yaw_rad,surge_m_s,sway_m_s,yaw_rate_rad_s,thrust_left_or_single_N,thrust_right_N,steering_rad'];
-  for (const frame of frames) frame.vessels.forEach((v, i) => rows.push([frame.time.toFixed(3), `usv-${String(i + 1).padStart(2, '0')}`, ...v.position.map(n => n.toFixed(4)), v.yaw.toFixed(6), ...(v.dynamics?.velocity.map(n => n.toFixed(6)) ?? ['', '', '']), v.dynamics?.thrust[0] ?? '', v.dynamics?.thrust[1] ?? '', v.dynamics?.steering ?? ''].join(',')));
+  const rows = ['time_s,vessel_id,x_m,z_m,yaw_rad,surge_m_s,sway_m_s,yaw_rate_rad_s,thrust_left_or_single_N,thrust_right_N,steering_rad,phase,task_progress,dwell_s,rms_error_m,max_error_m,thrust_work_J,avoidance_replans,target_x_m,target_z_m'];
+  for (const frame of frames) frame.vessels.forEach((v, i) => rows.push([frame.time.toFixed(3), `usv-${String(i + 1).padStart(2, '0')}`, ...v.position.map(n => n.toFixed(4)), v.yaw.toFixed(6), ...(v.dynamics?.velocity.map(n => n.toFixed(6)) ?? ['', '', '']), v.dynamics?.thrust[0] ?? '', v.dynamics?.thrust[1] ?? '', v.dynamics?.steering ?? '', frame.mission?.phases[i] ?? '', frame.mission?.progress ?? '', frame.mission?.dwell[i] ?? '', frame.mission?.rmsError ?? '', frame.mission?.maxError ?? '', frame.mission?.work ?? '', frame.mission?.avoidanceCount ?? '', ...(frame.mission?.target ?? ['', ''])].join(',')));
   return rows.join('\n');
 }

@@ -33,10 +33,29 @@ try {
     }));
     report.methods.push(algorithm);
   }
+  await page.locator('#algo-current-x').evaluate(el => { el.value = ''; el.dispatchEvent(new Event('change')); });
+  await page.locator('#algo-motion').selectOption('kinematic'); await page.locator('#algo-run').click();
+  await page.waitForFunction(() => document.querySelector('#algo-state')?.textContent === '就绪');
+  assert.equal(await page.locator('#algo-physics-fields').isHidden(), true);
+  report.kinematicBaseline = 'hidden physics inputs isolated';
   await page.locator('#algo-open-scene').click();
   await page.waitForFunction(() => document.querySelectorAll('[data-instance]').length === 6);
   await page.locator('#env-camera').selectOption('context');
   assert.equal(await page.locator('#mode-environments').getAttribute('aria-pressed'), 'true');
+  await page.locator('#mode-dynamics').click();
+  await page.waitForFunction(() => document.querySelector('#dyn-run') && !document.querySelector('#dyn-run').disabled);
+  await page.locator('#dyn-model').selectOption('quadrotor-survey');
+  assert.equal(await page.locator('#dyn-defaults').isDisabled(), true);
+  await page.locator('#dyn-mass').fill('7'); await page.locator('#dyn-mass').blur();
+  await page.locator('#dyn-defaults').click(); assert.equal(await page.locator('#dyn-mass').inputValue(), '4.8');
+  await page.locator('#dyn-experiment').selectOption('waypoint'); await page.locator('#dyn-step').click(); assert.match(await page.locator('#dyn-time').innerText(), /0.02/);
+  await page.locator('#dyn-rate').selectOption('8'); await page.locator('#dyn-run').click();
+  await page.waitForFunction(() => parseFloat(document.querySelector('#dyn-time').textContent) > 3);
+  await page.locator('#dyn-run').click(); assert.ok(parseFloat(await page.locator('#dyn-altitude').innerText()) > 1);
+  await page.locator('#dyn-replay').fill('5'); assert.match(await page.locator('#dyn-replay-time').innerText(), /0.5/);
+  assert.ok(await page.evaluate(() => { const canvas = document.querySelector('#dyn-viewport canvas'), gl = canvas.getContext('webgl2'); return canvas.width > 300 && !!gl && gl.getError() === gl.NO_ERROR; }));
+  await page.locator('#dyn-model').selectOption('usv-survey'); await page.locator('#dyn-step').click(); assert.match(await page.locator('#dyn-time').innerText(), /0.02/);
+  report.dynamics = 'quadrotor 6-DOF / USV 3-DOF / replay / WebGL passed';
   assert.deepEqual(report.errors, []); report.result = 'passed';
 } finally { await writeFile('artifacts/ui/production.json', JSON.stringify(report, null, 2)); await browser.close(); await new Promise(resolve => server.httpServer.close(resolve)); }
 console.log(JSON.stringify(report));

@@ -89,7 +89,8 @@ export function finish(root: T.Group, parts: Record<string, T.Object3D>, animate
       if (disposed) return;
       const speed = state.rotorSpeed ?? 0;
       if (!Number.isFinite(dt) || dt < 0 || !Number.isFinite(speed)) throw new RangeError('时间须为非负有限数，转速须为有限数');
-      for (const { node, axis, sign } of animated) node.rotation[axis] = (node.rotation[axis] + dt * speed * sign) % (Math.PI * 2);
+      for (const values of [state.rotorSpeeds, state.rotorAngles]) if (values && (values.length !== animated.length || !values.every(Number.isFinite))) throw new RangeError('各旋翼的转速或角度必须为有限数且与旋翼数量一致');
+      animated.forEach(({ node, axis, sign }, i) => { node.rotation[axis] = state.rotorAngles?.[i] ?? (node.rotation[axis] + dt * (state.rotorSpeeds?.[i] ?? speed) * sign) % (Math.PI * 2); });
     },
     dispose() {
       if (disposed) return; disposed = true; root.removeFromParent();

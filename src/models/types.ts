@@ -18,7 +18,7 @@ export interface ModelHandle {
   /** Stable semantic names; the same objects can be found by root.getObjectByName(). */
   parts: Record<string, Object3D>;
   /** Seconds and radians/second. Paused by default. Negative speeds reverse rotation. */
-  update(deltaSeconds: number, state?: { rotorSpeed?: number }): void;
+  update(deltaSeconds: number, state?: { rotorSpeed?: number; rotorSpeeds?: number[]; /** Absolute signed angles for deterministic physics replay. */ rotorAngles?: number[] }): void;
   /** Idempotent. Removes root from parent and frees only this instance's resources. */
   dispose(): void;
 }

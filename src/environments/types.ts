@@ -30,7 +30,7 @@ export interface EnvironmentHandle {
   root: Group;
   spatial: SpatialData;
   presentation: { background: string; fog: [number, number]; sunPosition: Point3; cameraPosition: Point3; target: Point3; backgroundAsset?: string; cameraFar?: number };
-  setVessels?(vessels: { id: string; position: Point3; yaw: number; length: number }[]): void;
+  setVessels?(vessels: { id: string; position: Point3; yaw: number; length: number; speed?: number }[]): void;
   setSun?(direction: Vector3): void;
   setHorizon?(color: Color): void;
   setSky?(texture: Texture): void;

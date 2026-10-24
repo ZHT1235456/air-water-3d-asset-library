@@ -149,8 +149,15 @@ export function createExperimentScene(host: HTMLElement, callbacks: {
   }
   function render(frame: Frame | undefined, history: Frame[], dt: number) {
     if (!active || disposed || !environment) return;
+    const simulationDelta = frame && lastFrame ? Math.max(0, frame.time - lastFrame.time) : 0;
     if (frame && plan) {
-      models.forEach((m, i) => { const v = frame.vessels[i]; m.root.position.set(v.position[0], 0, v.position[1]); m.root.rotation.y = v.yaw; if (dt > 0) m.update(dt, { rotorSpeed: 10 }); });
+      models.forEach((m, i) => {
+        const v = frame.vessels[i]; m.root.position.set(v.position[0], 0, v.position[1]); m.root.rotation.y = v.yaw;
+        if (v.dynamics) {
+          m.update(0, { rotorAngles: v.dynamics.propellerPhase.map((phase, j) => phase * (j ? -1 : 1)) });
+          if (m.parts['thruster-center']) m.parts['thruster-center'].rotation.y = v.dynamics.steering;
+        } else if (dt > 0) m.update(dt, { rotorSpeed: 10 });
+      });
       if (following && models[selected]) { const p = models[selected].root.position, delta = p.clone().sub(followAnchor); camera.position.add(delta); controls.target.add(delta); followAnchor.copy(p); }
       const key = `${history.length}:${frame.time}`;
       if (key !== lastTrailKey) {
@@ -161,12 +168,12 @@ export function createExperimentScene(host: HTMLElement, callbacks: {
           points.forEach(([x, z], j) => { positions[j * 3] = x; positions[j * 3 + 1] = 1.3; positions[j * 3 + 2] = z; });
           geometry.attributes.position.needsUpdate = true; geometry.setDrawRange(0, points.length);
         });
-        environment.setVessels?.(frame.vessels.map((v, i) => ({ id: `algo-${i}`, position: [v.position[0], 0, v.position[1]], yaw: v.yaw, length: usvPresets[model].length })));
+        environment.setVessels?.(frame.vessels.map((v, i) => ({ id: `algo-${i}`, position: [v.position[0], 0, v.position[1]], yaw: v.yaw, length: usvPresets[model].length, speed: v.dynamics ? Math.hypot(...v.dynamics.velocity.slice(0, 2)) : undefined })));
         renderer.shadowMap.needsUpdate = true;
       }
       lastFrame = frame;
     }
-    if (dt > 0) environment.update(dt);
+    environment.update(dt > 0 ? simulationDelta : 0);
     controls.update(); camera.position.y = Math.max(1, camera.position.y);
     // Restrict the shadow volume to the visible task/boat rather than the whole site.
     const span = Math.max(25, Math.min(1200, camera.position.distanceTo(controls.target)));

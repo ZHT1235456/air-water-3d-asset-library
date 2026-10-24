@@ -10,7 +10,7 @@ import { checkPlacement } from '../src/environments/spatial';
 
 const rectangle = (a: number, b: number, c: number, d: number): Point2[] => [[a, b], [c, b], [c, d], [a, d]];
 const openWater = (): SpatialData => ({ units: 'metres', waterLevel: 0, bounds: { minX: -200, maxX: 200, minZ: -200, maxZ: 200 }, water: [{ outer: rectangle(-200, -200, 200, 200), holes: [] }], obstacles: [], flight: { minY: 0, maxY: 100 }, spawnPoints: [] });
-const config = (override: Partial<ExperimentConfig> = {}): ExperimentConfig => ({ algorithm: 'astar', start: [-80, 0], goal: [80, 0], fleetSize: 5, speed: 10, spacing: 12, gain: 0.5, gridSize: 10, radius: 2, minY: -1, maxY: 2, formation: 'wedge', coverageWidth: 90, coverageHeight: 60, laneSpacing: 15, ...override });
+const config = (override: Partial<ExperimentConfig> = {}): ExperimentConfig => ({ motion: 'kinematic', algorithm: 'astar', start: [-80, 0], goal: [80, 0], fleetSize: 5, speed: 10, spacing: 12, gain: 0.5, gridSize: 10, radius: 2, minY: -1, maxY: 2, formation: 'wedge', coverageWidth: 90, coverageHeight: 60, laneSpacing: 15, ...override });
 const run = (spatial: SpatialData, c: ExperimentConfig, steps = 10000) => {
   const plan = buildExperiment(spatial, c), sim = new ExperimentSimulation(plan, new NavigationDomain(spatial, c));
   for (let i = 0; i < steps && !['complete', 'blocked', 'timeout'].includes(sim.status); i++) sim.step();
@@ -85,4 +85,27 @@ test('the three real water sites support A* routes and all 10 USV envelopes', ()
       assert.deepEqual(checkPlacement(spatial, p), [], `${variant}/${v}`);
     }
   }
+});
+
+test('all five algorithms run through thrust-limited marine dynamics and retain full replay state', () => {
+  for (const algorithm of ['astar', 'dijkstra', 'leader', 'consensus', 'coverage'] as const) {
+    const c = config({ motion: 'dynamics', vehicle: 'survey', algorithm, speed: 3, start: [0, 30], goal: [0, -60], fleetSize: 3, coverageWidth: 90, coverageHeight: 40, laneSpacing: 20 });
+    const sim = run(openWater(), c);
+    assert.equal(sim.status, 'complete', `${algorithm}: ${sim.status} ${sim.stopReason} / error ${sim.formationError} / coverage ${sim.coverage} / ${JSON.stringify(sim.vessels)}`);
+    assert.ok(sim.minSeparation >= 2 * c.radius);
+    assert.ok(sim.frames[1].vessels[0].dynamics);
+    assert.ok(Math.hypot(...sim.frames[1].vessels[0].dynamics!.velocity.slice(0, 2)) < 1, 'acceleration must be finite');
+    assert.ok(sim.bodies.every(b => Math.hypot(...b.worldVelocity) < .18));
+    const saved = structuredClone(sim.frames[1]); sim.bodies[0].state.propellerSpeed[0] = 999;
+    assert.deepEqual(sim.frames[1], saved, 'replay must not alias live state');
+  }
+});
+
+test('an infeasible physical track aborts at its last safe state instead of cancelling momentum', () => {
+  const c = config({ motion: 'dynamics', start: [196, 0], goal: [180, 0], wind: [25, 0], speed: 1 });
+  const sim = run(openWater(), c, 1000);
+  assert.equal(sim.status, 'blocked'); assert.match(sim.stopReason, /安全包络/);
+  assert.ok(new NavigationDomain(openWater()).contains(sim.vessels[0].position, c.radius));
+  assert.ok(Math.hypot(...sim.bodies[0].worldVelocity) > .1, 'the terminal record must retain pre-contact velocity');
+  assert.deepEqual(sim.frames.at(-1)!.vessels[0].dynamics, sim.bodies[0].snapshot());
 });

@@ -1,7 +1,7 @@
 import * as T from 'three';
 import { Reflector } from 'three/addons/objects/Reflector.js';
 
-export interface WaterVessel { id: string; position: [number, number, number]; yaw: number; length: number }
+export interface WaterVessel { id: string; position: [number, number, number]; yaw: number; length: number; /** Physical m/s, independent of playback rate. */ speed?: number }
 /** Official Reflector supplies the clipped planar pass; the ocean BRDF is our own shader. */
 export function createMarineWater(geometry: T.BufferGeometry = new T.PlaneGeometry(100000, 100000)) {
   const uniforms = {
@@ -134,8 +134,8 @@ export function createMarineWater(geometry: T.BufferGeometry = new T.PlaneGeomet
       vessels.forEach((v, i) => {
         const position = new T.Vector2(v.position[0], v.position[2]), old = history.get(v.id);
         const distance = old ? old.position.distanceTo(position) : 0;
-        const speed = dt > 0 && distance < 10 ? distance / dt : 0;
-        const strength = Math.max((old?.strength ?? 0) * Math.exp(-dt * 1.6), Math.min(speed / 4, 1));
+        const speed = v.speed ?? (dt > 0 && distance < 10 ? distance / dt : 0);
+        const strength = v.speed === undefined ? Math.max((old?.strength ?? 0) * Math.exp(-dt * 1.6), Math.min(speed / 4, 1)) : Math.min(Math.abs(speed) / 4, 1);
         history.set(v.id, { position, strength });
         wakeData[i].set(position.x - Math.sin(v.yaw) * v.length * .4, position.y - Math.cos(v.yaw) * v.length * .4, v.yaw, strength);
       });

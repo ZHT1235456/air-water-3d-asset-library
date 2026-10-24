@@ -12,67 +12,67 @@
     {
       "algorithm": "astar",
       "status": "complete",
-      "time": 219.19999999999183,
-      "distance": 876.2664515063681,
+      "time": 289.7399999998815,
+      "distance": 882.7339576620028,
       "separation": null,
       "coverage": 0,
       "error": 0,
       "expanded": 294,
       "gridCost": 928.89247611107,
       "radius": 2,
-      "frames": 440
+      "frames": 581
     },
     {
       "algorithm": "dijkstra",
       "status": "complete",
-      "time": 220.89999999999173,
-      "distance": 883.0757382618151,
+      "time": 288.34999999988275,
+      "distance": 888.8331721413539,
       "separation": null,
       "coverage": 0,
       "error": 0,
       "expanded": 3725,
       "gridCost": 928.89247611107,
       "radius": 2,
-      "frames": 443
+      "frames": 578
     },
     {
       "algorithm": "leader",
       "status": "complete",
-      "time": 303.1000000000004,
-      "distance": 5463.930456906204,
-      "separation": 16.97056274847693,
+      "time": 553.079999999642,
+      "distance": 5718.890215157272,
+      "separation": 15.12831225714753,
       "coverage": 0,
-      "error": 4.641245714809236e-14,
+      "error": 0.26883294601651936,
       "expanded": 238,
       "gridCost": 940.6082048636081,
       "radius": 2,
-      "frames": 608
+      "frames": 1108
     },
     {
       "algorithm": "consensus",
       "status": "complete",
-      "time": 12.599999999999971,
-      "distance": 64.66818983657782,
-      "separation": 17.077432147153928,
+      "time": 24.70000000000106,
+      "distance": 83.68204720575285,
+      "separation": 14.421929537985331,
       "coverage": 0,
-      "error": 0.14795398287740408,
+      "error": 0.04568231791704547,
       "expanded": 0,
       "gridCost": 0,
       "radius": 2,
-      "frames": 27
+      "frames": 51
     },
     {
       "algorithm": "coverage",
       "status": "complete",
-      "time": 105.79999999999826,
-      "distance": 2519.9999999999354,
-      "separation": 39.99999999999965,
+      "time": 162.3699999999973,
+      "distance": 2611.681263089714,
+      "separation": 39.99999999999808,
       "coverage": 1,
       "error": 0,
       "expanded": 0,
       "gridCost": 0,
       "radius": 2,
-      "frames": 213
+      "frames": 326
     }
   ],
   "scenes": [

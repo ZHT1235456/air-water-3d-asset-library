@@ -2,6 +2,7 @@ import type { Point2, SpatialData } from '../environments/types';
 import { distance, NavigationDomain, pathLength, sweptSeparation } from './navigation';
 import { GridPlanner } from './pathfinding';
 import type { ExperimentConfig, ExperimentPlan, Formation, Frame, RunStatus, VesselState } from './types';
+import { USVDynamics, usvProfile, steerUSV } from '../dynamics';
 
 export function formationOffsets(n: number, spacing: number, formation: Formation, yaw = 0): Point2[] {
   return Array.from({ length: n }, (_, i) => {
@@ -15,6 +16,9 @@ function centroid(points: Point2[]): Point2 { return [points.reduce((s, p) => s 
 const add = (a: Point2, b: Point2): Point2 => [a[0] + b[0], a[1] + b[1]];
 const clone = (p: Point2): Point2 => [...p];
 function validate(c: ExperimentConfig) {
+  if (c.motion && !['dynamics', 'kinematic'].includes(c.motion)) throw new Error('未知运动模型');
+  if (c.vehicle) usvProfile(c.vehicle);
+  for (const v of [c.current, c.wind]) if (v && (v.length !== 2 || !v.every(x => Number.isFinite(x) && Math.abs(x) <= 30))) throw new Error('风流速度应为有限的 X/Z 分量，绝对值不超过 30 m/s');
   if (!['astar', 'dijkstra', 'leader', 'consensus', 'coverage'].includes(c.algorithm)) throw new Error('未知算法');
   if (!['wedge', 'column', 'line'].includes(c.formation)) throw new Error('未知队形');
   if (![c.start, c.goal].every(p => p.length === 2 && p.every(v => Number.isFinite(v) && Math.abs(v) <= 1e6))) throw new Error('起终点坐标无效');
@@ -93,10 +97,16 @@ export class ExperimentSimulation {
   time = 0;
   minSeparation = Infinity;
   blockedSteps = 0;
+  stopReason = '';
+  readonly bodies: USVDynamics[];
   private stationaryTime = 0;
   private nextSampleTime = 0.5;
   constructor(readonly plan: ExperimentPlan, readonly domain: NavigationDomain) {
     this.vessels = plan.initial.map((p, i) => ({ id: `usv-${String(i + 1).padStart(2, '0')}`, position: clone(p), yaw: 0, distance: 0, waypoint: plan.routes[i].length > 1 ? 1 : 0 }));
+    this.bodies = plan.config.motion === 'kinematic' ? [] : this.vessels.map((v, i) => {
+      const target = plan.routes[i][v.waypoint]; v.yaw = Math.atan2(target[0] - v.position[0], target[1] - v.position[1]);
+      return new USVDynamics(usvProfile(plan.config.vehicle), v.position, v.yaw);
+    });
     this.measure(); this.capture();
   }
   get formationError() {
@@ -109,14 +119,71 @@ export class ExperimentSimulation {
   get coverage() { return this.plan.samples.length ? this.visited.size / this.plan.samples.length : 0; }
   private measure() {
     for (let i = 0; i < this.vessels.length; i++) for (let j = 0; j < i; j++) this.minSeparation = Math.min(this.minSeparation, distance(this.vessels[i].position, this.vessels[j].position));
-    this.plan.samples.forEach(({ point, boat }, i) => { if (distance(this.vessels[boat].position, point) < 0.6) this.visited.add(i); });
+    this.plan.samples.forEach(({ point, boat }, i) => { if (distance(this.vessels[boat].position, point) < (this.bodies.length ? .8 : .6)) this.visited.add(i); });
   }
-  private capture() { this.frames.push({ time: this.time, vessels: this.vessels.map(v => ({ position: clone(v.position), yaw: v.yaw })) }); }
+  currentFrame(): Frame { return { time: this.time, vessels: this.vessels.map((v, i) => ({ position: clone(v.position), yaw: v.yaw, ...(this.bodies[i] ? { dynamics: this.bodies[i].snapshot() } : {}) })) }; }
+  private capture() { this.frames.push(this.currentFrame()); }
+  private stepDynamics(dt: number) {
+    const c = this.plan.config, env = { current: c.current ?? [0, 0] as Point2, wind: c.wind ?? [0, 0] as Point2 }, h = dt / Math.ceil(dt / .01);
+    for (let k = 0; k < Math.ceil(dt / .01); k++) {
+      const old = this.vessels.map(v => clone(v.position)), states = this.bodies.map(b => b.snapshot());
+      const cap = (velocity: Point2, max = c.speed): Point2 => { const scale = Math.min(1, max / Math.max(1e-9, Math.hypot(...velocity))); return [velocity[0] * scale, velocity[1] * scale]; };
+      const routeVelocity = (i: number, speed = c.speed): Point2 => {
+        const v = this.vessels[i], route = this.plan.routes[i];
+        while (v.waypoint < route.length - 1 && distance(v.position, route[v.waypoint]) < .6) v.waypoint++;
+        const target = route[v.waypoint], delta: Point2 = [target[0] - v.position[0], target[1] - v.position[1]];
+        // Approach every corner slowly enough to turn. The geometric planner does not guarantee dynamic feasibility.
+        return cap([delta[0] * .65, delta[1] * .65], speed);
+      };
+      let desired: Point2[];
+      if (c.algorithm === 'consensus') {
+        const q = old.map((p, i) => [p[0] - this.plan.offsets[i][0], p[1] - this.plan.offsets[i][1]] as Point2), mean = centroid(q);
+        desired = q.map(p => cap([c.gain * (mean[0] - p[0]), c.gain * (mean[1] - p[1])]));
+      } else if (c.algorithm === 'leader') {
+        const lead = this.bodies[0].worldVelocity;
+        desired = old.map((p, i) => i === 0 ? routeVelocity(0, c.speed * .75) : cap([lead[0] + c.gain * (old[0][0] + this.plan.offsets[i][0] - p[0]), lead[1] + c.gain * (old[0][1] + this.plan.offsets[i][1] - p[1])]));
+      } else desired = old.map((_, i) => routeVelocity(i));
+      // Brake through actuator forces when the short-horizon stopping envelope is obstructed.
+      for (let i = 0; i < this.bodies.length; i++) {
+        const velocity = this.bodies[i].worldVelocity, speed = Math.hypot(...velocity), horizon = .6 + speed / 1.2;
+        const ahead: Point2 = [old[i][0] + velocity[0] * horizon, old[i][1] + velocity[1] * horizon];
+        if (!this.domain.segmentClear(old[i], ahead, c.radius)) desired[i] = [0, 0];
+        for (let j = 0; j < i; j++) {
+          const other = this.bodies[j].worldVelocity, otherAhead: Point2 = [old[j][0] + other[0] * horizon, old[j][1] + other[1] * horizon];
+          if (sweptSeparation(old[i], ahead, old[j], otherAhead) < 2 * c.radius + .3) { desired[i] = [0, 0]; desired[j] = [0, 0]; }
+        }
+      }
+      this.bodies.forEach((b, i) => b.step(h, steerUSV(b, desired[i], env), env));
+      const next = this.bodies.map(b => b.state.position);
+      let unsafe = next.some((p, i) => !this.domain.segmentClear(old[i], p, c.radius));
+      for (let i = 0; i < next.length; i++) for (let j = 0; j < i; j++) if (sweptSeparation(old[i], next[i], old[j], next[j]) < 2 * c.radius) unsafe = true;
+      if (unsafe) {
+        // Abort at the last safe state; do NOT misrepresent a collision gate as instant physical braking.
+        this.bodies.forEach((b, i) => Object.assign(b.state, states[i])); this.status = 'blocked'; this.blockedSteps++;
+        this.stopReason = '触及安全包络，已在最后安全时刻终止；本实验未建模碰撞接触。'; break;
+      }
+      let moved = 0;
+      this.vessels.forEach((v, i) => {
+        const d = distance(old[i], next[i]); moved += d; v.distance += d; v.position = clone(next[i]); v.yaw = this.bodies[i].state.yaw;
+        for (let j = 0; j < i; j++) this.minSeparation = Math.min(this.minSeparation, sweptSeparation(old[i], next[i], old[j], next[j]));
+      });
+      this.time += h; this.measure();
+      const slow = this.bodies.every(b => Math.hypot(...b.worldVelocity) < .18 && Math.abs(b.state.velocity[2]) < .12);
+      const arrived = c.algorithm === 'consensus' ? this.formationError < .3 : this.vessels.every((v, i) => distance(v.position, this.plan.targets[i]) < .6);
+      if (arrived && slow && (c.algorithm !== 'coverage' || this.visited.size === this.plan.samples.length)) this.status = 'complete';
+      this.stationaryTime = moved < 1e-4 ? this.stationaryTime + h : 0;
+      if (this.status === 'running' && this.stationaryTime >= 10) { this.status = 'blocked'; this.stopReason = '连续 10 秒无有效进展，请调整航线、艇间距或风流条件。'; }
+      if (this.status === 'running' && this.time >= 1800) this.status = 'timeout';
+      if (this.status !== 'running') break;
+    }
+    if (this.time + 1e-7 >= this.nextSampleTime || this.status !== 'running') { this.capture(); this.nextSampleTime = this.time + .5; }
+  }
   /** Fixed-step integration; callers schedule wall time separately. No renderer or DOM required. */
   step(dt = 0.1) {
     if (!Number.isFinite(dt) || dt <= 0 || dt > 0.1) throw new Error('积分步长须为 (0, 0.1] 秒');
     if (['complete', 'blocked', 'timeout'].includes(this.status)) return;
     this.status = 'running';
+    if (this.bodies.length) { this.stepDynamics(dt); return; }
     const c = this.plan.config, old = this.vessels.map(v => clone(v.position));
     const limit = (dx: number, dz: number, speed = c.speed): Point2 => { const norm = Math.hypot(dx, dz), k = norm ? Math.min(1, speed * dt / norm) : 0; return [dx * k, dz * k]; };
     const routeMove = (i: number, speed = c.speed): Point2 => {
@@ -170,7 +237,7 @@ export class ExperimentSimulation {
 }
 
 export function trajectoryCSV(frames: Frame[]) {
-  const rows = ['time_s,vessel_id,x_m,z_m,yaw_rad'];
-  for (const frame of frames) frame.vessels.forEach((v, i) => rows.push([frame.time.toFixed(3), `usv-${String(i + 1).padStart(2, '0')}`, ...v.position.map(n => n.toFixed(4)), v.yaw.toFixed(6)].join(',')));
+  const rows = ['time_s,vessel_id,x_m,z_m,yaw_rad,surge_m_s,sway_m_s,yaw_rate_rad_s,thrust_left_or_single_N,thrust_right_N,steering_rad'];
+  for (const frame of frames) frame.vessels.forEach((v, i) => rows.push([frame.time.toFixed(3), `usv-${String(i + 1).padStart(2, '0')}`, ...v.position.map(n => n.toFixed(4)), v.yaw.toFixed(6), ...(v.dynamics?.velocity.map(n => n.toFixed(6)) ?? ['', '', '']), v.dynamics?.thrust[0] ?? '', v.dynamics?.thrust[1] ?? '', v.dynamics?.steering ?? ''].join(',')));
   return rows.join('\n');
 }

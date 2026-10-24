@@ -9,7 +9,7 @@ export const algorithmMarkup = () => `<main class="algorithm-workbench">
     <p class="algo-hint">选择任务，在真实水域中观察协同运动。</p>
     <div class="algo-list">${algorithmCatalog.map(a => `<button data-algorithm="${a.id}" aria-pressed="false"><span class="algo-symbol">${a.label}</span><span><small>${a.family}</small><strong>${a.name}</strong></span><span class="algo-selected-mark">↗</span></button>`).join('')}</div>
     <div class="algo-principle"><p id="algo-description"></p><details><summary>方法与适用范围</summary><code id="algo-equation"></code><p id="algo-note"></p><a id="algo-reference" target="_blank" rel="noreferrer"></a></details></div>
-    <div class="algo-limit"><span>实验约定</span><p>三维场景展示 · 水面运动学<br>包含岸线、障碍与艇间距离检查；不含风浪、水动力及海上避碰规则。</p></div>
+    <div class="algo-limit"><span>实验约定</span><p>默认采用三自由度水动力学：惯性、阻力、风流与推进器滞后。参数为工程估算。几何航线不保证动力学可行；触及安全包络会终止实验。未建模波浪载荷及海上避碰规则。</p></div>
   </aside>
   <section class="algo-stage" aria-label="三维算法实验">
     <header class="algo-stage-heading"><div><div class="eyebrow">USV / MOTION LAB</div><h1 id="algo-title"></h1><p id="algo-scene-name"></p></div><span id="algo-state" class="algo-state">准备中</span></header>
@@ -29,7 +29,9 @@ export const algorithmMarkup = () => `<main class="algorithm-workbench">
     <div class="algo-section-title">实验设置 <span>CONFIGURATION</span></div>
     <label>水域场景<select id="algo-environment">${environmentLibrary.map(e => `<option value="${e.variant}">${environmentPresets[e.variant].name}</option>`).join('')}</select></label>
     <label>无人艇模型<select id="algo-model">${Object.entries(usvPresets).map(([v, p]) => `<option value="${v}">${p.code} · ${p.name}</option>`).join('')}</select></label>
-    <div class="algo-field-grid"><label id="algo-count-label">艇数<input id="algo-count" type="number" min="1" max="12" value="6"/></label><label>最大速度 m/s<input id="algo-speed" type="number" min="0.1" max="15" step="0.5" value="4"/></label></div>
+    <label>运动模型<select id="algo-motion"><option value="dynamics">水动力学 · 推力与惯性</option><option value="kinematic">运动学 · 算法基线</option></select></label>
+    <details id="algo-physics-fields" class="algo-coordinates"><summary>风流与动力参数</summary><p id="algo-physics-note"></p><div class="algo-field-grid"><label>水流 X m/s<input id="algo-current-x" type="number" min="-3" max="3" step="0.1" value="0"/></label><label>水流 Z m/s<input id="algo-current-z" type="number" min="-3" max="3" step="0.1" value="0"/></label><label>风速 X m/s<input id="algo-wind-x" type="number" min="-20" max="20" step="1" value="0"/></label><label>风速 Z m/s<input id="algo-wind-z" type="number" min="-20" max="20" step="1" value="0"/></label></div><p>以世界坐标 X/Z 输入。完整载具参数可在动力学工作台调整；此处使用所选型号的默认估算参数。</p></details>
+    <div class="algo-field-grid"><label id="algo-count-label">艇数<input id="algo-count" type="number" min="1" max="12" value="6"/></label><label>巡航指令 m/s<input id="algo-speed" type="number" min="0.1" max="15" step="0.5" value="4"/></label></div>
     <div class="algo-field-grid" id="algo-formation-fields"><label>艇间距 m<input id="algo-spacing" type="number" min="2" max="100" value="12"/></label><label>控制增益 1/s<input id="algo-gain" type="number" min="0.01" max="2" step="0.05" value="0.35"/></label></div>
     <label id="algo-formation-label">目标队形<select id="algo-formation"><option value="wedge">楔形编队</option><option value="column">纵列编队</option><option value="line">横列编队</option></select></label>
     <label id="algo-grid-label">规划栅格 m<input id="algo-grid" type="number" min="1" max="1000" step="1" value="20"/></label>

@@ -1,4 +1,5 @@
 /* Shared shell: a quiet instrument panel around the model and water. */
+.model-dynamics-link{border:1px solid #aacbd6;border-radius:5px;padding:12px 10px;width:100%;margin-top:20px;text-align:left;color:#176c82;font-size:12px;background:#edf5f7}
 :root{--ink:#173747;--muted:#607b89;--line:#dae4e8;--blue:#176c82;--accent:#ce8348;color:var(--ink);background:#f3f7f8;font-size:13px}
 button,select,input{font-family:inherit}select{cursor:pointer}button:disabled{opacity:.42;cursor:not-allowed}select:focus-visible{outline:2px solid var(--blue);outline-offset:3px}button,a,input,select,summary{touch-action:manipulation}input[type=range]{min-height:18px}input[type=number]{font-variant-numeric:tabular-nums}
 .app-header{padding:0 26px;gap:24px;position:relative;z-index:10}.brand{font-size:22px;letter-spacing:1px;flex-shrink:0}.brand-symbol{background:#173747;border-radius:10px}.brand-sub{color:#5c7785;font-size:12px}.brand-divider{margin:0 11px}.workspace-tabs{gap:4px;padding:5px;border:0;background:#eff4f6;border-radius:11px}.workspace-tabs button{min-width:116px;padding:8px 17px;border-radius:7px;text-align:left;display:flex;align-items:center;gap:13px;color:#647e8c}.workspace-tabs strong{font-size:13px;font-weight:600}.workspace-tabs small{font-size:10px;white-space:nowrap;opacity:.8}.workspace-tabs button[aria-pressed=true]{background:#173747;color:#fff;box-shadow:0 3px 8px #17374719}.workspace-tabs button:hover:not([aria-pressed=true]){background:#e3edf1;color:#173747}.local-status{font-size:11px;color:#6f8790}
@@ -14,3 +15,5 @@ button,select,input{font-family:inherit}select{cursor:pointer}button:disabled{op
 /* A details element has an anonymous content box, so use an explicit desktop height. */
 @media(min-width:851px){.workspace .library .panel-inner{height:max(616px,calc(100dvh - 159px))}.workspace .library{overflow:hidden}}
 @media(min-width:1201px){.workspace .library .panel-inner{height:max(612px,calc(100dvh - 163px))}}
+
+@media(max-width:600px){.app-header .workspace-tabs button{min-width:54px;padding:7px 6px}.app-header{gap:7px}.workspace-tabs small{font-size:8px}.workspace-tabs strong{font-size:11px}}

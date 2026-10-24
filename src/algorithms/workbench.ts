@@ -9,6 +9,7 @@ import './workbench.css';
 import { algorithmMarkup } from './markup';
 import { createExperimentScene, fleetColors, type ExperimentCamera } from './scene';
 import { compactPanel } from '../responsive';
+import { parameterBasis, usvProfile } from '../dynamics';
 
 const format = (n: number, digits = 1) => Number.isFinite(n) ? n.toFixed(digits) : '—';
 function download(name: string, content: string, type: string) {
@@ -48,7 +49,8 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
       },
     });
   } catch { $('#algo-viewport').textContent = '无法启动三维视口，请开启浏览器硬件加速后刷新。'; }
-  const settings = () => ({ algorithm, start: [...start], goal: ['consensus', 'coverage'].includes(algorithm) ? [...start] : [...goal], fleetSize: algorithm === 'astar' || algorithm === 'dijkstra' ? 1 : num('#algo-count'),
+  const settings = () => ({ algorithm, motion: $<HTMLSelectElement>('#algo-motion').value, vehicle: model,
+    current: $<HTMLSelectElement>('#algo-motion').value === 'dynamics' ? [num('#algo-current-x'), num('#algo-current-z')] : [0, 0], wind: $<HTMLSelectElement>('#algo-motion').value === 'dynamics' ? [num('#algo-wind-x'), num('#algo-wind-z')] : [0, 0], start: [...start], goal: ['consensus', 'coverage'].includes(algorithm) ? [...start] : [...goal], fleetSize: algorithm === 'astar' || algorithm === 'dijkstra' ? 1 : num('#algo-count'),
     speed: num('#algo-speed'), spacing: ['leader', 'consensus'].includes(algorithm) ? num('#algo-spacing') : 12, gain: ['leader', 'consensus'].includes(algorithm) ? num('#algo-gain') : 0.35, gridSize: algorithm === 'consensus' ? 100 : num('#algo-grid'), radius, minY, maxY,
     formation: $<HTMLSelectElement>('#algo-formation').value as Formation, coverageWidth: algorithm === 'coverage' ? num('#algo-width') : 240, coverageHeight: algorithm === 'coverage' ? num('#algo-height') : 200, laneSpacing: algorithm === 'coverage' ? num('#algo-lane') : 25 } as ExperimentConfig);
   function syncCoordinates() {
@@ -59,6 +61,7 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
     radius = Math.ceil((Math.hypot(Math.max(Math.abs(b.min[0]), Math.abs(b.max[0])), Math.max(Math.abs(b.min[2]), Math.abs(b.max[2]))) + 0.5) * 10) / 10;
     minY = b.min[1]; maxY = b.max[1];
     $('#algo-envelope').textContent = `安全包络半径 ${radius.toFixed(1)} m · 包含设备外廓及 0.5 m 余量`;
+    const p = usvProfile(model); $('#algo-physics-note').textContent = `估算质量 ${p.mass} kg · ${p.propulsion === 'twin' ? '双桨差速' : '单桨转向'} · 单桨上限 ${p.maxThrust.toFixed(1)} N · 电机响应 ${p.motorTimeConstant} s。`;
   }
   function loadEnvironment() {
     spatial = defineEnvironment(environment).spatial; domain = new NavigationDomain(spatial, { minY, maxY });
@@ -122,7 +125,7 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
   }
   function frame(): Frame | undefined {
     if (!simulation) return;
-    return replay >= 0 ? simulation.frames[replay] : { time: simulation.time, vessels: simulation.vessels.map(v => ({ position: v.position, yaw: v.yaw })) };
+    return replay >= 0 ? simulation.frames[replay] : simulation.currentFrame();
   }
   function fitMission() { view?.view('mission'); $<HTMLSelectElement>('#algo-camera').value = 'mission'; }
   function draw(dt = 0) { view?.render(frame(), simulation?.frames ?? [], dt); }
@@ -149,14 +152,14 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
   function terminalMessage() {
     if (!simulation) return;
     if (simulation.status === 'complete') message(`实验完成 · ${format(simulation.time)} s · ${format(simulation.distance)} m。可回看轨迹或导出结果。`);
-    if (simulation.status === 'blocked') message('连续 10 秒无法前进，实验已停止。请增大艇间距、调整任务区或减少艇数后重新生成方案。', true);
+    if (simulation.status === 'blocked') message(simulation.stopReason || '连续 10 秒无法前进，实验已停止。请增大艇间距、调整任务区或减少艇数后重新生成方案。', true);
     if (simulation.status === 'timeout') message('已达到 1,800 秒仿真时限。可导出当前轨迹，或调整参数重新实验。', true);
   }
   function step() { if (!simulation) return; replay = -1; simulation.step(); if (simulation.status !== 'running') { running = false; terminalMessage(); } }
   function resultFrames() {
     if (!simulation) return [];
     const frames = simulation.frames.slice();
-    if (frames.at(-1)!.time < simulation.time) frames.push({ time: simulation.time, vessels: simulation.vessels.map(v => ({ position: [...v.position], yaw: v.yaw })) });
+    if (frames.at(-1)!.time < simulation.time) frames.push(simulation.currentFrame());
     return frames;
   }
   function sceneConfig(): SceneConfig {
@@ -169,6 +172,7 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
   $<HTMLSelectElement>('#algo-environment').value = environment; $<HTMLSelectElement>('#algo-model').value = model;
   $('#algo-environment').onchange = () => { environment = $<HTMLSelectElement>('#algo-environment').value as EnvironmentVariant; invalidate(); loadEnvironment(); void build(); };
   $('#algo-model').onchange = () => { model = $<HTMLSelectElement>('#algo-model').value as USVVariant; modelEnvelope(); domain = new NavigationDomain(spatial, { minY, maxY }); invalidate(); };
+  $('#algo-motion').onchange = () => { $('#algo-physics-fields').hidden = $<HTMLSelectElement>('#algo-motion').value === 'kinematic'; invalidate(); };
   host.querySelectorAll<HTMLInputElement | HTMLSelectElement>('.algo-settings input, #algo-formation').forEach(input => input.onchange = () => {
     if (input.id.startsWith('algo-start-')) start = [num('#algo-start-x'), num('#algo-start-z')];
     if (input.id.startsWith('algo-goal-')) goal = [num('#algo-goal-x'), num('#algo-goal-z')];
@@ -198,8 +202,8 @@ export function createAlgorithmWorkbench(host: HTMLElement, openScene: (config: 
   $('#algo-csv').onclick = () => download(`${environment}-${algorithm}-trajectory.csv`, trajectoryCSV(resultFrames()), 'text/csv;charset=utf-8');
   $('#algo-json').onclick = () => {
     if (!plan || !simulation) return;
-    download(`${environment}-${algorithm}-experiment.json`, JSON.stringify({ version: 1, coordinateSystem: 'local metres, X/Z, Y=0', environment: { variant: environment, seed: environmentPresets[environment].seed }, modelId: `usv-${model}`, method: algorithmCatalog.find(a => a.id === algorithm), plan,
-      result: { status: simulation.status === 'running' && !running ? 'paused' : simulation.status, time: simulation.time, distance: simulation.distance, minSeparation: Number.isFinite(simulation.minSeparation) ? simulation.minSeparation : null, formationError: simulation.formationError, coverage: simulation.coverage, blockedSteps: simulation.blockedSteps }, frames: resultFrames(), scene: sceneConfig() }, null, 2), 'application/json');
+    download(`${environment}-${algorithm}-experiment.json`, JSON.stringify({ version: 2, coordinateSystem: 'local metres, X/Z, Y=0', parameterBasis, dynamics: plan.config.motion === 'kinematic' ? null : usvProfile(model), environment: { variant: environment, seed: environmentPresets[environment].seed }, modelId: `usv-${model}`, method: algorithmCatalog.find(a => a.id === algorithm), plan,
+      result: { status: simulation.status === 'running' && !running ? 'paused' : simulation.status, stopReason: simulation.stopReason, time: simulation.time, distance: simulation.distance, minSeparation: Number.isFinite(simulation.minSeparation) ? simulation.minSeparation : null, formationError: simulation.formationError, coverage: simulation.coverage, blockedSteps: simulation.blockedSteps }, frames: resultFrames(), scene: sceneConfig() }, null, 2), 'application/json');
   };
   $('#algo-open-scene').onclick = async () => { if (!simulation) return; running = false; refresh(); try { await openScene(sceneConfig()); } catch (error) { message(`三维场景打开失败：${String(error)}`, true); } };
   let previous = performance.now(), accumulator = 0;

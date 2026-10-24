@@ -7,5 +7,7 @@
     "consensus",
     "coverage"
   ],
+  "kinematicBaseline": "hidden physics inputs isolated",
+  "dynamics": "quadrotor 6-DOF / USV 3-DOF / replay / WebGL passed",
   "result": "passed"
 }

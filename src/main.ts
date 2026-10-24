@@ -23,7 +23,7 @@ const entries: Entry[] = [
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="app-header">
     <a class="brand" href="./" aria-label="空海模型工作台首页"><span class="brand-symbol">${icon('cube')}</span><span>空海<span class="brand-divider">/</span><span class="brand-sub">模型工作台</span></span></a>
-    <nav class="workspace-tabs" aria-label="工作台"><button id="mode-models" aria-pressed="true"><strong>模型库</strong><small>18 款载具</small></button><button id="mode-environments" aria-pressed="false"><strong>环境库</strong><small>8 个水域</small></button><button id="mode-algorithms" aria-pressed="false"><strong>算法库</strong><small>5 项实验</small></button></nav>
+    <nav class="workspace-tabs" aria-label="工作台"><button id="mode-models" aria-pressed="true"><strong>模型库</strong><small>18 款载具</small></button><button id="mode-environments" aria-pressed="false"><strong>环境库</strong><small>8 个水域</small></button><button id="mode-algorithms" aria-pressed="false"><strong>算法库</strong><small>5 项实验</small></button><button id="mode-dynamics" aria-pressed="false"><strong>动力学</strong><small>推力与惯性</small></button></nav>
     <div class="local-status"><span></span> 本地工作区</div>
   </header>
   <main class="workspace">
@@ -50,7 +50,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <section class="settings-section"><h2>材质配色 <button id="restore-colors" class="text-button">恢复</button></h2><label class="color-row" for="primary"><span>机身 / 船体</span><span class="color-input"><code id="primary-hex"></code><input type="color" id="primary" aria-label="主色"/></span></label><label class="color-row" for="secondary"><span>结构辅色</span><span class="color-input"><code id="secondary-hex"></code><input type="color" id="secondary" aria-label="辅色"/></span></label><label class="color-row" for="accent"><span>识别标识</span><span class="color-input"><code id="accent-hex"></code><input type="color" id="accent" aria-label="点缀色"/></span></label></section>
       <section class="settings-section"><h2>显示与动画</h2><label class="toggle-row" for="wireframe"><span>线框模式</span><input class="switch" type="checkbox" id="wireframe"/></label><label class="toggle-row" for="axes"><span>坐标轴</span><input class="switch" type="checkbox" id="axes"/></label><label class="toggle-row" for="animate"><span id="animation-label">旋翼转动</span><input class="switch" type="checkbox" id="animate"/></label><div id="speed-control"><label class="range-label" for="speed">转速 <output id="speed-value">12 rad/s</output></label><input id="speed" type="range" min="0" max="40" value="12" step="1" disabled/></div></section>
       <div class="structure-note"><span class="note-mark">i</span><div><strong id="structure-title">四旋翼结构</strong><p id="structure-description">四组电机与双叶桨，相邻旋翼反向旋转。</p></div></div>
-      <div class="inspector-footer"><span>比例单位</span><strong>1 unit = 1 m</strong></div>
+      <button id="model-dynamics" class="model-dynamics-link">试验此载具的动力学 ↗</button><p class="dimension-note">按原始米制尺寸进入试验场，调整质量、推力与风流。</p><div class="inspector-footer"><span>比例单位</span><strong>1 unit = 1 m</strong></div>
     </div></details></aside>
   </main>
   <footer class="app-footer"><span>空海模型库 <b>/</b> 原创工程造型</span><span>THREE.JS <b>+</b> VITE <span class="footer-dot">·</span> ${entries.length} 款程序化模型</span></footer>
@@ -59,17 +59,21 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 const $ = <E extends HTMLElement = HTMLElement>(selector: string) => document.querySelector<E>(selector)!;
 const releaseCompactPanel = compactPanel($<HTMLDetailsElement>('.library details'), 850);
 window.addEventListener('pagehide', releaseCompactPanel, { once: true });
-let workspaceMode: 'models' | 'environments' | 'algorithms' = 'models';
+let workspaceMode: 'models' | 'environments' | 'algorithms' | 'dynamics' = 'models';
 let environmentEditor: ReturnType<typeof import('./scenes/editor').createEnvironmentEditor> | undefined;
 let algorithmWorkbench: ReturnType<typeof import('./algorithms/workbench').createAlgorithmWorkbench> | undefined;
 let editorLoading: Promise<void> | undefined;
 let algorithmsLoading: Promise<void> | undefined;
+let dynamicsLab: ReturnType<typeof import('./dynamics/lab').createDynamicsLab> | undefined;
+let dynamicsLoading: Promise<void> | undefined;
 const modelWorkspace = $('.workspace'), modelFooter = $('.app-footer');
 const environmentHost = document.createElement('div'); environmentHost.id = 'environment-app'; environmentHost.hidden = true; $('#app').appendChild(environmentHost);
 const algorithmHost = document.createElement('div'); algorithmHost.id = 'algorithm-app'; algorithmHost.hidden = true; $('#app').appendChild(algorithmHost);
+const dynamicsHost = document.createElement('div'); dynamicsHost.id = 'dynamics-app'; dynamicsHost.hidden = true; $('#app').appendChild(dynamicsHost);
 async function switchWorkspace(mode: typeof workspaceMode) {
   workspaceMode = mode; modelWorkspace.hidden = modelFooter.hidden = mode !== 'models'; environmentHost.hidden = mode !== 'environments';
   algorithmHost.hidden = mode !== 'algorithms';
+  dynamicsHost.hidden = mode !== 'dynamics'; $('#mode-dynamics').setAttribute('aria-pressed', String(mode === 'dynamics'));
   $('#mode-models').setAttribute('aria-pressed', String(mode === 'models')); $('#mode-environments').setAttribute('aria-pressed', String(mode === 'environments'));
   $('#mode-algorithms').setAttribute('aria-pressed', String(mode === 'algorithms'));
   if (mode === 'environments' && !environmentEditor) {
@@ -87,13 +91,20 @@ async function switchWorkspace(mode: typeof workspaceMode) {
     }).catch(error => { algorithmHost.textContent = `算法库启动失败：${String(error)}`; algorithmsLoading = undefined; });
     await algorithmsLoading;
   }
+  if (mode === 'dynamics' && !dynamicsLab) {
+    dynamicsLoading ??= import('./dynamics/lab').then(({ createDynamicsLab }) => { dynamicsLab = createDynamicsLab(dynamicsHost); dynamicsLab.setActive(workspaceMode === 'dynamics'); }).catch(error => { dynamicsHost.textContent = `动力学试验场启动失败：${String(error)}`; dynamicsLoading = undefined; });
+    await dynamicsLoading;
+  }
+  dynamicsLab?.setActive(workspaceMode === 'dynamics');
   environmentEditor?.setActive(workspaceMode === 'environments');
   algorithmWorkbench?.setActive(workspaceMode === 'algorithms');
 }
 $('#mode-models').addEventListener('click', () => { void switchWorkspace('models'); });
 $('#mode-environments').addEventListener('click', () => { void switchWorkspace('environments'); });
 $('#mode-algorithms').addEventListener('click', () => { void switchWorkspace('algorithms'); });
-window.addEventListener('pagehide', () => algorithmWorkbench?.dispose());
+$('#mode-dynamics').addEventListener('click', () => { void switchWorkspace('dynamics'); });
+$('#model-dynamics').addEventListener('click', async () => { await switchWorkspace('dynamics'); dynamicsLab?.selectModel(active.id); });
+window.addEventListener('pagehide', () => { algorithmWorkbench?.dispose(); dynamicsLab?.dispose(); });
 let active = entries[0];
 let handle: ModelHandle;
 let renderer: T.WebGLRenderer;

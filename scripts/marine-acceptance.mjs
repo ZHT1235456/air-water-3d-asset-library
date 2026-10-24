@@ -33,10 +33,10 @@ try {
   assert.deepEqual(await page.evaluate(() => window.__environmentWorkbench.runtime.vehicles.flatMap(v => v.issues)), []);
   await page.locator('#env-immersive').click();
   for (const shot of ['establishing', 'context', 'waterline', 'aerial']) {
-    await page.locator(`[data-shot="${shot}"]`).click(); await saveScene(shot);
+    await page.locator('#env-camera').selectOption(shot); await saveScene(shot);
     report.cameras.push(await page.evaluate(() => { const e = window.__environmentWorkbench; return { position: e.camera.position.toArray(), fov: e.camera.fov }; }));
   }
-  await page.locator('[data-shot="establishing"]').click();
+  await page.locator('#env-camera').selectOption('establishing');
   await page.screenshot({ path: 'artifacts/marine/workbench.png' });
   report.twoVehicles = await measure();
   // Full orbit has a real panorama and 3D coast; no limited-angle photograph is used.
@@ -50,7 +50,7 @@ try {
   await page.locator('#env-pos-x').fill('20'); await page.locator('#env-pos-x').press('Tab');
   await page.locator('#env-yaw').fill('135'); await page.locator('#env-yaw').press('Tab');
   await page.locator('#env-color-accent').fill('#cf723a');
-  await page.locator('[data-shot="context"]').click();
+  await page.locator('#env-camera').selectOption('context');
   const original = await page.evaluate(() => window.__environmentWorkbench.snapshot());
   await page.evaluate(c => window.__environmentWorkbench.importText(JSON.stringify(c)), original); await skyReady();
   const after = await page.evaluate(() => window.__environmentWorkbench.snapshot());
@@ -79,11 +79,11 @@ try {
   assert.deepEqual(report.memory[0], report.memory[2]);
   const ids = ['quadrotor-survey','quadrotor-heavy','quadrotor-protected','quadrotor-rescue','quadrotor-cargo','usv-survey','usv-utility','usv-rescue','usv-sampling','usv-endurance'];
   for (const id of ids) await page.evaluate(id => window.__environmentWorkbench.addVehicle(id), id);
-  await page.locator('#env-immersive').click(); await page.locator('[data-shot="establishing"]').click();
+  await page.locator('#env-immersive').click(); await page.locator('#env-camera').selectOption('establishing');
   report.twelveVehicles = await measure(); await saveScene('twelve-vehicles');
   report.twelveVehiclesMovingCamera = await measure(true);
-  await page.locator('[data-shot="context"]').click(); report.twelveVehicleCloseup = await measure();
-  await page.setViewportSize({ width: 390, height: 844 }); await page.locator('[data-shot="context"]').click(); await page.waitForTimeout(220);
+  await page.locator('#env-camera').selectOption('context'); report.twelveVehicleCloseup = await measure();
+  await page.setViewportSize({ width: 390, height: 844 }); await page.locator('#env-camera').selectOption('context'); await page.waitForTimeout(220);
   await page.screenshot({ path: 'artifacts/marine/mobile.png', fullPage: true });
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   assert.deepEqual(report.remoteRequests, []); assert.deepEqual(report.errors, []);

@@ -1,0 +1,104 @@
+{
+  "checks": [
+    "Model search, empty feedback, distinct views, conditional restore, fullscreen and PNG export",
+    "All 8 environments, all 5 cameras, selection, transforms, colors, 6 layers, add/remove, import/export, immersive and image export",
+    "Live metre-scale models, nonoverlapping labels, 3 views, per-boat focus/follow, pause/step/replay, exports, edit snapshot and reset",
+    "3D ray picking, Escape, invalidation, selected model, 12-vessel rendering and pause on tab switch",
+    "Only relevant parameters are validated, invalid input gives recovery feedback",
+    "All 3 pages at 1366, 390 and 360 px; mobile panel disclosures"
+  ],
+  "errors": [],
+  "layouts": [
+    {
+      "mode": "models",
+      "width": 1366,
+      "canvas": [
+        856,
+        407
+      ]
+    },
+    {
+      "mode": "environments",
+      "width": 1366,
+      "canvas": [
+        856,
+        660
+      ]
+    },
+    {
+      "mode": "algorithms",
+      "width": 1366,
+      "canvas": [
+        810,
+        345.5
+      ]
+    },
+    {
+      "mode": "models",
+      "width": 390,
+      "canvas": [
+        390,
+        325
+      ]
+    },
+    {
+      "mode": "environments",
+      "width": 390,
+      "canvas": [
+        390,
+        590
+      ]
+    },
+    {
+      "mode": "algorithms",
+      "width": 390,
+      "canvas": [
+        362,
+        428.5
+      ]
+    },
+    {
+      "mode": "models",
+      "width": 360,
+      "canvas": [
+        360,
+        325
+      ]
+    },
+    {
+      "mode": "environments",
+      "width": 360,
+      "canvas": [
+        360,
+        590
+      ]
+    },
+    {
+      "mode": "algorithms",
+      "width": 360,
+      "canvas": [
+        338,
+        429.5
+      ]
+    }
+  ],
+  "twelveVesselFrames": {
+    "medianMs": 16.700000000000728,
+    "p95Ms": 16.80000000000291
+  },
+  "sceneMemory": [
+    {
+      "geometries": 127,
+      "textures": 7
+    },
+    {
+      "geometries": 127,
+      "textures": 7
+    },
+    {
+      "geometries": 127,
+      "textures": 7
+    }
+  ],
+  "result": "passed"
+}

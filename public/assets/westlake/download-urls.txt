@@ -1,0 +1,3 @@
+https://api.openstreetmap.org/api/0.6/map?bbox=120.13,30.226,120.163,30.254
+https://api.openstreetmap.org/api/0.6/relation/2308774/full
+https://api.openstreetmap.org/api/0.6/relation/13121618/full

@@ -12,6 +12,7 @@ import type { SceneConfig, VehicleConfig } from './config';
 import './editor.css';
 import { createMarineBackground } from '../environments/marine/background';
 import { marineConfig } from '../environments/marine/config';
+import { compactPanel } from '../responsive';
 
 type Vehicle = { config: VehicleConfig; handle: ModelHandle; bounds: Placement['bounds']; issues: PlacementIssue[] };
 type Runtime = { environment: EnvironmentHandle; overlays: ReturnType<typeof createSpatialOverlays>; config: SceneConfig; vehicles: Vehicle[] };
@@ -34,25 +35,31 @@ export function createEnvironmentEditor(host: HTMLElement) {
         <div id="env-labels"></div>
         <div class="env-stage-title"><div class="eyebrow"><span id="env-code">E-01</span><span class="small-line"></span>ENVIRONMENT LIBRARY</div><h1 id="env-name">开阔湖面</h1><p id="env-description"></p></div>
         <div class="env-stage-badge"><i></i>真实比例 <span>1 unit = 1 m</span></div>
-        <div class="env-film-shots" hidden>${Object.entries(marineConfig.cameras).map(([id,c]) => `<button data-shot="${id}">${c.label}</button>`).join('')}<span id="env-sky-status">载入本地全景…</span></div>
-        <div class="env-tools" role="group" aria-label="场景取景"><button id="env-overview">全景</button><button id="env-top">俯视</button><button id="env-focus">聚焦载具</button><button id="env-reset">复位</button><button id="env-shot">保存图片</button><button id="env-immersive">专注视图</button></div>
+        <span id="env-sky-status">载入本地全景…</span>
+        <div class="env-tools" role="group" aria-label="场景取景"><label>视角<select id="env-camera" aria-label="环境视角"><option value="establishing">全景</option><option value="top">正上方俯视</option><option value="aerial">鸟瞰</option><option value="waterline">贴水</option><option value="context">场景细节</option><option value="custom" hidden>自由视角</option></select></label><button id="env-focus" disabled>聚焦所选</button><button id="env-shot">保存图片</button><button id="env-immersive" aria-pressed="false">专注视图</button></div>
         <div class="env-stage-bottom"><span id="env-dimensions"></span><span>拖动旋转 · 滚轮缩放 · 右键平移</span></div>
         <div id="env-error" role="alert" hidden></div>
       </section>
       <aside class="env-inspector"><details open><summary>摆放与配置 <span>场景设置</span></summary><div class="env-panel">
         <div class="env-section-head"><strong>所选载具</strong><span id="env-selected-code">—</span></div>
         <p id="env-selected-name" class="env-selected-name">选择载具以编辑</p>
+        <p id="env-selection-empty">点击场景中的载具或左侧列表，即可调整位置、朝向和配色。</p><div id="env-selection-fields" hidden>
         <div class="env-transform-mode"><button id="env-translate" aria-pressed="true">平移</button><button id="env-rotate" aria-pressed="false">朝向</button></div>
         <div class="env-position">${['x', 'y', 'z'].map(axis => `<label>${axis.toUpperCase()} / m<input id="env-pos-${axis}" type="number" step="0.1" min="-1000000" max="1000000"/></label>`).join('')}</div>
         <label class="env-field">朝向 / °<input id="env-yaw" type="number" step="1" min="-360000" max="360000"/></label>
         <div class="env-colors">${(['primary', 'secondary', 'accent'] as const).map((key, i) => `<label>${['主色', '辅色', '标识'][i]}<input id="env-color-${key}" type="color"/></label>`).join('')}</div>
         <button id="env-delete" class="env-delete">移除所选载具</button>
         <div id="env-issues" role="status" aria-live="polite"></div>
+        </div>
+        <section id="env-site-mission" hidden><div class="env-section-head"><strong>集群示例</strong><span>默认 12 艇</span></div>
+          <p class="env-note">示例编队包含 12 艘艇，分为三组。参考航线供运动规划使用；在视角菜单选择“12 艇编队”查看近景。</p>
+          <a id="env-fleet-example" download>下载初始编队 JSON</a><a id="env-navigation-example" download>下载航线与水域边界</a>
+        </section>
         <section class="env-display"><div class="env-section-head"><strong>环境显示</strong><span>LAYERS</span></div>
         ${flags.map((flag, i) => `<label class="toggle-row" for="env-flag-${flag}"><span>${flagNames[i]}</span><input type="checkbox" class="switch" id="env-flag-${flag}"/></label>`).join('')}</section>
         <section class="env-storage"><div class="env-section-head"><strong>场景配置</strong><span>JSON · V1</span></div>
-          <label class="env-field">生成种子<input id="env-seed" type="number" min="0" max="4294967295" step="1"/></label>
-          <button id="env-regenerate" class="env-secondary">按种子重建环境</button>
+          <div id="env-seed-controls"><label class="env-field">生成种子<input id="env-seed" type="number" min="0" max="4294967295" step="1"/></label>
+          <button id="env-regenerate" class="env-secondary">按种子重建环境</button></div>
           <div class="env-file-buttons"><button id="env-export" class="env-primary">导出 JSON</button><button id="env-import" class="env-secondary">导入 JSON</button></div>
           <input id="env-file" type="file" accept=".json,application/json" hidden/>
           <p class="env-note">切换环境保留本次草稿；刷新前请导出。位置警告不阻止保存。</p>
@@ -61,6 +68,8 @@ export function createEnvironmentEditor(host: HTMLElement) {
     </main><footer class="app-footer"><span>空海环境库 / <span id="env-status">准备场景…</span></span><span>静态空间数据 · 动态视觉水面</span></footer>
     <a id="env-source" href="/assets/qingzhou/sources.json" target="_blank" rel="noopener">数据 © OpenStreetMap contributors · ODbL · 工程尺寸与精度说明</a><div id="env-toast" role="status" aria-live="polite"></div>`;
   const $ = <E extends HTMLElement = HTMLElement>(s: string) => host.querySelector<E>(s)!;
+  $('.env-stage').appendChild($('#env-source'));
+  const releaseCompactPanel = compactPanel($<HTMLDetailsElement>('.env-library details'), 850);
   const canvasHost = $('#env-canvas');
   const scene = new T.Scene(), camera = new T.PerspectiveCamera(42, 1, 0.1, 6000);
   let renderer: T.WebGLRenderer;
@@ -127,7 +136,7 @@ export function createEnvironmentEditor(host: HTMLElement) {
     runtime = { environment, overlays, config, vehicles };
     background?.dispose(); background = undefined;
     const marine = !!libraryEntry(config.environment.variant);
-    host.classList.toggle('marine-scene', marine); $('.env-film-shots').hidden = !marine;
+    host.classList.toggle('marine-scene', marine); $('#env-seed-controls').hidden = marine;
     scene.environment = envMap.texture; scene.backgroundIntensity = 1; scene.environmentIntensity = .55;
     scene.backgroundRotation.set(0, 0, 0); scene.environmentRotation.set(0, 0, 0);
     renderer.toneMappingExposure = marine ? marineConfig.sky.exposure : 1.05;
@@ -156,11 +165,23 @@ export function createEnvironmentEditor(host: HTMLElement) {
     camera.position.set(...config.view.cameraPosition); controls.target.set(...config.view.target);
     controls.update(); controls.enableDamping = true;
     const preset = environmentPresets[config.environment.variant];
-    host.querySelectorAll<HTMLButtonElement>('[data-shot]').forEach(b => { b.textContent = (libraryEntry(config.environment.variant)?.cameras ?? marineConfig.cameras)[b.dataset.shot as keyof typeof marineConfig.cameras].label; });
+    const presets = libraryEntry(config.environment.variant)?.cameras ?? marineConfig.cameras;
+    for (const key of ['establishing', 'aerial', 'waterline', 'context'] as const) {
+      const option = $<HTMLOptionElement>(`#env-camera option[value="${key}"]`);
+      option.textContent = presets[key].label;
+      option.disabled = option.hidden = key !== 'establishing' && !libraryEntry(config.environment.variant);
+    }
+    $<HTMLSelectElement>('#env-camera').value = 'custom';
     $('#env-code').textContent = preset.code; $('#env-name').textContent = preset.name; $('#env-description').textContent = preset.description;
     const entry = libraryEntry(config.environment.variant), source = $<HTMLAnchorElement>('#env-source');
     source.hidden = !entry;
     if (entry) { source.href = entry.source; source.textContent = entry.attribution; }
+    const fleetSite = !!entry && 'fleetSize' in entry;
+    $('#env-site-mission').hidden = !fleetSite;
+    if (fleetSite) {
+      $<HTMLAnchorElement>('#env-fleet-example').href = `/assets/${config.environment.variant}/fleet-scene.json`;
+      $<HTMLAnchorElement>('#env-navigation-example').href = `/assets/${config.environment.variant}/navigation.json`;
+    }
     $('#env-dimensions').textContent = `${preset.width} × ${preset.depth} m · 水位 0 m · 飞行高度 0–${environment.spatial.flight.maxY} m`;
     $<HTMLInputElement>('#env-seed').value = String(config.environment.seed);
     host.querySelectorAll<HTMLButtonElement>('[data-env]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.env === config.environment.variant)));
@@ -169,13 +190,17 @@ export function createEnvironmentEditor(host: HTMLElement) {
   }
   function defaultConfig(variant: EnvironmentVariant): SceneConfig {
     const environment = createEnvironment({ variant }), { presentation, spatial } = environment;
-    const vehicles = (['quadrotor', 'usv'] as const).map((kind, i) => {
-      const model = modelCatalog.find(m => m.id === `${kind}-inspection`)!, spawn = spatial.spawnPoints.find(s => s.kind === kind)!;
-      return { id: `v${i + 1}`, modelId: model.id, position: [...spawn.position] as Point3, yaw: 0, scale: 1, colors: { ...model.colors } };
+    const entry = libraryEntry(variant), fleetSize = entry && 'fleetSize' in entry ? entry.fleetSize : 0;
+    const kinds = fleetSize ? Array.from({ length:fleetSize }, () => 'usv' as const) : ['quadrotor', 'usv'] as const;
+    const vehicles = kinds.map((kind, i) => {
+      const model = modelCatalog.find(m => m.id === `${kind}-${fleetSize ? 'survey' : 'inspection'}`)!;
+      const spawn = spatial.spawnPoints.filter(s => s.kind === kind)[fleetSize ? i : 0];
+      return { id: `v${i + 1}`, modelId: model.id, position: [...spawn.position] as Point3, yaw: spawn.yaw, scale: 1,
+        colors: { ...model.colors, ...(fleetSize ? { accent:['#247d8c','#c19c40','#b76b50'][Math.floor(i/4)] } : {}) } };
     });
     const pose = !!libraryEntry(variant) ? { target: presentation.target, cameraPosition: presentation.cameraPosition } : fitPose(new T.Box3().setFromObject(environment.root), new T.Vector3(...presentation.cameraPosition));
     environment.dispose();
-    return { version: 1, environment: { variant, seed: environmentPresets[variant].seed }, vehicles, view: { ...pose, selectedId: !!libraryEntry(variant) ? null : 'v1', labels: true, waterBoundary: false, obstacles: false, spawns: false, waterAnimation: !matchMedia('(prefers-reduced-motion: reduce)').matches, rotorAnimation: false } };
+    return { version: 1, environment: { variant, seed: environmentPresets[variant].seed }, vehicles, view: { ...pose, selectedId: !!libraryEntry(variant) ? null : 'v1', labels: !fleetSize, waterBoundary: false, obstacles: false, spawns: false, waterAnimation: !matchMedia('(prefers-reduced-motion: reduce)').matches, rotorAnimation: false } };
   }
   function switchEnvironment(variant: EnvironmentVariant) {
     if (runtime?.config.environment.variant === variant) return;
@@ -197,7 +222,10 @@ export function createEnvironmentEditor(host: HTMLElement) {
       label.addEventListener('click', () => select(v.config.id)); label.addEventListener('dblclick', () => { select(v.config.id); focusSelected(); }); labels.appendChild(label); labelNodes.set(v.config.id, label);
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line'); line.setAttribute('stroke', model.kind === 'usv' ? '#568e7d' : '#a68f60'); svg.appendChild(line); labelLines.set(v.config.id, line);
     });
-    $('#env-fleet-count').textContent = `${runtime.vehicles.length} / 100`; markSelection();
+    $('#env-fleet-count').textContent = `${runtime.vehicles.length} / 100`;
+    $<HTMLButtonElement>('#env-add').disabled = runtime.vehicles.length >= 100;
+    $<HTMLInputElement>('#env-flag-rotorAnimation').disabled = runtime.vehicles.length === 0;
+    markSelection();
   }
   function markSelection() {
     host.querySelectorAll<HTMLButtonElement>('[data-instance]').forEach(b => { b.setAttribute('aria-pressed', String(b.dataset.instance === selected)); });
@@ -218,6 +246,9 @@ export function createEnvironmentEditor(host: HTMLElement) {
   }
   function inspector() {
     const v = selectedVehicle(), m = modelCatalog.find(m => m.id === v?.config.modelId);
+    $('#env-selection-fields').hidden = !v; $('#env-selection-empty').hidden = !!v;
+    $<HTMLButtonElement>('#env-focus').disabled = !v;
+    $<HTMLButtonElement>('#env-translate').disabled = $<HTMLButtonElement>('#env-rotate').disabled = !v;
     $('#env-selected-name').textContent = m ? `${m.name} / ${selected}` : '选择载具以编辑'; $('#env-selected-code').textContent = m?.code ?? '—';
     for (const [i, axis] of ['x', 'y', 'z'].entries()) {
       const input = $<HTMLInputElement>(`#env-pos-${axis}`); input.disabled = !v || (axis === 'y' && m?.kind === 'usv');
@@ -273,6 +304,7 @@ export function createEnvironmentEditor(host: HTMLElement) {
     controls.enableDamping = false; controls.update();
     controls.target.set(...pose.target); camera.position.set(...pose.cameraPosition);
     camera.near = 0.1; camera.updateProjectionMatrix(); controls.enableDamping = false; controls.update(); controls.enableDamping = true;
+    $<HTMLSelectElement>('#env-camera').value = top ? 'top' : 'establishing';
   }
   function focusSelected() {
     const v = selectedVehicle(); if (!v) { notify('先选择一个载具'); return; }
@@ -280,11 +312,13 @@ export function createEnvironmentEditor(host: HTMLElement) {
     controls.enableDamping = false; controls.update();
     controls.target.copy(center); camera.position.copy(center).add(new T.Vector3(1, 0.8, 1.3).normalize().multiplyScalar(size * 1.9 * Math.max(1, 1 / camera.aspect)));
     camera.near = 0.01; camera.updateProjectionMatrix(); controls.enableDamping = false; controls.update(); controls.enableDamping = true;
+    $<HTMLSelectElement>('#env-camera').value = 'custom';
   }
   function importText(text: string) {
     const c = parseSceneConfig(text); load(c); notify(`已导入 ${c.vehicles.length} 个载具`);
   }
   function shot(name: keyof typeof marineConfig.cameras) {
+    if (!libraryEntry(runtime.config.environment.variant)) { overview(); return; }
     const preset = (libraryEntry(runtime.config.environment.variant)?.cameras ?? marineConfig.cameras)[name];
     controls.enableDamping = false; controls.update();
     const vehicle = name === 'establishing' || (name === 'aerial' && libraryEntry(runtime.config.environment.variant)?.fixedAerial) ? undefined : runtime.vehicles.find(v => v.config.modelId.startsWith(name === 'aerial' ? 'quadrotor' : 'usv'));
@@ -294,7 +328,7 @@ export function createEnvironmentEditor(host: HTMLElement) {
     camera.fov = preset.fov; camera.near = name === 'establishing' ? .5 : .03; camera.updateProjectionMatrix();
     controls.update(); controls.enableDamping = true;
     if (vehicle) select(vehicle.config.id); else select('');
-    host.querySelectorAll<HTMLButtonElement>('[data-shot]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.shot === name)));
+    $<HTMLSelectElement>('#env-camera').value = name;
   }
   transform.addEventListener('objectChange', () => {
     const v = selectedVehicle(); if (!v) return;
@@ -328,10 +362,12 @@ export function createEnvironmentEditor(host: HTMLElement) {
     buildList(); select(runtime.vehicles[0]?.config.id ?? ''); validate();
   });
   flags.forEach(f => $(`#env-flag-${f}`).addEventListener('change', () => { runtime.config.view[f] = $<HTMLInputElement>(`#env-flag-${f}`).checked; syncLayers(); }));
-  $('#env-overview').addEventListener('click', () => overview()); $('#env-top').addEventListener('click', () => overview(true)); $('#env-reset').addEventListener('click', () => overview()); $('#env-focus').addEventListener('click', focusSelected);
-  host.querySelectorAll<HTMLButtonElement>('[data-shot]').forEach(b => b.addEventListener('click', () => shot(b.dataset.shot as keyof typeof marineConfig.cameras)));
+  $('#env-focus').addEventListener('click', focusSelected);
+  $('#env-camera').addEventListener('change', () => { const value = $<HTMLSelectElement>('#env-camera').value; if (value === 'top') overview(true); else shot(value as keyof typeof marineConfig.cameras); });
+  controls.addEventListener('start', () => { $<HTMLSelectElement>('#env-camera').value = 'custom'; });
   $('#env-immersive').addEventListener('click', () => {
     immersive = !immersive; host.classList.toggle('env-immersive', immersive); $('#env-immersive').textContent = immersive ? '恢复编辑' : '专注视图';
+    $('#env-immersive').setAttribute('aria-pressed', String(immersive));
     transform.getHelper().visible = !immersive; selection.visible = !immersive && Boolean(selectedVehicle()); syncLayers(); resize();
   });
   $('#env-regenerate').addEventListener('click', () => {
@@ -414,7 +450,7 @@ export function createEnvironmentEditor(host: HTMLElement) {
   renderer.domElement.addEventListener('webglcontextlost', e => { e.preventDefault(); stopped = true; cancelAnimationFrame(raf); $('#env-error').hidden = false; $('#env-error').textContent = '图形上下文中断，请刷新并导入已保存的配置。'; });
   const api = {
     setActive(value: boolean) { active = value; if (value) { resize(); controls.update(); } },
-    dispose() { stopped = true; cancelAnimationFrame(raf); observer.disconnect(); clearTimeout(toastTimer); background?.dispose(); transform.dispose(); controls.dispose(); disposeRuntime(runtime); selection.geometry.dispose(); (selection.material as T.Material).dispose(); envMap.dispose(); sun.shadow.dispose(); renderer.dispose(); },
+    dispose() { stopped = true; releaseCompactPanel(); cancelAnimationFrame(raf); observer.disconnect(); clearTimeout(toastTimer); background?.dispose(); transform.dispose(); controls.dispose(); disposeRuntime(runtime); selection.geometry.dispose(); (selection.material as T.Material).dispose(); envMap.dispose(); sun.shadow.dispose(); renderer.dispose(); },
     get runtime() { return runtime; }, get renderer() { return renderer; }, get camera() { return camera; }, get transform() { return transform; },
     snapshot, importText, switchEnvironment, addVehicle, select, overview, focusSelected, shot,
   };

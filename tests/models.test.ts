@@ -5,9 +5,9 @@ import { createQuadrotor, createUSV, quadrotorPresets, usvPresets } from '../src
 import { createHullGeometry } from '../src/models/hull';
 import { createIndependentScene } from '../examples/independent';
 
-test('twelve models have finite geometry, outward hulls and correct rotor counts', () => {
-  assert.equal(Object.keys(quadrotorPresets).length, 6);
-  assert.equal(Object.keys(usvPresets).length, 6);
+test('eighteen models have finite geometry, outward hulls and correct rotor counts', () => {
+  assert.equal(Object.keys(quadrotorPresets).length, 8);
+  assert.equal(Object.keys(usvPresets).length, 10);
   for (const variant of Object.keys(quadrotorPresets) as (keyof typeof quadrotorPresets)[]) {
     const h = createQuadrotor({ variant });
     assert.equal(Object.keys(h.parts).filter(n => n.startsWith('rotor-')).length, 4);
@@ -29,9 +29,15 @@ test('new variants expose their distinct equipment and keep four rotors / one bo
     [createUSV({ variant: 'rescue' }), ['lifebuoys', 'recovery-ramp']],
     [createUSV({ variant: 'sampling' }), ['sample-carousel', 'sample-bottle-6', 'sampling-probe']],
     [createUSV({ variant: 'endurance' }), ['solar-panel-left', 'solar-panel-right', 'weather-station']],
+    [createQuadrotor({ variant: 'multispectral' }), ['multispectral-array', 'spectral-camera-4', 'irradiance-sensor']],
+    [createQuadrotor({ variant: 'relay' }), ['radio-pod', 'relay-antennas']],
+    [createUSV({ variant: 'multibeam' }), ['multibeam-transducer', 'stern-a-frame']],
+    [createUSV({ variant: 'relay' }), ['communication-radome', 'directional-antennas', 'communication-rack']],
+    [createUSV({ variant: 'debris' }), ['collection-conveyor', 'collection-basket', 'work-beacon']],
+    [createUSV({ variant: 'patrol' }), ['observation-tower', 'patrol-radar', 'patrol-camera']],
   ] as const;
   for (const [handle, names] of cases) {
-    for (const name of names) assert.equal(handle.parts[name], handle.root.getObjectByName(name));
+    for (const name of names) { assert.ok(handle.parts[name], name); assert.equal(handle.parts[name], handle.root.getObjectByName(name)); }
     handle.dispose();
   }
 });

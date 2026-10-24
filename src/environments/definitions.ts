@@ -6,8 +6,13 @@ import { defineHornsea } from './hornsea/scene';
 import { defineJiuzhou } from './jiuzhou/scene';
 import { defineQingzhou } from './qingzhou/scene';
 import { defineDeepwater } from './marine/definition';
+import { defineUSVSite } from './usv-sites/scene';
+import { isUSVSite, usvSiteConfigs } from './usv-sites/config';
 
 export const environmentPresets = {
+  westlake: usvSiteConfigs.westlake,
+  kallang: usvSiteConfigs.kallang,
+  waalhaven: usvSiteConfigs.waalhaven,
   ninepin: { name: '香港果洲群岛', code: 'R-04', width: 5000, depth: 4000, description: '23 个岛屿与岩礁 · 公开岸线与实测地形数据', seed: 5104 },
   hornsea: { name: '北海 Hornsea 2', code: 'R-03', width: 8000, depth: 7000, description: 'G33 周边 12 台真实机位 · 海上风电巡检', seed: 5103 },
   jiuzhou: { name: '九洲航道桥', code: 'R-02', width: 1200, depth: 1000, description: '港珠澳大桥 · 风帆双塔 · 实景校核版', seed: 5102 },
@@ -30,6 +35,7 @@ const ellipse = (x: number, z: number, rx: number, rz: number, n = 40): Point2[]
 export function defineEnvironment(variant: EnvironmentVariant, seed: number = environmentPresets[variant]?.seed): EnvironmentDefinition {
   if (!Object.hasOwn(environmentPresets, variant)) throw new RangeError('未知环境类型');
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new RangeError('seed 须为 0 至 4294967295 的整数');
+  if (isUSVSite(variant)) return defineUSVSite(variant, seed);
   if (variant === 'ninepin') return defineNinepin(seed);
   if (variant === 'hornsea') return defineHornsea(seed);
   if (variant === 'jiuzhou') return defineJiuzhou(seed);

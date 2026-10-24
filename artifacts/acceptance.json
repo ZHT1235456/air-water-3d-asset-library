@@ -43,6 +43,20 @@
       "calls": 244
     },
     {
+      "model": "quadrotor-multispectral",
+      "geometries": 227,
+      "textures": 3,
+      "triangles": 93858,
+      "calls": 231
+    },
+    {
+      "model": "quadrotor-relay",
+      "geometries": 223,
+      "textures": 3,
+      "triangles": 95354,
+      "calls": 227
+    },
+    {
       "model": "usv-inspection",
       "geometries": 90,
       "textures": 3,
@@ -83,6 +97,34 @@
       "textures": 3,
       "triangles": 81222,
       "calls": 183
+    },
+    {
+      "model": "usv-multibeam",
+      "geometries": 120,
+      "textures": 3,
+      "triangles": 48618,
+      "calls": 124
+    },
+    {
+      "model": "usv-relay",
+      "geometries": 114,
+      "textures": 3,
+      "triangles": 48734,
+      "calls": 118
+    },
+    {
+      "model": "usv-debris",
+      "geometries": 160,
+      "textures": 3,
+      "triangles": 58338,
+      "calls": 164
+    },
+    {
+      "model": "usv-patrol",
+      "geometries": 116,
+      "textures": 3,
+      "triangles": 45790,
+      "calls": 120
     }
   ],
   "memory": [

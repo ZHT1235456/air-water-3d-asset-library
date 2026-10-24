@@ -1,0 +1,109 @@
+{
+  "errors": [],
+  "models": [
+    "quadrotor-multispectral",
+    "quadrotor-relay",
+    "usv-multibeam",
+    "usv-relay",
+    "usv-debris",
+    "usv-patrol"
+  ],
+  "algorithms": [
+    {
+      "algorithm": "astar",
+      "status": "complete",
+      "time": 219.19999999999183,
+      "distance": 876.2664515063681,
+      "separation": null,
+      "coverage": 0,
+      "error": 0,
+      "expanded": 294,
+      "gridCost": 928.89247611107,
+      "radius": 2,
+      "frames": 440
+    },
+    {
+      "algorithm": "dijkstra",
+      "status": "complete",
+      "time": 220.89999999999173,
+      "distance": 883.0757382618151,
+      "separation": null,
+      "coverage": 0,
+      "error": 0,
+      "expanded": 3725,
+      "gridCost": 928.89247611107,
+      "radius": 2,
+      "frames": 443
+    },
+    {
+      "algorithm": "leader",
+      "status": "complete",
+      "time": 303.1000000000004,
+      "distance": 5463.930456906204,
+      "separation": 16.97056274847693,
+      "coverage": 0,
+      "error": 4.641245714809236e-14,
+      "expanded": 238,
+      "gridCost": 940.6082048636081,
+      "radius": 2,
+      "frames": 608
+    },
+    {
+      "algorithm": "consensus",
+      "status": "complete",
+      "time": 12.599999999999971,
+      "distance": 64.66818983657782,
+      "separation": 17.077432147153928,
+      "coverage": 0,
+      "error": 0.14795398287740408,
+      "expanded": 0,
+      "gridCost": 0,
+      "radius": 2,
+      "frames": 27
+    },
+    {
+      "algorithm": "coverage",
+      "status": "complete",
+      "time": 105.79999999999826,
+      "distance": 2519.9999999999354,
+      "separation": 39.99999999999965,
+      "coverage": 1,
+      "error": 0,
+      "expanded": 0,
+      "gridCost": 0,
+      "radius": 2,
+      "frames": 213
+    }
+  ],
+  "scenes": [
+    {
+      "environment": "kallang",
+      "routePoints": 2
+    },
+    {
+      "environment": "waalhaven",
+      "routePoints": 2
+    },
+    {
+      "environment": "deepwater",
+      "routePoints": 2
+    },
+    {
+      "environment": "qingzhou",
+      "routePoints": 2
+    },
+    {
+      "environment": "jiuzhou",
+      "routePoints": 2
+    },
+    {
+      "environment": "hornsea",
+      "routePoints": 2
+    },
+    {
+      "environment": "ninepin",
+      "routePoints": 2
+    }
+  ],
+  "result": "passed"
+}

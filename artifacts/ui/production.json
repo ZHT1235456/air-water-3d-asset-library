@@ -1,0 +1,11 @@
+{
+  "errors": [],
+  "methods": [
+    "astar",
+    "dijkstra",
+    "leader",
+    "consensus",
+    "coverage"
+  ],
+  "result": "passed"
+}

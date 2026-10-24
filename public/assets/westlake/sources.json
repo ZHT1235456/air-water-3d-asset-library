@@ -1,0 +1,72 @@
+{
+  "scene": "杭州西湖 · 三岛水域",
+  "variant": "westlake",
+  "reviewed": "2026-10-24",
+  "scope": "实景岸线与设施轮廓版；适合米制水域编队及运动规划的几何实验。未取得高程模型，不是实测三维孪生。",
+  "coordinateSystem": {
+    "latitude": 30.2402,
+    "longitude": 120.1455,
+    "crs": "EPSG:32651",
+    "easting": 225299.1124942904,
+    "northing": 3348849.9844354056,
+    "axes": "+X grid east, -Z grid north, Y up"
+  },
+  "extentMetres": [
+    2400,
+    2500
+  ],
+  "verticalDatum": "局部显示水位 Y=0；岸面统一设定高度，不对应实地潮位或测量高程。",
+  "counts": {
+    "waterPolygons": 20,
+    "buildings": 340,
+    "structures": 29,
+    "osmHeight": 1,
+    "estimatedFromLevels": 2,
+    "displayHeight": 337
+  },
+  "verified": [
+    "OSM water 多边形及孔洞、真实建筑/道路/码头/桥位轮廓；保留稳定 OSM ID。",
+    "水域与陆地同源；岛屿和突堤从水域中扣除。",
+    "12 个出生点及参考航线按当前静态几何检查。"
+  ],
+  "limitations": [
+    "OSM 记录存在采集年代、位置误差和缺漏，未作现场测量校核。0.2 m 岸线简化容差不是数据测量精度。",
+    "岸面高度 2.2 m 为显示设定；建筑仅 1 个轮廓有 OSM height 标签，2 个按层数 × 3.2 m 估计，其余为统一显示高度。",
+    "建筑屋顶、门窗、树木、表面颜色、水波与天空均为外观表达；不代表现场细部、树位或当天气象。",
+    "桥梁仅保留已标绘平面范围，显示桥面高度为近似；未核实桥下净空/桥墩，整个桥位作为保守水面障碍，不开放虚构桥洞。",
+    "没有水深、潮汐、流场、船流或临时障碍数据；参考航线不代表实地通航许可，群体动力学与避碰算法由使用方接入。",
+    "这是矩形裁剪范围，未补造范围之外的城市或山体；低机位可见裁剪边缘。"
+  ],
+  "sources": [
+    {
+      "title": "OpenStreetMap geographic database",
+      "url": "https://www.openstreetmap.org/#map=15/30.2402/120.1455",
+      "author": "© OpenStreetMap contributors",
+      "license": "ODbL 1.0",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "attributionUrl": "https://www.openstreetmap.org/copyright",
+      "downloadUrls": [
+        "https://api.openstreetmap.org/api/0.6/map?bbox=120.13,30.226,120.163,30.254",
+        "https://api.openstreetmap.org/api/0.6/relation/2308774/full",
+        "https://api.openstreetmap.org/api/0.6/relation/13121618/full"
+      ],
+      "snapshot": "/assets/westlake/site.osm",
+      "sha256": "4fb66933505d16ed6790e3afaf520c34b9ab3232c05cbc5041375709443c139d",
+      "derivedDatabase": "/assets/westlake/layout.json",
+      "derivedDatabaseLicense": "ODbL 1.0",
+      "modifications": "合并 OSM API 分块和完整水域关系；筛除无关记录；投影至本地 UTM 米制坐标；裁剪、有效化、简化岸线；线状道路按标签宽度或显示宽度缓冲。"
+    },
+    {
+      "title": "West Lake Cultural Landscape of Hangzhou — UNESCO",
+      "url": "https://whc.unesco.org/en/list/1334/",
+      "usage": "地点与地理背景核对；网页照片未下载或作为纹理分发。"
+    },
+    {
+      "title": "Kloppenheim 06 Pure Sky — Poly Haven",
+      "url": "https://polyhaven.com/a/kloppenheim_06_puresky",
+      "author": "Greg Zaal, Jarod Guest",
+      "license": "CC0 1.0",
+      "usage": "共用通用天空与环境光，非现场摄影。"
+    }
+  ]
+}

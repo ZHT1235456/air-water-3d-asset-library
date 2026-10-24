@@ -46,3 +46,10 @@
 @media(max-width:800px){#env-source{left:8px;bottom:43px;font-size:8px;max-width:90%}}
 
 .env-map-jiuzhou{background:linear-gradient(155deg,#91adb3 40%,#e7e5d7 41%,#e7e5d7 47%,#91adb3 48%)}
+.env-map-westlake{background:url('/assets/westlake/map.svg') center/cover}
+.env-map-kallang{background:url('/assets/kallang/map.svg') center/cover}
+.env-map-waalhaven{background:url('/assets/waalhaven/map.svg') center/cover}
+.env-map-westlake:after,.env-map-kallang:after,.env-map-waalhaven:after{display:none}
+#env-site-mission{border-top:1px solid #dce5df;margin-top:20px;padding-top:20px}
+#env-site-mission[hidden]{display:none}
+#env-site-mission a{display:block;margin-top:10px;color:#367562;font-size:11px;text-decoration:underline;text-underline-offset:3px}

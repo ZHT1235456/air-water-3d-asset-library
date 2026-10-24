@@ -1,7 +1,7 @@
 import type { ColorRepresentation, Group, Object3D } from 'three';
 
-export type QuadrotorVariant = 'inspection' | 'survey' | 'heavy' | 'protected' | 'rescue' | 'cargo';
-export type USVVariant = 'inspection' | 'survey' | 'utility' | 'rescue' | 'sampling' | 'endurance';
+export type QuadrotorVariant = 'inspection' | 'survey' | 'heavy' | 'protected' | 'rescue' | 'cargo' | 'multispectral' | 'relay';
+export type USVVariant = 'inspection' | 'survey' | 'utility' | 'rescue' | 'sampling' | 'endurance' | 'multibeam' | 'relay' | 'debris' | 'patrol';
 export interface ModelColors {
   primary?: ColorRepresentation;
   secondary?: ColorRepresentation;

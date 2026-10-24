@@ -5,6 +5,8 @@ export const quadrotorPresets = {
   protected: { name: '近距巡检', code: 'Q-04', description: '环形桨叶护罩 / 紧凑机身 / 前置云台', armX: 0.24, armZ: 0.23, radius: 0.15, body: [0.19, 0.10, 0.24], leg: 0.15, primary: '#e4ebeb', secondary: '#304649', accent: '#408f81' },
   rescue: { name: '应急照明', code: 'Q-05', description: '双探照灯 / 定向扬声器 / 高起落架', armX: 0.39, armZ: 0.35, radius: 0.23, body: [0.28, 0.13, 0.36], leg: 0.32, primary: '#ece8e1', secondary: '#38424a', accent: '#d95e32' },
   cargo: { name: '物资运输', code: 'Q-06', description: '封闭货舱 / 悬挂锁扣 / 双电池供电', armX: 0.59, armZ: 0.53, radius: 0.33, body: [0.38, 0.17, 0.46], leg: 0.52, primary: '#dde6ed', secondary: '#2d3e50', accent: '#417fae' },
+  multispectral: { name: '多光谱观测', code: 'Q-07', description: '四通道下视相机 / 顶置光照传感器 / 高起落架', armX: 0.43, armZ: 0.38, radius: 0.245, body: [0.30, 0.13, 0.38], leg: 0.34, primary: '#e2ebe3', secondary: '#31463c', accent: '#528665' },
+  relay: { name: '空中中继', code: 'Q-08', description: '双极化面板天线 / 通信设备舱 / 双鞭状天线', armX: 0.46, armZ: 0.42, radius: 0.26, body: [0.32, 0.14, 0.40], leg: 0.36, primary: '#e4e7ef', secondary: '#394255', accent: '#6b7dab' },
 } as const;
 export const usvPresets = {
   inspection: { name: '轻型巡检', code: 'S-01', description: '单尖船首 / 流线设备舱 / 单推进器', length: 1.8, width: 0.64, depth: 0.22, deck: 0.18, primary: '#e7ecef', secondary: '#31444f', accent: '#df6c39' },
@@ -13,4 +15,8 @@ export const usvPresets = {
   rescue: { name: '水上救援', code: 'S-04', description: '单尖船首 / 双救生圈 / 船尾回收滑道', length: 2.2, width: 0.88, depth: 0.26, deck: 0.21, primary: '#eee7df', secondary: '#3c484c', accent: '#e26732' },
   sampling: { name: '环境采样', code: 'S-05', description: '单尖船首 / 六瓶采样盘 / 吊架与采样探头', length: 2.8, width: 1.02, depth: 0.31, deck: 0.25, primary: '#e0ece7', secondary: '#324a47', accent: '#399582' },
   endurance: { name: '长航时观测', code: 'S-06', description: '单尖船首 / 双太阳能板 / 气象观测桅杆', length: 3.6, width: 1.12, depth: 0.33, deck: 0.27, primary: '#e2e8ed', secondary: '#2c4054', accent: '#3c7fa7' },
+  multibeam: { name: '多波束测深', code: 'S-07', description: '侧挂换能器阵列 / 船尾 A 架 / 双定位天线', length: 3.8, width: 1.2, depth: 0.36, deck: 0.29, primary: '#e0e8eb', secondary: '#304652', accent: '#337c9b' },
+  relay: { name: '通信中继', code: 'S-08', description: '球形天线罩 / 双面板天线 / 通信机柜', length: 3.0, width: 1.02, depth: 0.30, deck: 0.25, primary: '#e6e8ee', secondary: '#394255', accent: '#6b7dab' },
+  debris: { name: '水面清理', code: 'S-09', description: '侧置回收输送带 / 网格收集筐 / 作业警示灯', length: 3.4, width: 1.22, depth: 0.35, deck: 0.28, primary: '#e2ebe4', secondary: '#35483d', accent: '#57966d' },
+  patrol: { name: '水域巡逻', code: 'S-10', description: '高位光电云台 / 横向雷达 / 周向护舷', length: 4.2, width: 1.18, depth: 0.37, deck: 0.30, primary: '#e7eced', secondary: '#2f414e', accent: '#397aa4' },
 } as const;

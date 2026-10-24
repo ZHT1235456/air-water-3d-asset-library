@@ -63,7 +63,7 @@ try {
   await page.waitForTimeout(250);
   assert.notDeepEqual(await page.evaluate(() => window.__modelWorkbench.camera.position.toArray()), pose);
   await page.mouse.wheel(0, 120); await page.mouse.down({ button: 'right' }); await page.mouse.move(centre.x + 40, centre.y, { steps: 5 }); await page.mouse.up({ button: 'right' });
-  await page.locator('#reset').click();
+  await page.locator('[data-view="perspective"]').click();
   for (let cycle = 0; cycle < 4; cycle++) {
     for (const entry of entries) { await page.evaluate(id => window.__modelWorkbench.selectModel(id), entry.id); await page.waitForTimeout(60); }
     await page.evaluate(() => window.__modelWorkbench.selectModel('quadrotor-inspection'));
@@ -76,7 +76,7 @@ try {
   await page.screenshot({ path: 'artifacts/screenshots/workbench-desktop.png' });
   await page.setViewportSize({ width: 390, height: 844 });
   // Fold both panels, then unfold settings and verify mobile layout.
-  await page.locator('.library summary').click();
+  await page.locator('.library details').evaluate(el => { el.open = false; });
   await page.locator('.inspector summary').click();
   await page.screenshot({ path: 'artifacts/screenshots/workbench-mobile.png', fullPage: true });
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));

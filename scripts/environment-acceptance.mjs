@@ -28,9 +28,9 @@ try {
   const variants = ['lake', 'river', 'harbor', 'islands', 'bridge', 'waterfront'];
   for (const variant of variants) {
     await page.evaluate(variant => window.__environmentWorkbench.switchEnvironment(variant), variant); await page.waitForTimeout(250);
-    await page.locator('#env-overview').click(); await page.waitForTimeout(120);
+    await page.locator('#env-camera').selectOption('establishing'); await page.waitForTimeout(120);
     await page.screenshot({ path: `artifacts/environments/${variant}-overview.png` });
-    await page.locator('#env-top').click(); await page.waitForTimeout(120);
+    await page.locator('#env-camera').selectOption('top'); await page.waitForTimeout(120);
     await page.screenshot({ path: `artifacts/environments/${variant}-top.png` });
     report.scenes.push(await page.evaluate(() => {
       const e = window.__environmentWorkbench;
@@ -56,7 +56,7 @@ try {
   await page.locator('#env-pos-z').fill('0'); await page.locator('#env-pos-z').press('Tab');
   assert.match(await page.locator('#env-issues').textContent(), /桥面/);
   await page.locator('#env-flag-obstacles').check();
-  await page.locator('#env-overview').click(); await page.waitForTimeout(150);
+  await page.locator('#env-camera').selectOption('establishing'); await page.waitForTimeout(150);
   await page.screenshot({ path: 'artifacts/environments/bridge-clearance-data.png' });
   await page.locator('#env-flag-obstacles').uncheck();
   await page.evaluate(() => window.__environmentWorkbench.switchEnvironment('lake'));
@@ -106,7 +106,7 @@ try {
   await page.waitForTimeout(100); assert.deepEqual(await page.evaluate(() => window.__environmentWorkbench.snapshot().vehicles), original.vehicles);
   await page.evaluate(() => window.__environmentWorkbench.switchEnvironment('river')); await page.evaluate(() => window.__environmentWorkbench.switchEnvironment('lake'));
   assert.deepEqual(await page.evaluate(() => window.__environmentWorkbench.snapshot().vehicles), original.vehicles);
-  await page.locator('#mode-models').click(); assert.equal(await page.locator('[data-model]').count(), 12);
+  await page.locator('#mode-models').click(); assert.equal(await page.locator('[data-model]').count(), 18);
   await page.locator('[data-model="usv-rescue"]').click();
   await page.locator('#mode-environments').click(); assert.equal(await page.locator('[data-instance]').count(), 3);
   // Warm-up overlays then compare resources in exactly the same scene/view state.
@@ -118,12 +118,12 @@ try {
     report.memory.push(await page.evaluate(() => ({ ...window.__environmentWorkbench.renderer.info.memory })));
   }
   assert.deepEqual(report.memory[0], report.memory.at(-1));
-  // Twelve real-size vehicles, one of each model.
+  // Twelve real-size vehicles from the original model set.
   await page.evaluate(() => window.__environmentWorkbench.switchEnvironment('islands'));
   const models = ['quadrotor-survey','quadrotor-heavy','quadrotor-protected','quadrotor-rescue','quadrotor-cargo','usv-survey','usv-utility','usv-rescue','usv-sampling','usv-endurance'];
   for (const id of models) await page.evaluate(id => window.__environmentWorkbench.addVehicle(id), id);
   assert.equal(await page.locator('[data-instance]').count(), 12);
-  await page.locator('#env-overview').click(); await page.waitForTimeout(200);
+  await page.locator('#env-camera').selectOption('establishing'); await page.waitForTimeout(200);
   report.performance = await page.evaluate(async () => {
     const intervals = []; let previous = performance.now();
     for (let i = 0; i < 90; i++) { const time = await new Promise(requestAnimationFrame); if (i > 5) intervals.push(time - previous); previous = time; }
@@ -134,8 +134,8 @@ try {
   await page.screenshot({ path: 'artifacts/environments/twelve-vehicles.png' });
   report.desktopLabels = await verifyLabels();
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.locator('.env-library summary').click(); await page.locator('.env-inspector summary').click();
-  await page.locator('#env-overview').click(); await page.waitForTimeout(180);
+  await page.locator('.env-library details').evaluate(el => { el.open = false; }); await page.locator('.env-inspector summary').click();
+  await page.locator('#env-camera').selectOption('establishing'); await page.waitForTimeout(180);
   await page.screenshot({ path: 'artifacts/environments/mobile.png', fullPage: true });
   report.mobileLabels = await verifyLabels();
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));

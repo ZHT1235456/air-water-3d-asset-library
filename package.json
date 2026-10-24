@@ -14,7 +14,11 @@
     "test:qingzhou": "node scripts/qingzhou-acceptance.mjs",
     "test:library": "node scripts/library-acceptance.mjs",
     "test:hornsea": "node scripts/hornsea-acceptance.mjs",
-    "test:ninepin": "node scripts/ninepin-acceptance.mjs"
+    "test:ninepin": "node scripts/ninepin-acceptance.mjs",
+    "test:usv-sites": "node scripts/usv-sites-acceptance.mjs",
+    "test:algorithms": "node scripts/algorithms-acceptance.mjs",
+    "test:ui": "node scripts/ui-acceptance.mjs",
+    "data:usv-sites": "python scripts/extract-usv-sites.py && tsx scripts/export-usv-scenarios.ts"
   },
   "dependencies": {
     "three": "^0.180.0"

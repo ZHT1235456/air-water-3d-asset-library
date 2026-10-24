@@ -14,7 +14,7 @@ export function createQuadrotor(options: ModelOptions<QuadrotorVariant> = {}) {
   const parts: Record<string, T.Object3D> = {};
   const bind = <O extends T.Object3D>(name: string, obj: O) => { obj.name = name; parts[name] = obj; return obj; };
   const [w, h, l] = p.body;
-  const heavy = variant === 'heavy' || variant === 'cargo', survey = variant === 'survey' || variant === 'rescue';
+  const heavy = variant === 'heavy' || variant === 'cargo', survey = ['survey', 'rescue', 'multispectral', 'relay'].includes(variant);
   const body = bind('body', new T.Group()); root.add(body);
   box(body, [w * 1.05, h * 0.35, l], [0, -h * 0.2, 0], m.secondary, 0.025);
   box(body, [w, h * 0.8, l * 0.96], [0, h * 0.15, 0], m.primary, 0.035);
@@ -139,6 +139,29 @@ export function createQuadrotor(options: ModelOptions<QuadrotorVariant> = {}) {
     }
     box(cargo, [0.11, 0.07, 0.003], [0, -0.35, 0.168], m.accent, 0.005);
     bolts(cargo, [-0.12, 0.12], [-0.14, 0.14], -0.244, m.metal);
+  }
+  if (variant === 'multispectral') {
+    const array = bind('multispectral-array', new T.Group()); root.add(array);
+    box(array, [0.16, 0.055, 0.13], [0, -0.19, -0.10], m.primary, 0.01);
+    for (let i = 0; i < 4; i++) {
+      const camera = bind(`spectral-camera-${i + 1}`, lens(array, [(i % 2 - 0.5) * 0.073, -0.222, -0.10 + (Math.floor(i / 2) - 0.5) * 0.058], 0.022, m));
+      camera.rotation.x = Math.PI / 2;
+    }
+    const sensor = bind('irradiance-sensor', new T.Group()); root.add(sensor);
+    cylinder(sensor, 0.034, 0.016, [0, h * 0.65 + 0.02, 0.09], m.secondary);
+    mesh(sensor, new T.SphereGeometry(0.029, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), m.primary, [0, h * 0.65 + 0.028, 0.09]).scale.y = 0.45;
+  }
+  if (variant === 'relay') {
+    const radio = bind('radio-pod', new T.Group()); root.add(radio);
+    box(radio, [0.19, 0.09, 0.15], [0, -0.14, -0.10], m.secondary, 0.012);
+    for (let i = 0; i < 6; i++) box(radio, [0.20, 0.008, 0.008], [0, -0.11, -0.16 + i * 0.024], m.metal, 0.002);
+    const antennas = bind('relay-antennas', new T.Group()); root.add(antennas);
+    for (const side of [-1, 1]) {
+      rod(antennas, [side * 0.11, -0.10, -0.09], [side * 0.16, -0.21, -0.09], 0.006, m.metal);
+      box(antennas, [0.025, 0.12, 0.11], [side * 0.17, -0.21, -0.09], m.primary, 0.008);
+      rod(antennas, [side * 0.095, 0.08, -0.14], [side * 0.12, 0.28, -0.15], 0.003, m.rubber);
+      cylinder(antennas, 0.012, 0.022, [side * 0.095, 0.08, -0.14], m.accent);
+    }
   }
   if (survey || heavy) {
     const antenna = bind('gnss-antenna', new T.Group()); root.add(antenna);

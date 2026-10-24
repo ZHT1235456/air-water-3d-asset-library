@@ -1,0 +1,59 @@
+{
+  "errors": [],
+  "sites": [
+    {
+      "variant": "westlake",
+      "routes": 2,
+      "boats": 12,
+      "issues": [],
+      "performance": {
+        "fps": 60.002033967253176,
+        "p95Ms": 16.799999999999272,
+        "calls": 1314,
+        "triangles": 842820,
+        "visibleBoats": 12
+      }
+    },
+    {
+      "variant": "kallang",
+      "routes": 3,
+      "boats": 12,
+      "issues": [],
+      "performance": {
+        "fps": 60.008136696501175,
+        "p95Ms": 16.799999999999272,
+        "calls": 1314,
+        "triangles": 784320,
+        "visibleBoats": 12
+      }
+    },
+    {
+      "variant": "waalhaven",
+      "routes": 3,
+      "boats": 12,
+      "issues": [],
+      "performance": {
+        "fps": 60.002033967253176,
+        "p95Ms": 16.899999999997817,
+        "calls": 1314,
+        "triangles": 734489,
+        "visibleBoats": 12
+      }
+    }
+  ],
+  "memory": [
+    {
+      "geometries": 1275,
+      "textures": 18
+    },
+    {
+      "geometries": 1275,
+      "textures": 18
+    },
+    {
+      "geometries": 1275,
+      "textures": 18
+    }
+  ],
+  "result": "passed"
+}

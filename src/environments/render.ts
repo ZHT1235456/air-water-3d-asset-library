@@ -9,6 +9,8 @@ import { createHornsea } from './hornsea/scene';
 import { createJiuzhou } from './jiuzhou/scene';
 import { createQingzhou } from './qingzhou/scene';
 import { createDeepwater } from './marine/harbor';
+import { createUSVSite } from './usv-sites/scene';
+import { isUSVSite } from './usv-sites/config';
 
 export function polygonShape(p: Polygon) {
   const shape = new T.Shape(p.outer.map(([x, z]) => new T.Vector2(x, -z)));
@@ -31,6 +33,7 @@ function release(root: T.Object3D) {
   geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose());
 }
 export function createEnvironment({ variant = 'lake', seed }: { variant?: EnvironmentVariant; seed?: number } = {}): EnvironmentHandle {
+  if (isUSVSite(variant)) return createUSVSite(variant, seed);
   if (variant === 'ninepin') return createNinepin(seed);
   if (variant === 'hornsea') return createHornsea(seed);
   if (variant === 'jiuzhou') return createJiuzhou(seed);

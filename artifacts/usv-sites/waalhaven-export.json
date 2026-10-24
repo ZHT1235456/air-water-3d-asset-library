@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "environment": {
+    "variant": "waalhaven",
+    "seed": 5107
+  },
+  "vehicles": [
+    {
+      "id": "v1",
+      "modelId": "usv-survey",
+      "position": [
+        50,
+        0,
+        -250
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#247d8c"
+      }
+    },
+    {
+      "id": "v2",
+      "modelId": "usv-survey",
+      "position": [
+        64,
+        0,
+        -250
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#247d8c"
+      }
+    },
+    {
+      "id": "v3",
+      "modelId": "usv-survey",
+      "position": [
+        78,
+        0,
+        -250
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#247d8c"
+      }
+    },
+    {
+      "id": "v4",
+      "modelId": "usv-survey",
+      "position": [
+        92,
+        0,
+        -250
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#247d8c"
+      }
+    },
+    {
+      "id": "v5",
+      "modelId": "usv-survey",
+      "position": [
+        50,
+        0,
+        -236
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#c19c40"
+      }
+    },
+    {
+      "id": "v6",
+      "modelId": "usv-survey",
+      "position": [
+        64,
+        0,
+        -236
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#c19c40"
+      }
+    },
+    {
+      "id": "v7",
+      "modelId": "usv-survey",
+      "position": [
+        78,
+        0,
+        -236
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#c19c40"
+      }
+    },
+    {
+      "id": "v8",
+      "modelId": "usv-survey",
+      "position": [
+        92,
+        0,
+        -236
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#c19c40"
+      }
+    },
+    {
+      "id": "v9",
+      "modelId": "usv-survey",
+      "position": [
+        50,
+        0,
+        -222
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#b76b50"
+      }
+    },
+    {
+      "id": "v10",
+      "modelId": "usv-survey",
+      "position": [
+        64,
+        0,
+        -222
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#b76b50"
+      }
+    },
+    {
+      "id": "v11",
+      "modelId": "usv-survey",
+      "position": [
+        78,
+        0,
+        -222
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#b76b50"
+      }
+    },
+    {
+      "id": "v12",
+      "modelId": "usv-survey",
+      "position": [
+        92,
+        0,
+        -222
+      ],
+      "yaw": 3.141592653589793,
+      "scale": 1,
+      "colors": {
+        "primary": "#e3ebee",
+        "secondary": "#2b414e",
+        "accent": "#b76b50"
+      }
+    }
+  ],
+  "view": {
+    "selectedId": "v1",
+    "cameraPosition": [
+      114.99999999999986,
+      47.99999999999999,
+      -175.00000000000003
+    ],
+    "target": [
+      70.99999999999987,
+      0,
+      -236.00000000000003
+    ],
+    "fov": 48,
+    "labels": false,
+    "waterBoundary": false,
+    "obstacles": false,
+    "spawns": false,
+    "waterAnimation": true,
+    "rotorAnimation": false
+  }
+}

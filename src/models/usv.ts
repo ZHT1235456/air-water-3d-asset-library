@@ -33,7 +33,7 @@ export function createUSV(options: ModelOptions<USVVariant> = {}) {
   }
   rod(root, [-w * 0.415, y - 0.018, -l / 2], [w * 0.415, y - 0.018, -l / 2], 0.012, m.rubber);
   const survey = variant === 'survey', utility = variant === 'utility';
-  const aftEquipment = ['rescue', 'sampling', 'endurance'].includes(variant);
+  const aftEquipment = ['rescue', 'sampling', 'endurance', 'multibeam', 'relay', 'debris', 'patrol'].includes(variant);
   const cabin = bind('equipment-cabin', new T.Group()); root.add(cabin);
   const cw = w * (utility || aftEquipment ? 0.49 : 0.55), cl = l * (aftEquipment ? 0.22 : utility ? 0.25 : 0.36), ch = utility ? 0.32 : survey ? 0.21 : 0.16;
   const cz = aftEquipment ? l * 0.17 : utility ? l * 0.10 : -l * 0.02;
@@ -170,6 +170,67 @@ export function createUSV(options: ModelOptions<USVVariant> = {}) {
     }
     for (let i = 0; i < 5; i++) cylinder(weather, 0.035, 0.008, [0.075, baseY + mastH * 0.45 + i * 0.014, mastZ], m.primary);
     rod(weather, [0, baseY + mastH * 0.45, mastZ], [0.075, baseY + mastH * 0.45, mastZ], 0.005, m.metal);
+  }
+  if (variant === 'multibeam') {
+    const sonar = bind('multibeam-transducer', new T.Group()); root.add(sonar);
+    rod(sonar, [w * 0.25, y + 0.08, 0], [w * 0.61, y + 0.08, 0], 0.025, m.metal);
+    rod(sonar, [w * 0.61, y + 0.08, 0], [w * 0.61, -d - 0.20, 0], 0.022, m.metal);
+    box(sonar, [0.10, 0.07, 0.38], [w * 0.61, -d - 0.20, 0], m.accent, 0.02);
+    for (let i = 0; i < 8; i++) box(sonar, [0.08, 0.006, 0.033], [w * 0.61, -d - 0.238, (i - 3.5) * 0.044], m.rubber, 0.002);
+    const frame = bind('stern-a-frame', new T.Group()); root.add(frame);
+    for (const side of [-1, 1]) {
+      rod(frame, [side * w * 0.33, y, -l * 0.35], [side * w * 0.24, y + 0.65, -l * 0.34], 0.022, m.accent);
+      rod(frame, [side * w * 0.33, y, -l * 0.15], [side * w * 0.24, y + 0.65, -l * 0.34], 0.016, m.metal);
+      cylinder(root, 0.055, 0.03, [side * w * 0.30, baseY + 0.10, cz], m.primary);
+    }
+    rod(frame, [-w * 0.24, y + 0.65, -l * 0.34], [w * 0.24, y + 0.65, -l * 0.34], 0.025, m.accent);
+    const winch = cylinder(frame, 0.09, 0.22, [0, y + 0.16, -l * 0.32], m.secondary); winch.rotation.z = Math.PI / 2;
+    rod(frame, [0, y + 0.16, -l * 0.32], [0, y + 0.61, -l * 0.34], 0.004, m.rubber);
+  }
+  if (variant === 'relay') {
+    const radome = bind('communication-radome', new T.Group()); root.add(radome);
+    cylinder(radome, 0.16, 0.09, [0, y + 0.16, -l * 0.27], m.secondary);
+    mesh(radome, new T.SphereGeometry(0.23, 32, 24), m.primary, [0, y + 0.40, -l * 0.27]);
+    const radio = bind('communication-rack', box(root, [0.37, 0.23, 0.33], [0, y + 0.12, -l * 0.04], m.secondary, 0.02));
+    for (let i = 0; i < 5; i++) box(radio, [0.30, 0.012, 0.004], [0, -0.07 + i * 0.034, 0.169], m.metal, 0.001);
+    const antennas = bind('directional-antennas', new T.Group()); root.add(antennas);
+    for (const side of [-1, 1]) {
+      rod(antennas, [side * 0.28, y, l * 0.15], [side * 0.28, y + 0.85, l * 0.15], 0.012, m.metal);
+      box(antennas, [0.045, 0.22, 0.13], [side * 0.28, y + 0.64, l * 0.15], m.primary, 0.012);
+      rod(antennas, [side * 0.28, y + 0.85, l * 0.15], [side * 0.28, y + 1.08, l * 0.15], 0.004, m.rubber);
+    }
+  }
+  if (variant === 'debris') {
+    const belt = bind('collection-conveyor', new T.Group()); root.add(belt);
+    belt.position.set(w * 0.53, y + 0.07, -l * 0.04); belt.rotation.x = 0.27;
+    box(belt, [0.26, 0.045, 1.35], [0, 0, 0], m.rubber, 0.01);
+    for (const side of [-1, 1]) box(belt, [0.025, 0.09, 1.39], [side * 0.15, 0.025, 0], m.accent, 0.006);
+    for (let i = 0; i < 15; i++) box(belt, [0.27, 0.038, 0.016], [0, 0.037, (i - 7) * 0.085], m.metal, 0.003);
+    const basket = bind('collection-basket', new T.Group()); root.add(basket);
+    const z0 = -l * 0.29, bw = w * 0.65, bl = l * 0.25;
+    box(basket, [bw, 0.025, bl], [0, y + 0.025, z0], m.secondary, 0.008);
+    for (const side of [-1, 1]) {
+      for (let i = 0; i < 9; i++) rod(basket, [side * bw / 2, y + 0.03, z0 - bl / 2 + i * bl / 8], [side * bw / 2, y + 0.39, z0 - bl / 2 + i * bl / 8], 0.005, m.metal);
+      rod(basket, [side * bw / 2, y + 0.39, z0 - bl / 2], [side * bw / 2, y + 0.39, z0 + bl / 2], 0.014, m.accent);
+      for (let i = 0; i < 9; i++) rod(basket, [-bw / 2 + i * bw / 8, y + 0.03, z0 + side * bl / 2], [-bw / 2 + i * bw / 8, y + 0.39, z0 + side * bl / 2], 0.005, m.metal);
+      rod(basket, [-bw / 2, y + 0.39, z0 + side * bl / 2], [bw / 2, y + 0.39, z0 + side * bl / 2], 0.014, m.accent);
+    }
+    bind('work-beacon', cylinder(root, 0.037, 0.06, [0, baseY + mastH + 0.08, mastZ], m.accent));
+  }
+  if (variant === 'patrol') {
+    const tower = bind('observation-tower', new T.Group()); root.add(tower);
+    for (const side of [-1, 1]) rod(tower, [side * w * 0.20, y, -l * 0.08], [side * w * 0.12, y + 0.93, -l * 0.08], 0.025, m.secondary);
+    box(tower, [w * 0.36, 0.04, 0.22], [0, y + 0.94, -l * 0.08], m.primary, 0.012);
+    bind('patrol-radar', box(tower, [0.66, 0.085, 0.12], [0, y + 1.05, -l * 0.08], m.primary, 0.02));
+    const camera = bind('patrol-camera', new T.Group()); root.add(camera);
+    cylinder(camera, 0.075, 0.07, [0, baseY + mastH + 0.05, mastZ], m.secondary);
+    mesh(camera, new T.SphereGeometry(0.085, 24, 16), m.primary, [0, baseY + mastH + 0.12, mastZ]);
+    lens(camera, [0, baseY + mastH + 0.12, mastZ + 0.065], 0.037, m);
+    const fenders = bind('patrol-fenders', new T.Group()); root.add(fenders);
+    for (const side of [-1, 1]) for (const z of [-l * 0.30, 0, l * 0.20]) {
+      const profile = hullProfile(z / l + 0.5, w, y);
+      cylinder(fenders, 0.045, 0.24, [side * (profile.halfWidth + 0.018), y * 0.38, z], m.rubber);
+    }
   }
   const animated: { node: T.Object3D; axis: 'z'; sign: number }[] = [];
   const xs = variant === 'inspection' ? [0] : [-w * 0.24, w * 0.24];

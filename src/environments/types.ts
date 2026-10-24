@@ -1,6 +1,6 @@
 import type { Color, Group, Vector3, Texture } from 'three';
 
-export type EnvironmentVariant = 'lake' | 'river' | 'harbor' | 'islands' | 'bridge' | 'waterfront' | 'deepwater' | 'qingzhou' | 'jiuzhou' | 'hornsea' | 'ninepin';
+export type EnvironmentVariant = 'lake' | 'river' | 'harbor' | 'islands' | 'bridge' | 'waterfront' | 'deepwater' | 'qingzhou' | 'jiuzhou' | 'hornsea' | 'ninepin' | 'westlake' | 'kallang' | 'waalhaven';
 export type Point2 = [number, number]; // X, Z
 export type Point3 = [number, number, number];
 export interface Polygon { outer: Point2[]; holes: Point2[][] }

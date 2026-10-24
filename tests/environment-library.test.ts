@@ -6,8 +6,8 @@ import { jiuzhouConfig } from '../src/environments/jiuzhou/config';
 import { toJiuzhouWorld } from '../src/environments/jiuzhou/scene';
 
 test('display registry retains deepwater while adding separately labelled real sites',()=>{
- assert.deepEqual(environmentLibrary.map(e=>e.variant),['deepwater','qingzhou','jiuzhou','hornsea','ninepin']);
- assert.equal(new Set(environmentLibrary.map(e=>e.source)).size,5);
+ assert.deepEqual(environmentLibrary.map(e=>e.variant),['deepwater','qingzhou','jiuzhou','hornsea','ninepin','westlake','kallang','waalhaven']);
+ assert.equal(new Set(environmentLibrary.map(e=>e.source)).size,8);
  assert.equal(environmentLibrary[0].category,'原创工程示范');
  assert.notDeepEqual(environmentLibrary[1].cameras,environmentLibrary[2].cameras);
 });

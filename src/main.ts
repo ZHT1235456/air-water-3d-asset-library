@@ -4,11 +4,12 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { createQuadrotor, createUSV, quadrotorPresets, usvPresets } from './models';
 import type { ModelHandle, ModelColors, QuadrotorVariant, USVVariant } from './models';
 import './style.css';
+import './ui.css';
+import { compactPanel } from './responsive';
 
 const droneIcon = `<svg viewBox="0 0 80 64" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="2"><path d="m24 19 32 28m0-28L24 47" stroke-width="5"/><rect x="32" y="23" width="16" height="20" rx="5" fill="currentColor"/><ellipse cx="22" cy="17" rx="16" ry="7"/><ellipse cx="58" cy="17" rx="16" ry="7"/><ellipse cx="22" cy="49" rx="16" ry="7"/><ellipse cx="58" cy="49" rx="16" ry="7"/></g><path d="m37 29 3-4 3 4" stroke="#fff" stroke-width="1.5"/></svg>`;
 const boatIcon = `<svg viewBox="0 0 80 64" fill="none" aria-hidden="true"><path d="M40 5C25 18 22 31 23 57h34C58 31 55 18 40 5Z" fill="currentColor" fill-opacity=".10" stroke="currentColor" stroke-width="2"/><rect x="31" y="27" width="18" height="21" rx="4" fill="currentColor"/><path d="M28 52h24M40 16v8m-9 13h18" stroke="currentColor" stroke-width="2"/><circle cx="40" cy="34" r="3" fill="#fff"/></svg>`;
 const icons = {
-  reset: '<path d="M4 10a8 8 0 1 1 2 8M4 4v6h6"/>',
   expand: '<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',
   camera: '<path d="M8 6l2-3h4l2 3h5v14H3V6Z"/><circle cx="12" cy="12" r="4"/>',
   cube: '<path d="m12 2 9 5v10l-9 5-9-5V7Zm0 10v10M3 7l9 5 9-5M7.5 4.5l9 5v5"/>',
@@ -22,22 +23,22 @@ const entries: Entry[] = [
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="app-header">
     <a class="brand" href="./" aria-label="空海模型工作台首页"><span class="brand-symbol">${icon('cube')}</span><span>空海<span class="brand-divider">/</span><span class="brand-sub">模型工作台</span></span></a>
-    <nav class="workspace-tabs" aria-label="工作台"><button id="mode-models" aria-pressed="true">模型库</button><button id="mode-environments" aria-pressed="false">环境库</button></nav>
-    <div class="local-status"><span></span> 本地模型库 <b>V1.0</b></div>
+    <nav class="workspace-tabs" aria-label="工作台"><button id="mode-models" aria-pressed="true"><strong>模型库</strong><small>18 款载具</small></button><button id="mode-environments" aria-pressed="false"><strong>环境库</strong><small>8 个水域</small></button><button id="mode-algorithms" aria-pressed="false"><strong>算法库</strong><small>5 项实验</small></button></nav>
+    <div class="local-status"><span></span> 本地工作区</div>
   </header>
   <main class="workspace">
     <aside class="library" aria-label="模型库">
       <details open class="mobile-panel"><summary>模型库 <span>${entries.length} 款模型</span></summary><div class="panel-inner">
         <div class="panel-heading"><span>模型库</span><span class="count">${entries.length}</span></div>
-        <p class="panel-hint">选择模型，探索结构细节。</p>
-        ${(['quadrotor', 'usv'] as const).map(kind => `<section class="model-section"><h2><span>${kind === 'quadrotor' ? '四旋翼无人机' : '单体无人艇'}</span><span>${kind === 'quadrotor' ? 'AIR' : 'WATER'}</span></h2><div class="model-list">${entries.filter(e => e.kind === kind).map(e => `<button class="model-button" data-model="${e.id}" aria-pressed="false"><span class="model-thumb ${e.variant}">${kind === 'quadrotor' ? droneIcon : boatIcon}</span><span class="model-info"><span class="model-code">${e.code}</span><strong>${e.name}</strong><small>${kind === 'quadrotor' ? '四旋翼' : '单尖船首'}<span class="selection-dot"></span></small></span></button>`).join('')}</div></section>`).join('')}
-        <div class="library-note">${icon('cube')}<p>程序化构造<span>独立模型 · 可复用代码</span></p></div>
+        <p class="panel-hint">选择载具，查看结构与配色。</p><label class="model-search"><span>查找模型</span><input id="model-search" type="search" placeholder="名称、编号或任务…" autocomplete="off"/></label><p id="model-search-empty" role="status" hidden>没有匹配的模型，请更换关键词。</p>
+        <div class="model-sections">${(['quadrotor', 'usv'] as const).map(kind => `<section class="model-section"><h2><span>${kind === 'quadrotor' ? '四旋翼无人机' : '单体无人艇'}</span><span>${kind === 'quadrotor' ? 'AIR' : 'WATER'}</span></h2><div class="model-list">${entries.filter(e => e.kind === kind).map(e => `<button class="model-button" data-model="${e.id}" aria-pressed="false"><span class="model-thumb ${e.variant}">${kind === 'quadrotor' ? droneIcon : boatIcon}</span><span class="model-info"><span class="model-code">${e.code}</span><strong>${e.name}</strong><small>${kind === 'quadrotor' ? '四旋翼' : '单尖船首'}<span class="selection-dot"></span></small></span></button>`).join('')}</div></section>`).join('')}
+        </div><div class="library-note">${icon('cube')}<p>程序化构造<span>独立模型 · 可复用代码</span></p></div>
       </div></details>
     </aside>
     <section class="stage" aria-label="三维模型预览">
       <div class="stage-heading"><div><div class="eyebrow"><span id="model-code">Q-01</span><span class="small-line"></span><span id="model-category">QUADROTOR</span></div><h1 id="model-title">轻型巡检</h1><p id="model-description"></p></div><span class="view-tag"><i></i> 实时三维</span></div>
       <div id="viewport" tabindex="0" role="img" aria-label="可旋转缩放的三维模型；也可使用下方标准视角按钮"></div>
-      <div class="stage-actions"><button id="reset" class="icon-button" title="复位视角" aria-label="复位视角">${icon('reset')}</button><button id="screenshot" class="icon-button" title="保存当前视图" aria-label="保存当前视图">${icon('camera')}</button><button id="fullscreen" class="icon-button" title="全屏预览" aria-label="全屏预览">${icon('expand')}</button></div>
+      <div class="stage-actions"><button id="screenshot" class="icon-button" title="保存当前视图" aria-label="保存当前视图">${icon('camera')}<span>保存图片</span></button><button id="fullscreen" class="icon-button" title="全屏预览" aria-label="全屏预览">${icon('expand')}<span>全屏</span></button></div>
       <div class="model-caption"><span id="caption-kind">X 形布局 · 四组独立旋翼</span><span>+Z 前向 / Y 向上</span></div>
       <div class="view-controls" role="group" aria-label="标准视角"><button data-view="perspective" class="active" aria-pressed="true">透视</button><button data-view="front" aria-pressed="false">前视</button><button data-view="side" aria-pressed="false">侧视</button><button data-view="top" aria-pressed="false">俯视</button><button data-view="bottom" aria-pressed="false">底视</button></div>
       <div class="stage-footer"><span><i class="mouse-icon"></i> 拖动旋转 <b>·</b> 滚轮缩放 <b>·</b> 右键平移</span><span id="render-status">准备场景…</span></div>
@@ -56,22 +57,43 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div id="toast" role="status" aria-live="polite"></div>`;
 
 const $ = <E extends HTMLElement = HTMLElement>(selector: string) => document.querySelector<E>(selector)!;
-let workspaceMode: 'models' | 'environments' = 'models';
+const releaseCompactPanel = compactPanel($<HTMLDetailsElement>('.library details'), 850);
+window.addEventListener('pagehide', releaseCompactPanel, { once: true });
+let workspaceMode: 'models' | 'environments' | 'algorithms' = 'models';
 let environmentEditor: ReturnType<typeof import('./scenes/editor').createEnvironmentEditor> | undefined;
+let algorithmWorkbench: ReturnType<typeof import('./algorithms/workbench').createAlgorithmWorkbench> | undefined;
 let editorLoading: Promise<void> | undefined;
+let algorithmsLoading: Promise<void> | undefined;
 const modelWorkspace = $('.workspace'), modelFooter = $('.app-footer');
 const environmentHost = document.createElement('div'); environmentHost.id = 'environment-app'; environmentHost.hidden = true; $('#app').appendChild(environmentHost);
+const algorithmHost = document.createElement('div'); algorithmHost.id = 'algorithm-app'; algorithmHost.hidden = true; $('#app').appendChild(algorithmHost);
 async function switchWorkspace(mode: typeof workspaceMode) {
   workspaceMode = mode; modelWorkspace.hidden = modelFooter.hidden = mode !== 'models'; environmentHost.hidden = mode !== 'environments';
+  algorithmHost.hidden = mode !== 'algorithms';
   $('#mode-models').setAttribute('aria-pressed', String(mode === 'models')); $('#mode-environments').setAttribute('aria-pressed', String(mode === 'environments'));
+  $('#mode-algorithms').setAttribute('aria-pressed', String(mode === 'algorithms'));
   if (mode === 'environments' && !environmentEditor) {
     editorLoading ??= import('./scenes/editor').then(({ createEnvironmentEditor }) => { environmentEditor = createEnvironmentEditor(environmentHost); environmentEditor.setActive(workspaceMode === 'environments'); }).catch(error => { environmentHost.textContent = `环境库启动失败：${String(error)}`; editorLoading = undefined; });
     await editorLoading;
   }
+  if (mode === 'algorithms' && !algorithmWorkbench) {
+    algorithmsLoading ??= import('./algorithms/workbench').then(({ createAlgorithmWorkbench }) => {
+      algorithmWorkbench = createAlgorithmWorkbench(algorithmHost, async config => {
+        await switchWorkspace('environments');
+        if (environmentEditor && 'importText' in environmentEditor) environmentEditor.importText(JSON.stringify(config));
+        else throw new Error('三维环境尚未初始化，请检查 WebGL 支持');
+      });
+      algorithmWorkbench.setActive(workspaceMode === 'algorithms');
+    }).catch(error => { algorithmHost.textContent = `算法库启动失败：${String(error)}`; algorithmsLoading = undefined; });
+    await algorithmsLoading;
+  }
   environmentEditor?.setActive(workspaceMode === 'environments');
+  algorithmWorkbench?.setActive(workspaceMode === 'algorithms');
 }
 $('#mode-models').addEventListener('click', () => { void switchWorkspace('models'); });
 $('#mode-environments').addEventListener('click', () => { void switchWorkspace('environments'); });
+$('#mode-algorithms').addEventListener('click', () => { void switchWorkspace('algorithms'); });
+window.addEventListener('pagehide', () => algorithmWorkbench?.dispose());
 let active = entries[0];
 let handle: ModelHandle;
 let renderer: T.WebGLRenderer;
@@ -135,6 +157,7 @@ function updateColorFields() {
     $<HTMLInputElement>(`#${key}`).value = color;
     $(`#${key}-hex`).textContent = color.toUpperCase();
   }
+  $<HTMLButtonElement>('#restore-colors').disabled = !(['primary', 'secondary', 'accent'] as const).some(key => String(colors[active.id]?.[key] ?? active[key]).toLowerCase() !== active[key].toLowerCase());
 }
 function selectModel(id: string, preserveView = false) {
   const next = entries.find(e => e.id === id); if (!next) return;
@@ -182,7 +205,15 @@ function init() {
   resizeObserver = new ResizeObserver(resize); resizeObserver.observe(viewport);
   document.querySelectorAll<HTMLButtonElement>('[data-model]').forEach(b => b.addEventListener('click', () => selectModel(b.dataset.model!)));
   document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(b => b.addEventListener('click', () => setView(b.dataset.view!)));
-  $('#reset').addEventListener('click', () => { measure(); setView('perspective'); });
+  $('#model-search').addEventListener('input', () => {
+    const query = $<HTMLInputElement>('#model-search').value.trim().toLowerCase(); let count = 0;
+    document.querySelectorAll<HTMLButtonElement>('[data-model]').forEach(button => {
+      const entry = entries.find(e => e.id === button.dataset.model)!;
+      button.hidden = !`${entry.name} ${entry.code} ${entry.description} ${entry.kind === 'usv' ? '无人艇 水面' : '无人机 空中'}`.toLowerCase().includes(query); if (!button.hidden) count++;
+    });
+    document.querySelectorAll<HTMLElement>('.model-section').forEach(section => section.hidden = !section.querySelector('.model-button:not([hidden])'));
+    $('#model-search-empty').hidden = count > 0;
+  });
   $('#wireframe').addEventListener('change', applyWireframe);
   $('#axes').addEventListener('change', () => { axes.visible = $<HTMLInputElement>('#axes').checked; });
   $('#animate').addEventListener('change', () => { $<HTMLInputElement>('#speed').disabled = !$<HTMLInputElement>('#animate').checked; });
@@ -195,6 +226,7 @@ function init() {
   $('#fullscreen').addEventListener('click', async () => {
     try { if (document.fullscreenElement) await document.exitFullscreen(); else await $('.stage').requestFullscreen(); } catch { toast('此浏览器暂不支持全屏预览'); }
   });
+  document.addEventListener('fullscreenchange', () => { $('#fullscreen span').textContent = document.fullscreenElement ? '退出全屏' : '全屏'; $('#fullscreen').setAttribute('aria-label', document.fullscreenElement ? '退出全屏' : '全屏预览'); });
   $('#screenshot').addEventListener('click', () => {
     renderer.render(scene, camera);
     const canvas = document.createElement('canvas'); canvas.width = renderer.domElement.width; canvas.height = renderer.domElement.height;

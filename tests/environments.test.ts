@@ -83,7 +83,7 @@ test('navigation differentiates shores, island holes, bridge piers and bridge cl
   assert.ok(checkPlacement(harbor, { ...boat, position: [-25, 0, -136], bounds: { min: [-10, -1, -3], max: [10, 2, 3] } }).some(i => i.code === 'obstacle'), 'wide hull intersects breakwater');
   assert.ok(checkPlacement(bridge, boat, [{ ...boat, id: 'other' }]).some(i => i.code === 'vehicle'));
 });
-test('all twelve model envelopes fit the default spawn sites and rotor envelope is stable', () => {
+test('all model envelopes fit the default spawn sites and rotor envelope is stable', () => {
   const spatial = defineEnvironment('lake').spatial;
   for (const model of modelCatalog) {
     const handle = model.kind === 'quadrotor' ? createQuadrotor({ variant: model.variant as any }) : createUSV({ variant: model.variant as any });
